@@ -151,8 +151,6 @@ const VideoCarousel = () => {
     }
   }, []);
   const handleLoadedMetaData = (i, e) => {
-    console.log(i);
-    console.log(e);
     return setLoadedData((prev) => [...prev, e]);
   };
 
@@ -223,7 +221,7 @@ const VideoCarousel = () => {
                   {list.textLists.map((text, index) => {
                     return (
                       <p
-                        key={text}
+                        key={index}
                         className={` ${
                           index == 0
                             ? "font-bold  text-2xl text-white"

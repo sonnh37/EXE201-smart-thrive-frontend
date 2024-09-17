@@ -2,6 +2,10 @@ import { Canvas } from "@react-three/fiber";
 import React from "react";
 import Cube from "./Cube";
 import HeroText from "./HeroText";
+import { useRef, useLayoutEffect, useEffect } from "react";
+import { gsap } from "gsap-trial";
+import ScrollTrigger from "gsap-trial/ScrollTrigger";
+import ScrollSmoother from "gsap-trial/ScrollSmoother";
 const Hero = () => {
   return (
     <section className="w-full h-screen ">

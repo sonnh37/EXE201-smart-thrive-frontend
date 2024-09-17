@@ -17,7 +17,7 @@ export const animteWithGsap = (target) => {
       stagger: 0.2,
       scrollTrigger: {
         trigger: target,
-        toggleActions: "restart reverse restart reverse",
+        // toggleActions: "restart reverse restart reverse",
         start: "top 95%",
       },
     }
