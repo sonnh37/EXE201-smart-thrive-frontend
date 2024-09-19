@@ -4,6 +4,7 @@ import { useGSAP } from "@gsap/react";
 import { useState, useEffect } from "react";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import gsap from "gsap";
+import Drop from "./Button/Drop";
 gsap.registerPlugin(ScrollTrigger);
 export const NavBar = () => {
   const [hoverTransition, setHoverTransition] = useState("hover:mx-12");
@@ -95,8 +96,8 @@ export const NavBar = () => {
               SmartThrive.
             </h2>
           </li>
-          <li className="container-auth mx-4 my-8 mr-0 nav-text cursor-pointer">
-            Login/Register
+          <li className=" grid place-items-center">
+          <Drop/>
           </li>
         </ul>
       </nav>
