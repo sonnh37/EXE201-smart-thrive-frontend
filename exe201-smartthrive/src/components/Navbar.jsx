@@ -92,7 +92,7 @@ export const NavBar = () => {
             </h2>
           </li>
           <li className="container-auth mx-4 my-8 mr-0 nav-text cursor-pointer">
-            Login
+            Login/Register
           </li>
         </ul>
       </nav>

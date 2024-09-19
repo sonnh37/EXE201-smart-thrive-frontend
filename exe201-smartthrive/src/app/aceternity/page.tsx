@@ -1,246 +1,50 @@
 "use client";
 import React from "react";
-
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { Modal, ModalTrigger, ModalBody, ModalContent, ModalFooter } from "@/components/ui/animated-modal";
-
-export default function AnimatedModalDemo() {
-  const images = [
-    "https://images.unsplash.com/photo-1517322048670-4fba75cbbb62?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1573790387438-4da905039392?q=80&w=3425&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1555400038-63f5ba517a47?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1554931670-4ebfabf6e7a9?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1546484475-7f7bd55792da?q=80&w=2581&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  ];
+import { Login } from "@/components/Auth/Login/Login";
+import  Register from "@/components/Auth/Register/Register";
+export default function Auth() {
+ 
   return (
-    <div className="py-40  flex items-center justify-center">
-      <Modal>
-        <ModalTrigger className="bg-black dark:bg-white dark:text-black text-white flex justify-center group/modal-btn">
-          <span className="group-hover/modal-btn:translate-x-40 text-center transition duration-500">
-            Book your flight
-          </span>
-          <div className="-translate-x-40 group-hover/modal-btn:translate-x-0 flex items-center justify-center absolute inset-0 transition duration-500 text-white z-20">
-            ✈️
+<div >
+
+<section className="min-h-screen flex items-stretch text-white">
+  {/* Left Side */}
+          <div className="lg:flex w-1/2 hidden bg-gray-500 bg-no-repeat bg-cover relative items-center"
+               style={{ backgroundImage: "url('https://images.unsplash.com/photo-1577495508048-b635879837f1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80')" }}>
+            <div className="absolute bg-black opacity-60 inset-0 z-0"></div>
+            <div className="w-full px-24 z-10">
+              <h1 className="text-5xl font-bold text-left tracking-wide">Keep it special</h1>
+              <p className="text-3xl my-4">Capture your personal memory in a unique way, anywhere.</p>
+            </div>
+            <div className="bottom-0 absolute p-4 text-center right-0 left-0 flex justify-center space-x-4">
+              <a href="#" aria-label="Twitter">
+                <svg fill="#fff" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                </svg>
+              </a>
+              <a href="#" aria-label="Facebook">
+                <svg fill="#fff" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
+                </svg>
+              </a>
+              <a href="#" aria-label="Instagram">
+                <svg fill="#fff" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+              </a>
+            </div>
           </div>
-        </ModalTrigger>
-        <ModalBody>
-          <ModalContent>
-            <h4 className="text-lg md:text-2xl text-neutral-600 dark:text-neutral-100 font-bold text-center mb-8">
-              Book your trip to{" "}
-              <span className="px-1 py-0.5 rounded-md bg-gray-100 dark:bg-neutral-800 dark:border-neutral-700 border border-gray-200">
-                Bali
-              </span>{" "}
-              now! ✈️
-            </h4>
-            <div className="flex justify-center items-center">
-              {images.map((image, idx) => (
-                <motion.div
-                  key={"images" + idx}
-                  style={{
-                    rotate: Math.random() * 20 - 10,
-                  }}
-                  whileHover={{
-                    scale: 1.1,
-                    rotate: 0,
-                    zIndex: 100,
-                  }}
-                  whileTap={{
-                    scale: 1.1,
-                    rotate: 0,
-                    zIndex: 100,
-                  }}
-                  className="rounded-xl -mr-4 mt-4 p-1 bg-white dark:bg-neutral-800 dark:border-neutral-700 border border-neutral-100 flex-shrink-0 overflow-hidden"
-                >
-                  <Image
-                    src={image}
-                    alt="bali images"
-                    width="500"
-                    height="500"
-                    className="rounded-lg h-20 w-20 md:h-40 md:w-40 object-cover flex-shrink-0"
-                  />
-                </motion.div>
-              ))}
-            </div>
-            <div className="py-10 flex flex-wrap gap-x-4 gap-y-6 items-start justify-start max-w-sm mx-auto">
-              <div className="flex  items-center justify-center">
-                <PlaneIcon className="mr-1 text-neutral-700 dark:text-neutral-300 h-4 w-4" />
-                <span className="text-neutral-700 dark:text-neutral-300 text-sm">
-                  5 connecting flights
-                </span>
-              </div>
-              <div className="flex items-center justify-center">
-                <ElevatorIcon className="mr-1 text-neutral-700 dark:text-neutral-300 h-4 w-4" />
-                <span className="text-neutral-700 dark:text-neutral-300 text-sm">
-                  12 hotels
-                </span>
-              </div>
-              <div className="flex items-center justify-center">
-                <VacationIcon className="mr-1 text-neutral-700 dark:text-neutral-300 h-4 w-4" />
-                <span className="text-neutral-700 dark:text-neutral-300 text-sm">
-                  69 visiting spots
-                </span>
-              </div>
-              <div className="flex  items-center justify-center">
-                <FoodIcon className="mr-1 text-neutral-700 dark:text-neutral-300 h-4 w-4" />
-                <span className="text-neutral-700 dark:text-neutral-300 text-sm">
-                  Good food everyday
-                </span>
-              </div>
-              <div className="flex items-center justify-center">
-                <MicIcon className="mr-1 text-neutral-700 dark:text-neutral-300 h-4 w-4" />
-                <span className="text-neutral-700 dark:text-neutral-300 text-sm">
-                  Open Mic
-                </span>
-              </div>
-              <div className="flex items-center justify-center">
-                <ParachuteIcon className="mr-1 text-neutral-700 dark:text-neutral-300 h-4 w-4" />
-                <span className="text-neutral-700 dark:text-neutral-300 text-sm">
-                  Paragliding
-                </span>
-              </div>
-            </div>
-          </ModalContent>
-          <ModalFooter className="gap-4">
-            <button className="px-2 py-1 bg-gray-200 text-black dark:bg-black dark:border-black dark:text-white border border-gray-300 rounded-md text-sm w-28">
-              Cancel
-            </button>
-            <button className="bg-black text-white dark:bg-white dark:text-black text-sm px-2 py-1 rounded-md border border-black w-28">
-              Book Now
-            </button>
-          </ModalFooter>
-        </ModalBody>
-      </Modal>
+
+          {/* Right Side */}
+          <div className="lg:w-1/2 w-full flex items-center justify-center bg-black">
+    <div className="w-full h-full flex items-center justify-center">
+      <Login/>
     </div>
+  </div>
+      
+        </section>
+</div>
+
+   
   );
 }
-
-const PlaneIcon = ({ className }: { className?: string }) => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-    >
-      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path d="M16 10h4a2 2 0 0 1 0 4h-4l-4 7h-3l2 -7h-4l-2 2h-3l2 -4l-2 -4h3l2 2h4l-2 -7h3z" />
-    </svg>
-  );
-};
-
-const VacationIcon = ({ className }: { className?: string }) => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-    >
-      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path d="M17.553 16.75a7.5 7.5 0 0 0 -10.606 0" />
-      <path d="M18 3.804a6 6 0 0 0 -8.196 2.196l10.392 6a6 6 0 0 0 -2.196 -8.196z" />
-      <path d="M16.732 10c1.658 -2.87 2.225 -5.644 1.268 -6.196c-.957 -.552 -3.075 1.326 -4.732 4.196" />
-      <path d="M15 9l-3 5.196" />
-      <path d="M3 19.25a2.4 2.4 0 0 1 1 -.25a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 1 .25" />
-    </svg>
-  );
-};
-
-const ElevatorIcon = ({ className }: { className?: string }) => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-    >
-      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path d="M5 4m0 1a1 1 0 0 1 1 -1h12a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-12a1 1 0 0 1 -1 -1z" />
-      <path d="M10 10l2 -2l2 2" />
-      <path d="M10 14l2 2l2 -2" />
-    </svg>
-  );
-};
-
-const FoodIcon = ({ className }: { className?: string }) => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-    >
-      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path d="M20 20c0 -3.952 -.966 -16 -4.038 -16s-3.962 9.087 -3.962 14.756c0 -5.669 -.896 -14.756 -3.962 -14.756c-3.065 0 -4.038 12.048 -4.038 16" />
-    </svg>
-  );
-};
-
-const MicIcon = ({ className }: { className?: string }) => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-    >
-      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path d="M15 12.9a5 5 0 1 0 -3.902 -3.9" />
-      <path d="M15 12.9l-3.902 -3.899l-7.513 8.584a2 2 0 1 0 2.827 2.83l8.588 -7.515z" />
-    </svg>
-  );
-};
-
-const ParachuteIcon = ({ className }: { className?: string }) => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-    >
-      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path d="M22 12a10 10 0 1 0 -20 0" />
-      <path d="M22 12c0 -1.66 -1.46 -3 -3.25 -3c-1.8 0 -3.25 1.34 -3.25 3c0 -1.66 -1.57 -3 -3.5 -3s-3.5 1.34 -3.5 3c0 -1.66 -1.46 -3 -3.25 -3c-1.8 0 -3.25 1.34 -3.25 3" />
-      <path d="M2 12l10 10l-3.5 -10" />
-      <path d="M15.5 12l-3.5 10l10 -10" />
-    </svg>
-  );
-};
