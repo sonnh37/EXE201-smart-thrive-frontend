@@ -5,10 +5,9 @@ import { useState, useEffect } from "react";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import gsap from "gsap";
 gsap.registerPlugin(ScrollTrigger);
-
 export const NavBar = () => {
   const [hoverTransition, setHoverTransition] = useState("hover:mx-12");
-  const [navBackground, setNavBackground] = useState("bg-white");
+  const [navBackground, setNavBackground] = useState("bg-transparent");
   const [borderTransition, setBorderTransition] =
     useState("mx-12 border-black");
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
@@ -34,11 +33,11 @@ export const NavBar = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
-        setNavBackground("bg-white text-black");
+        setNavBackground("bg-transparent text-black");
         setBorderTransition("px-12 border-black");
         setHoverTransition("hover:px-0 hover:mx-12");
       } else {
-        setNavBackground("bg-white text-black");
+        setNavBackground("bg-transparent text-black");
         setBorderTransition("mx-12 border-black");
         setHoverTransition("hover:mx-12");
       }
@@ -69,20 +68,25 @@ export const NavBar = () => {
           className={`main-nav flex justify-between border-b ${borderTransition} ${hoverTransition} transition-all duration-100 hover:border-black`}
         >
           <li className="container-nav flex min-w-fit">
-            <div className="nav-item mx-4 my-8 ml-0 nav-text cursor-pointer">
+            <div className="nav-item mx-4 my-8 ml-0 nav-text cursor-pointer min-w-12">
               Home
             </div>
             <div
-              className="nav-item px-4 py-8 nav-text cursor-pointer relative"
-              onMouseEnter={() => handleSubmenuToggle(true)}
-              onMouseLeave={() => handleSubmenuToggle(false)}
+              className="group nav-item min-w-12 mx-4 py-8 nav-text cursor-pointer relative hover:bg-[#ff0000]"
+              // onMouseEnter={() => handleSubmenuToggle(true)}
+              // onMouseLeave={() => handleSubmenuToggle(false)}
             >
-              <span>Course</span>
+              <span>Category</span>
+              {/* <ul className="absolute bg-slate-500 top-[5.3rem] left-0 min-w-[18vw]">
+                <li className="min-h-12 items-center flex">item1</li>
+                <li className="min-h-12 items-center flex">item1</li>
+                <li className="min-h-12 items-center flex">item1</li>
+              </ul> */}
             </div>
-            <div className="nav-item mx-4 my-8 nav-text cursor-pointer">
+            <div className="nav-item min-w-12 mx-4 py-8 nav-text cursor-pointer">
               Blog
             </div>
-            <div className="nav-item mx-4 my-8 nav-text cursor-pointer">
+            <div className="nav-item min-w-12 mx-4 py-8 nav-text cursor-pointer">
               About Us
             </div>
           </li>
@@ -98,15 +102,15 @@ export const NavBar = () => {
       </nav>
 
       {/* Overlay */}
-      <div
+      {/* <div
         className={`fixed top-0 left-0 inset-0 bg-black bg-opacity-50 transition-opacity duration-300 ${
           isSubmenuOpen ? "opacity-100 z-20" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => handleSubmenuToggle(false)}
-      ></div>
+      ></div> */}
 
       {/* Submenu */}
-      <div
+      {/* <div
         className={`submenu fixed left-0 top-[5rem] w-full bg-white text-black shadow-lg overflow-hidden transition-all duration-700 ease-in-out z-20 ${
           isSubmenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
@@ -141,7 +145,7 @@ export const NavBar = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };

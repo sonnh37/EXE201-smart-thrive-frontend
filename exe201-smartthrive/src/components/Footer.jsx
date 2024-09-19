@@ -81,10 +81,10 @@ const Footer = () => {
         </div>
         <div className="footer-down h-screen flex">
           <div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+            <div>Locations.</div>
+            <div>Course.</div>
+            <div>Category.</div>
+            <div>Info. </div>
           </div>
           <div className="payment_method"></div>
         </div>
