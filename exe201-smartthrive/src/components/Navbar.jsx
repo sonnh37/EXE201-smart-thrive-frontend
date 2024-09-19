@@ -4,6 +4,7 @@ import { useGSAP } from "@gsap/react";
 import { useState, useEffect } from "react";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import gsap from "gsap";
+import Drop from "./Button/Drop";
 import { CategoryItem } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
@@ -159,8 +160,8 @@ export const NavBar = () => {
               SmartThrive.
             </h2>
           </li>
-          <li className="container-auth mx-4 my-8 mr-0 nav-text cursor-pointer">
-            Login/Register
+          <li className=" grid place-items-center">
+            <Drop />
           </li>
         </ul>
       </nav>
