@@ -197,3 +197,14 @@ body {
   font-optical-sizing: auto;
   font-style: normal;
 }
+
+.navLv0 > .navItemLv0:hover > .navLv1 {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+.navLv1 > .navItemLv1:hover > .navLv2 {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}

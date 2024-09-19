@@ -4,13 +4,15 @@ import { useGSAP } from "@gsap/react";
 import { useState, useEffect } from "react";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import gsap from "gsap";
+import { CategoryItem } from "@/utils";
+import Image from "next/image";
+import Link from "next/link";
 gsap.registerPlugin(ScrollTrigger);
 export const NavBar = () => {
   const [hoverTransition, setHoverTransition] = useState("hover:mx-12");
   const [navBackground, setNavBackground] = useState("bg-transparent");
   const [borderTransition, setBorderTransition] =
     useState("mx-12 border-black");
-  const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
 
   useGSAP(() => {
     gsap.fromTo(
@@ -49,12 +51,13 @@ export const NavBar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  const [isClient, setIsClient] = useState(false);
 
-  const handleSubmenuToggle = (isOpen) => {
-    setIsSubmenuOpen(isOpen);
-    document.body.style.overflow = isOpen ? "hidden" : "";
-  };
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
+  if (!isClient) return null;
   return (
     <>
       <nav
@@ -67,27 +70,88 @@ export const NavBar = () => {
         <ul
           className={`main-nav flex justify-between border-b ${borderTransition} ${hoverTransition} transition-all duration-100 hover:border-black`}
         >
-          <li className="container-nav flex min-w-fit">
-            <div className="nav-item mx-4 my-8 ml-0 nav-text cursor-pointer min-w-12">
-              Home
-            </div>
-            <div
-              className="group nav-item min-w-12 mx-4 py-8 nav-text cursor-pointer relative hover:bg-[#ff0000]"
-              // onMouseEnter={() => handleSubmenuToggle(true)}
-              // onMouseLeave={() => handleSubmenuToggle(false)}
+          <li className="container-nav flex min-w-fit text-center">
+            <Link
+              href="/"
+              className="group nav-item mx-4 my-8 ml-0 nav-text cursor-pointer min-w-12"
             >
-              <span>Category</span>
-              {/* <ul className="absolute bg-slate-500 top-[5.3rem] left-0 min-w-[18vw]">
-                <li className="min-h-12 items-center flex">item1</li>
-                <li className="min-h-12 items-center flex">item1</li>
-                <li className="min-h-12 items-center flex">item1</li>
-              </ul> */}
+              <p className="relative">
+                Home
+                <span className="absolute line w-0 h-[1px] bg-black top-7 left-0 group-hover:w-full transition-all duration-300"></span>
+              </p>
+            </Link>
+            <div className="group nav-item min-w-12 px-4 py-8 pb-9 nav-text cursor-pointer relative ">
+              <Link href="/Category" className="">
+                <p className="relative">
+                  Category
+                  <span className="absolute line w-0 h-[1px] bg-black top-7 left-0 group-hover:w-full transition-all duration-300"></span>
+                </p>
+              </Link>
+
+              <ul className="navLv0 absolute min-h-[95vh] bg-white shadow-xl top-[5.5rem] left-0 min-w-[18vw] translate-y-36 opacity-0 transition-all duration-300 invisible  group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                {CategoryItem.map((list) => (
+                  <Link
+                    href={`/Category${list.path}`}
+                    key={list.name}
+                    className={`navItemLv0 min-h-12 items-center flex px-4 w-full h-full hover:bg-slate-400`}
+                  >
+                    <span className={`flex justify-between w-full`}>
+                      <p>{list.name}</p>
+                      <Image
+                        src="/arrow_right_2.svg"
+                        width={15}
+                        height={15}
+                        alt="arrow"
+                      />
+                    </span>
+                    <p
+                      className={`navLv1 absolute top-0 left-[16.8rem] bg-white shadow-xl transition-all duration-300 translate-y-36 invisible opacity-0 min-w-[18vw] min-h-[95vh] `}
+                    >
+                      {list.subLv1.map((subLv1) => (
+                        <Link
+                          href={`Category${subLv1.path}`}
+                          className="navItemLv1 min-h-12 flex items-center px-4 justify-between hover:bg-slate-400"
+                          key={subLv1.name}
+                        >
+                          <p>{subLv1.name}</p>
+                          <Image
+                            src="/arrow_right_2.svg"
+                            width={15}
+                            height={15}
+                            alt="arrow"
+                          />
+                          <p className="navLv2 absolute top-0 left-[16.8rem] bg-white shadow-xl transition-all duration-300 translate-y-36 invisible opacity-0 min-w-[18vw] min-h-[95vh]">
+                            <p className="min-h-12 flex items-center opacity-70 text-left px-4 ">
+                              Popular topics
+                            </p>
+                            {subLv1.subLv2.map((subLv2) => (
+                              <Link
+                                href={`/Category${subLv2.path}`}
+                                key={subLv2.name}
+                                className="navItemLv2 min-h-12 flex items-center px-4 hover:bg-slate-400 text-left"
+                              >
+                                <p>{subLv2.name}</p>
+                              </Link>
+                            ))}
+                          </p>
+                        </Link>
+                      ))}
+                    </p>
+                  </Link>
+                ))}
+              </ul>
             </div>
-            <div className="nav-item min-w-12 mx-4 py-8 nav-text cursor-pointer">
-              Blog
+            <div className="group nav-item min-w-12 mx-4 py-8 nav-text cursor-pointer">
+              <p className="relative">
+                Blog
+                <span className="absolute line w-0 h-[1px] bg-black top-7 left-0 group-hover:w-full transition-all duration-300"></span>
+              </p>
             </div>
-            <div className="nav-item min-w-12 mx-4 py-8 nav-text cursor-pointer">
-              About Us
+            <div className="group nav-item min-w-12 mx-4 py-8 nav-text cursor-pointer">
+              <p className="relative">
+                About Us
+                <span className="absolute line w-0 h-[1px] bg-black top-7 left-0 group-hover:w-full transition-all duration-300"></span>
+              </p>
             </div>
           </li>
           <li className="container-logo absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -100,52 +164,6 @@ export const NavBar = () => {
           </li>
         </ul>
       </nav>
-
-      {/* Overlay */}
-      {/* <div
-        className={`fixed top-0 left-0 inset-0 bg-black bg-opacity-50 transition-opacity duration-300 ${
-          isSubmenuOpen ? "opacity-100 z-20" : "opacity-0 pointer-events-none"
-        }`}
-        onClick={() => handleSubmenuToggle(false)}
-      ></div> */}
-
-      {/* Submenu */}
-      {/* <div
-        className={`submenu fixed left-0 top-[5rem] w-full bg-white text-black shadow-lg overflow-hidden transition-all duration-700 ease-in-out z-20 ${
-          isSubmenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        }`}
-        onMouseEnter={() => handleSubmenuToggle(true)}
-        onMouseLeave={() => handleSubmenuToggle(false)}
-      >
-        <div className="container mx-auto py-8 px-4">
-          <div className="grid grid-cols-3 gap-8">
-            <div className="submenu-item">
-              <h3 className="font-bold text-lg mb-4">Category 1</h3>
-              <ul className="space-y-2">
-                <li>Sub-item 1.1</li>
-                <li>Sub-item 1.2</li>
-                <li>Sub-item 1.3</li>
-              </ul>
-            </div>
-            <div className="submenu-item">
-              <h3 className="font-bold text-lg mb-4">Category 2</h3>
-              <ul className="space-y-2">
-                <li>Sub-item 2.1</li>
-                <li>Sub-item 2.2</li>
-                <li>Sub-item 2.3</li>
-              </ul>
-            </div>
-            <div className="submenu-item">
-              <h3 className="font-bold text-lg mb-4">Category 3</h3>
-              <ul className="space-y-2">
-                <li>Sub-item 3.1</li>
-                <li>Sub-item 3.2</li>
-                <li>Sub-item 3.3</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div> */}
     </>
   );
 };
