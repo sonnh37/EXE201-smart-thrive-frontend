@@ -5,6 +5,7 @@ import "./globals.css";
 import { NavBar } from "../components/Navbar";
 import Head from "next/head";
 import Footer from "../components/Footer";
+import { ReactLenis } from "@/utils/lenis";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -40,14 +41,16 @@ export default function RootLayout({
           integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         />
       </Head>
-      <body
-        suppressHydrationWarning={true}
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-100 h-max overflow-x-hidden`}
-      >
-        <NavBar />
-        {children}
-        <Footer />
-      </body>
+      <ReactLenis root>
+        <body
+          suppressHydrationWarning={true}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-100 h-max overflow-x-hidden`}
+        >
+          <NavBar />
+          {children}
+          <Footer />
+        </body>
+      </ReactLenis>
     </html>
   );
 }
