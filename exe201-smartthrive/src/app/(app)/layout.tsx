@@ -1,12 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "../globals.css";
 import { NavBar } from "../../components/Navbar";
 import Head from "next/head";
 import Footer from "../../components/Footer";
 import { ReactLenis } from "@/utils/lenis";
-import { Suspense } from "react";
 const geistSans = localFont({
   src: "../fonts/GeistVF.woff",
   variable: "--font-geist-sans",
