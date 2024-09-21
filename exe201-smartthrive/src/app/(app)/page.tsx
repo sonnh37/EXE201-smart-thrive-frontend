@@ -1,10 +1,12 @@
 "use client";
-import Hero from "../components/Home/Hero/Hero";
-import Category from "../components/Home/CategoryList/Category";
-import LearnMethod from "../components/Home/LearnMethod/LearnMethod";
-import SpecialCourse from "../components/Home/SpecialCourse/SpecialCourse";
+import Hero from "../../components/Home/Hero/Hero";
+import Category from "../../components/Home/CategoryList/Category";
+import LearnMethod from "../../components/Home/LearnMethod/LearnMethod";
+import SpecialCourse from "../../components/Home/SpecialCourse/SpecialCourse";
+import { Suspense } from "react";
 // import { useEffect } from "react";
 // import Lenis from "lenis";
+
 export default function Home() {
   // useEffect(() => {
   //   const lenis = new Lenis();

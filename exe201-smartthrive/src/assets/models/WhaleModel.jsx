@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { TextureLoader, MeshStandardMaterial } from "three"; // Import the necessary classes
 import { useLoader } from "@react-three/fiber"; // Hook to load textures
@@ -10,7 +10,6 @@ export function WhaleModel(props) {
   );
   const { actions } = useAnimations(animations, group);
   useEffect(() => {
-    console.log(actions);
     if (actions) {
       actions["A_breathe1"].reset().fadeIn(0.5).play();
       actions["A_breathe1"].clampWhenFinished = true;
