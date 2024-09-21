@@ -143,10 +143,12 @@ export const NavBar = () => {
               </ul>
             </div>
             <div className="group nav-item min-w-12 mx-4 py-8 nav-text cursor-pointer">
-              <p className="relative">
-                Blog
-                <span className="absolute line w-0 h-[1px] bg-black top-7 left-0 group-hover:w-full transition-all duration-300"></span>
-              </p>
+              <Link href={"/blog"}>
+                <p className="relative">
+                  Blog
+                  <span className="absolute line w-0 h-[1px] bg-black top-7 left-0 group-hover:w-full transition-all duration-300"></span>
+                </p>
+              </Link>
             </div>
             <div className="group nav-item min-w-12 mx-4 py-8 nav-text cursor-pointer">
               <p className="relative">
