@@ -47,7 +47,7 @@ const support = () => {
                     />
                 </div>
 
-                {/* Mật khẩu */}
+                {/* Số điện thoại */}
                 <div className="mb-4">
                     <label
                         className="block text-neutral-600 dark:text-neutral-100 font-medium mb-2"
@@ -59,7 +59,7 @@ const support = () => {
                         id="phone"
                         type="phone"
                         className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 dark:bg-neutral-800 dark:border-neutral-700"
-                        placeholder="Nhập mật khẩu"
+                        placeholder="Nhập số điện thoại"
                     />
                 </div>
 
