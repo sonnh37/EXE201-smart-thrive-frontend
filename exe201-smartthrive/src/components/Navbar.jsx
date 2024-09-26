@@ -82,7 +82,7 @@ export const NavBar = () => {
               </p>
             </Link>
             <div className="group nav-item min-w-12 px-4 py-8 pb-9 nav-text cursor-pointer relative ">
-              <Link href="/Category" className="">
+              <Link href="/category" className="">
                 <p className="relative">
                   Category
                   <span className="absolute line w-0 h-[1px] bg-black top-7 left-0 group-hover:w-full transition-all duration-300"></span>
@@ -92,7 +92,7 @@ export const NavBar = () => {
               <ul className="navLv0 absolute min-h-[95vh] bg-white shadow-xl top-[5.5rem] left-0 min-w-[18vw] translate-y-36 opacity-0 transition-all duration-300 invisible  group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
                 {CategoryItem.map((list) => (
                   <Link
-                    href={`/Category${list.path}`}
+                    href={`/category${list.path}`}
                     key={list.name}
                     className={`navItemLv0 min-h-12 items-center flex px-4 w-full h-full hover:bg-slate-400`}
                   >
@@ -110,7 +110,7 @@ export const NavBar = () => {
                     >
                       {list.subLv1.map((subLv1) => (
                         <Link
-                          href={`Category${subLv1.path}`}
+                          href={`category${subLv1.path}`}
                           className="navItemLv1 min-h-12 flex items-center px-4 justify-between hover:bg-slate-400"
                           key={subLv1.name}
                         >
@@ -127,7 +127,7 @@ export const NavBar = () => {
                             </p>
                             {subLv1.subLv2.map((subLv2) => (
                               <Link
-                                href={`/Category${subLv2.path}`}
+                                href={`/category${subLv2.path}`}
                                 key={subLv2.name}
                                 className="navItemLv2 min-h-12 flex items-center px-4 hover:bg-slate-400 text-left"
                               >
