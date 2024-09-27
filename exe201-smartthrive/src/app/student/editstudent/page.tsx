@@ -1,6 +1,7 @@
+"use client"
 import React, { useState } from 'react'
 
-const Edit = () => {
+const page = () => {
     const [IsFormYaNVisible, setIsFormYaNVisible] = useState(false);
     const formyandn = () => {
         setIsFormYaNVisible(!IsFormYaNVisible);
@@ -128,13 +129,14 @@ const Edit = () => {
                     >
                         Lưu học sinh
                     </button>
-                    <button
-                        type="submit"
+                    <div
+                        
                         className="w-full px-4 py-2 bg-indigo-600 text-white font-bold rounded-md hover:bg-indigo-700 focus:ring focus:ring-indigo-200 mr-6"
                         onClick={formyandn}
+                        
                     >
                         Xóa học sinh
-                    </button>
+                    </div>
                     <button
                         type="submit"
                         className="w-full px-4 py-2 bg-indigo-600 text-white font-bold rounded-md hover:bg-indigo-700 focus:ring focus:ring-indigo-200"
@@ -172,4 +174,4 @@ const Edit = () => {
     )
 }
 
-export default Edit
+export default page
