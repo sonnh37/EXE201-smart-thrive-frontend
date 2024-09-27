@@ -8,13 +8,18 @@ import Drop from "./Button/Drop";
 import { CategoryItem } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
+import Support from "./Auth/Supporter/support";
 gsap.registerPlugin(ScrollTrigger);
 export const NavBar = () => {
   const [hoverTransition, setHoverTransition] = useState("hover:mx-12");
   const [navBackground, setNavBackground] = useState("bg-transparent");
   const [borderTransition, setBorderTransition] =
     useState("mx-12 border-black");
+  const [isFormVisible, setIsFormVisible] = useState(false);
 
+  const toggleForm = () => {
+    setIsFormVisible(!isFormVisible);
+  };
   useGSAP(() => {
     gsap.fromTo(
       ".nav-text",
@@ -62,11 +67,10 @@ export const NavBar = () => {
   return (
     <>
       <nav
-        className={`nav fixed z-30 w-full font-semibold text-[0.8rem] transition-all duration-500 oswald-text ${navBackground} text-black ${
-          hoverTransition == "hover:mx-12"
+        className={`nav fixed z-30 w-full font-semibold text-[0.8rem] transition-all duration-500 oswald-text ${navBackground} text-black ${hoverTransition == "hover:mx-12"
             ? "hover:bg-white hover:text-black"
             : "bg-white hover:text-black"
-        }`}
+          }`}
       >
         <ul
           className={`main-nav flex justify-between border-b ${borderTransition} ${hoverTransition} transition-all duration-100 hover:border-black`}
@@ -82,7 +86,7 @@ export const NavBar = () => {
               </p>
             </Link>
             <div className="group nav-item min-w-12 px-4 py-8 pb-9 nav-text cursor-pointer relative ">
-              <Link href="/Category" className="">
+              <Link href="/category" className="">
                 <p className="relative">
                   Category
                   <span className="absolute line w-0 h-[1px] bg-black top-7 left-0 group-hover:w-full transition-all duration-300"></span>
@@ -92,7 +96,7 @@ export const NavBar = () => {
               <ul className="navLv0 absolute min-h-[95vh] bg-white shadow-xl top-[5.5rem] left-0 min-w-[18vw] translate-y-36 opacity-0 transition-all duration-300 invisible  group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
                 {CategoryItem.map((list) => (
                   <Link
-                    href={`/Category${list.path}`}
+                    href={`/category${list.path}`}
                     key={list.name}
                     className={`navItemLv0 min-h-12 items-center flex px-4 w-full h-full hover:bg-slate-400`}
                   >
@@ -110,7 +114,7 @@ export const NavBar = () => {
                     >
                       {list.subLv1.map((subLv1) => (
                         <Link
-                          href={`Category${subLv1.path}`}
+                          href={`category${subLv1.path}`}
                           className="navItemLv1 min-h-12 flex items-center px-4 justify-between hover:bg-slate-400"
                           key={subLv1.name}
                         >
@@ -127,7 +131,7 @@ export const NavBar = () => {
                             </p>
                             {subLv1.subLv2.map((subLv2) => (
                               <Link
-                                href={`/Category${subLv2.path}`}
+                                href={`/category${subLv2.path}`}
                                 key={subLv2.name}
                                 className="navItemLv2 min-h-12 flex items-center px-4 hover:bg-slate-400 text-left"
                               >
@@ -150,6 +154,13 @@ export const NavBar = () => {
                 </p>
               </Link>
             </div>
+
+            <div className="group nav-item min-w-12 mx-4 py-8 nav-text cursor-pointer" onClick={toggleForm}>
+              <p className="relative">
+                Tư vấn
+                <span className="absolute line w-0 h-[1px] bg-black top-7 left-0 group-hover:w-full transition-all duration-300"></span>
+              </p>
+            </div>
             <div className="group nav-item min-w-12 mx-4 py-8 nav-text cursor-pointer">
               <p className="relative">
                 About Us
@@ -163,10 +174,30 @@ export const NavBar = () => {
             </h2>
           </li>
           <li className=" grid place-items-center">
+
             <Drop />
           </li>
+
+
         </ul>
       </nav>
+      {isFormVisible && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-8 rounded shadow-lg w-1/3">
+            <Support />
+            <div className="flex justify-end">
+              <button
+                type="button"
+                className="bg-red-500 text-white px-4 py-2 rounded ml-2"
+                onClick={toggleForm}
+              >
+                Đóng
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
+
