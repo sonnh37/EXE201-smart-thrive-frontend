@@ -2,9 +2,9 @@
 import React, { useState } from 'react';
 
 const sidebarItems = [
-  { name: 'Dashboard', icon: 'fa-home', href: '/' },
-  { name: 'Team', icon: 'fa-users', href: '/team' },
-  { name: 'Projects', icon: 'fa-folder', href: '/projects' },
+  { name: 'Profile', icon: 'fa-home', href: '/account' },
+  { name: 'Course', icon: 'fa-users', href: '/account/course' },
+  { name: 'Order', icon: 'fa-folder', href: '/account/order' },
   { name: 'Calendar', icon: 'fa-calendar', href: '/calendar' },
   { name: 'Documents', icon: 'fa-file', href: '/documents' },
   { name: 'Reports', icon: 'fa-chart-pie', href: '/reports' },

@@ -30,7 +30,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "firebase": "^10.13.1",
-    "framer-motion": "^11.5.4",
+    "framer-motion": "^11.9.0",
     "gsap": "^3.12.5",
     "gsap-trial": "^3.12.5",
     "lenis": "^1.1.13",

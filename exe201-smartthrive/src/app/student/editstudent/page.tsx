@@ -408,7 +408,7 @@ const page = () => {
     </form>
     {IsFormYaNVisible && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 border-separate">
-                    <div className="bg-white p-8 rounded shadow-lg w-1/3 flex grid justify-center">
+                    <div className="bg-white p-8 rounded shadow-lg w-1/3 flex-grid justify-center">
                         <h1 className='text-2xl'>Bạn có chắc là muốn xóa không ?</h1>
                         <div className="flex justify-center mt-8">
                             <button
