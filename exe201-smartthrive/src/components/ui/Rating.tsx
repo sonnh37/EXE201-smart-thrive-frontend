@@ -1,8 +1,6 @@
 import React from "react";
 
 const Rating = ({ color }: { color: string }) => {
-  console.log(color);
-
   return (
     <div className="flex items-center">
       <p

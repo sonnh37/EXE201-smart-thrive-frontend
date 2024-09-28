@@ -13,9 +13,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <div>
       <NavBar />
-      <body className={inter.className}>
+      <div className={inter.className}>
         <div className="flex h-screen  ">
           {/* Cột trái (Sidebar) */}
           <aside className="w-1/5 bg-gray-200">
@@ -33,8 +33,8 @@ export default function RootLayout({
             <main className="flex-grow overflow-auto p-4">{children}</main>
           </div>
         </div>
-      </body>
+      </div>
       <Footer />
-    </html>
+    </div>
   );
 }

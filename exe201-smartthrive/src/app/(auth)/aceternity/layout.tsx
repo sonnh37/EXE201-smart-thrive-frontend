@@ -8,10 +8,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body suppressHydrationWarning={true} className={inter.className}>
+    <div>
+      <div suppressHydrationWarning={true} className={inter.className}>
         <Suspense>{children}</Suspense>
-      </body>
-    </html>
+      </div>
+    </div>
   );
 }
