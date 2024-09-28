@@ -5,19 +5,19 @@ import Register from '../Student/Register';
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 import DrawOutlineButton from '../Tester/tester';
 import Edit from './Edit';
+import { useRouter } from 'next/navigation';
 const Auth : React.FC = () => {
+  const router = useRouter();
+  const handleSwitch =() =>{
+router.push('/student/editstudent')
+  };
   const [isFormVisible, setIsFormVisible] = useState(false);
 
   const toggleForm = () => {
     setIsFormVisible(!isFormVisible);
   };
- 
-  const [isFormVisible1, setIsFormVisible1] = useState(false);
 
-  const toggleForm1 = () => {
-    setIsFormVisible1(!isFormVisible1);
-  };
- 
+
   return (
     <div className="bg-black text-white min-h-screen flex flex-col items-center justify-center">
       <div className="text-5xl font-bold mb-10">SMART THRIVE</div>
@@ -156,7 +156,7 @@ const Auth : React.FC = () => {
         </div>
       </div>
       <div className="mt-6 bg-gray-800 px-6 py-2 rounded-md text-xl font-medium hover:bg-gray-700">
-      <DrawOutlineButton  onClick={toggleForm1}>
+      <DrawOutlineButton  onClick={handleSwitch}>
         Manage Profiles
       </DrawOutlineButton >
       </div>
@@ -176,7 +176,7 @@ const Auth : React.FC = () => {
           </div>
         </div>
       )}
-        {isFormVisible1 && (
+        {/* {isFormVisible1 && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-8 rounded shadow-lg w-1/3">
           <Edit/>
@@ -192,7 +192,7 @@ const Auth : React.FC = () => {
             </div>
           </div>
         </div>
-      )}
+      )} */}
     </div>
 
 
