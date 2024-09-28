@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Head from "next/head";
+import { Toaster } from "sonner";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
@@ -30,6 +31,7 @@ export default function RootLayout({
         />
       </Head>
       <body suppressHydrationWarning={true} className={inter.className}>
+        <Toaster position="top-right" />
         {isClient && <main>{children}</main>}
       </body>
     </html>
