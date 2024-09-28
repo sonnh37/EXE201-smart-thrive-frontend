@@ -2,7 +2,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { NavBar } from "../../components/Navbar";
-import Head from "next/head";
 import Footer from "../../components/Footer";
 import { ReactLenis } from "@/utils/lenis";
 const geistSans = localFont({
@@ -26,30 +25,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <Head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-          integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-        />
-      </Head>
+    <div>
       <ReactLenis root>
-        <body
+        <div
           suppressHydrationWarning={true}
           className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-100 h-max overflow-x-hidden`}
         >
           <NavBar />
           <div>{children}</div>
           <Footer />
-        </body>
+        </div>
       </ReactLenis>
-    </html>
+    </div>
   );
 }
