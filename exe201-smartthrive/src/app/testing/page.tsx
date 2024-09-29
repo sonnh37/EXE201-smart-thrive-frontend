@@ -6,8 +6,7 @@ const page = () => {
        <div className="min-h-screen bg-gray-100 flex justify-center items-start py-10">
       <div className="w-full max-w-4xl bg-white shadow-lg rounded-lg p-8">
         <h1 className="text-2xl font-bold mb-6">Course landing page</h1>
-        
-        {/* Course Title */}
+
         <div className="mb-4">
           <label className="block font-semibold mb-2">Course title</label>
           <input
@@ -17,7 +16,7 @@ const page = () => {
           />
         </div>
 
-        {/* Course Subtitle */}
+
         <div className="mb-4">
           <label className="block font-semibold mb-2">Course subtitle</label>
           <input
@@ -27,7 +26,6 @@ const page = () => {
           />
         </div>
 
-        {/* Course Description */}
         <div className="mb-4">
           <label className="block font-semibold mb-2">Course description</label>
           <textarea
@@ -37,7 +35,6 @@ const page = () => {
           ></textarea>
         </div>
 
-        {/* Basic Info */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
           <div>
             <label className="block font-semibold mb-2">Language</label>
@@ -66,7 +63,6 @@ const page = () => {
           </div>
         </div>
 
-        {/* Course Image */}
         <div className="mb-4">
           <label className="block font-semibold mb-2">Course image</label>
           <div className='flex'>
@@ -78,7 +74,7 @@ const page = () => {
           </div>
         </div>
 
-        {/* Promotional Video */}
+    
         <div className="mb-4">
           <label className="block font-semibold mb-2">Promotional video</label>
           <div className='flex'>
@@ -90,7 +86,6 @@ const page = () => {
           </div>
         </div>
 
-        {/* Submit Button */}
         <div className="mt-6">
           <button className="bg-purple-600 text-white py-2 px-4 rounded-lg w-full hover:bg-purple-700 transition duration-300">
             Submit for Review

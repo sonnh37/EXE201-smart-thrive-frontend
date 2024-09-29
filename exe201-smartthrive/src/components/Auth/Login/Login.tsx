@@ -10,7 +10,7 @@ import {
 } from "@tabler/icons-react";
 import Register from "@/components/Auth/Register/Register";
 
-export function Login() {
+export function  Login() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Form submitted");
