@@ -355,3 +355,6 @@ input:checked + label {
 .no-visible-scrollbar::-webkit-scrollbar {
   display: none;
 }
+.addToPackage:hover .packageList {
+  visibility: visible;
+}

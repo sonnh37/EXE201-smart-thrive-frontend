@@ -2,10 +2,14 @@
 import Rating from "@/components/ui/Rating";
 import CourseService from "@/services/course-service";
 import { Course } from "@/services/Model/Course";
+import { StudentXPackage } from "@/services/Model/StudentXPackage";
+import PackageXCourseService from "@/services/packageXCourse-service";
+import PackageXStudentService from "@/services/packageXstudent-service";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 const Page = () => {
   const { id } = useParams();
@@ -15,15 +19,36 @@ const Page = () => {
   const topic = searchParams.get("topic");
 
   const [course, setCourse] = useState<Course | null>(null);
+  const [studentXPackage, setStudentXPackage] = useState<StudentXPackage[]>([]);
+  const [packageName, setPackageName] = useState("Default name");
   useEffect(() => {
     const fetchApi = async () => {
-      const result = await CourseService.getById(id.toString());
-      setCourse(result);
+      const apiCourse = await CourseService.getById(id.toString());
+      const apiStudentXPackage = await PackageXStudentService.getByStudentId(
+        localStorage.getItem("studentId")!.toString()
+      );
+      setStudentXPackage(apiStudentXPackage.results);
+      setCourse(apiCourse);
     };
     fetchApi();
   }, [id]);
-  const handleAddToPackage = async () => {
-    console.log("add to package");
+  const handleAddToPackage = async (packageId: string) => {
+    const result = await PackageXCourseService.create(packageId, id.toString());
+    if (result.data.status == 1) {
+      console.log(result.data.status);
+      toast.success("Add to package success", {
+        richColors: true,
+      });
+    } else {
+      toast.error("Error when save into package", {
+        richColors: true,
+      });
+    }
+    console.log(result);
+  };
+
+  const handleAddNewPackage = async () => {
+    console.log(packageName);
   };
   return (
     course && (
@@ -105,9 +130,7 @@ const Page = () => {
                   maximumFractionDigits: 0,
                 }).format(course.price!)}
               </div>
-              <s className="text-sm pl-2 flex items-center opacity-60">
-                {/* <span className="underline">đ</span>5,555,555 */}
-              </s>
+              <s className="text-sm pl-2 flex items-center opacity-60"></s>
               <span
                 className={`${
                   course.type == 0 ? "bg-green-600" : "bg-purple-600"
@@ -124,10 +147,68 @@ const Page = () => {
           </div> */}
             <div className="w-full mt-4 flex justify-center items-center">
               <button
-                onClick={() => handleAddToPackage()}
-                className="button bg-black px-20 py-3 text-base font-bold opacity-80 text-white rounded-full w-full"
+                // onClick={() => handleAddToPackage()}
+                className=" addToPackage button relative bg-black h-[8vh] text-base font-bold opacity-100 text-white rounded-full w-full "
               >
-                Add to package
+                <div className="">
+                  Add to package
+                  <div className=" bg-slate-200 opacity-100 shadow-lg z-50 text-black absolute py-3 w-[95%]  top-12 left-2 packageList invisible ">
+                    Select your package
+                    <div className="flex flex-col justify-start text-left px-4 my-2 gap-2 ">
+                      {studentXPackage.map((item) => (
+                        <div
+                          className="py-2 relative group"
+                          key={item.id}
+                          onClick={() => {
+                            handleAddToPackage(item.packageId!);
+                          }}
+                        >
+                          <div className="text-xs flex justify-between">
+                            <p>{item.package?.name}</p>
+                            <div className="border-dashed border-[1px] border-black">
+                              <Image
+                                src={"/plus.svg"}
+                                width={20}
+                                height={20}
+                                alt="plus"
+                              />
+                            </div>
+                            <div className="line absolute h-[1px] w-0 bg-black mt-2 transition-all group-hover:w-full top-6"></div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="px-4 flex gap-4  mt-4">
+                      <div className="">
+                        <Image
+                          src={"/plus.svg"}
+                          width={20}
+                          height={20}
+                          alt="plus"
+                        />
+                      </div>
+                      <div className="flex ">
+                        <input
+                          type="text"
+                          placeholder="Default name"
+                          value={packageName}
+                          onChange={(e) => {
+                            setPackageName(e.target.value);
+                          }}
+                          className="border border-black text-xs px-2"
+                        />
+                        <div
+                          onClick={() => {
+                            handleAddNewPackage();
+                          }}
+                          className="button bg-slate-700 text-white text-xs font-semibold px-2 py-1 hover:opacity-80 hover:cursor-pointer"
+                        >
+                          Add
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </button>
             </div>
             <div className="w-full mt-2 flex justify-center items-center">
