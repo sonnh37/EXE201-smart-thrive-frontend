@@ -12,7 +12,7 @@ const sidebarItems = [
   { name: 'Course', icon: 'fa-users', href: '/account/course' },
   { name: 'Order', icon: 'fa-folder', href: '/account/order' },
   { name: 'Calendar', icon: 'fa-calendar', href: '/calendar' },
-  { name: 'Documents', icon: 'fa-file', href: '/documents' },
+  { name: 'Home', icon: 'fa-file', href: '/' },
   { name: 'Reports', icon: 'fa-chart-pie', href: '/reports' },
 ];
 
