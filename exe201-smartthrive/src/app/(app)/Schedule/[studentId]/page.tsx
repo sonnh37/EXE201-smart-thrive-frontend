@@ -3,9 +3,10 @@ import BigCalendar from "@/components/Schedule/BigCalendar";
 import EventCalendar from "@/components/Schedule/EventCalendar";
 import { useState } from "react";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-export default function Schedule() {
+export default function Schedule({ params }: { params: { studentId: string } }) {
   const [value, setValue] = useState<Date>(new Date()); // Lưu trữ ngày đã chọn
 
+  
   // Hàm để đồng bộ ngày với lịch nhỏ
   const handleEventCalendarChange = (date: Date) => {
     setValue(date); // Cập nhật ngày khi lịch nhỏ thay đổi
