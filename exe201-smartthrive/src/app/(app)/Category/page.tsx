@@ -34,7 +34,7 @@ const Page = () => {
             .map((course) => {
               return (
                 <CourseCard
-                  key={course.courseName}
+                  key={course.name}
                   method={course.type}
                   name={course.name}
                   id={course.id}
@@ -48,30 +48,6 @@ const Page = () => {
                 />
               );
             })}
-        {/* <CourseCard
-          method="offline"
-          name={"Course Name"}
-          id={2}
-          category={category}
-          courseType={courseType}
-          topic={topic}
-        />
-        <CourseCard
-          method="meeting"
-          name={"Course Name"}
-          id={3}
-          category={category}
-          courseType={courseType}
-          topic={topic}
-        />
-        <CourseCard
-          method="online"
-          name={"Course Name"}
-          id={4}
-          category={category}
-          courseType={courseType}
-          topic={topic}
-        /> */}
       </SearchBar>
     </div>
   );

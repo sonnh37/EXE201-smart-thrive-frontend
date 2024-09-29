@@ -345,3 +345,6 @@ input:checked + label {
 .rbc-allday-cell {
   display: none;
 }
+.addToPackage:hover .packageList {
+  visibility: visible;
+}
