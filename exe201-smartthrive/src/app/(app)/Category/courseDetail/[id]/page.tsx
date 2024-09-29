@@ -22,6 +22,9 @@ const Page = () => {
     };
     fetchApi();
   }, [id]);
+  const handleAddToPackage = async () => {
+    console.log("add to package");
+  };
   return (
     course && (
       <section className="w-full h-full min-h-[200vh] pt-[5.4rem] oswald-text">
@@ -120,7 +123,10 @@ const Page = () => {
             Online
           </div> */}
             <div className="w-full mt-4 flex justify-center items-center">
-              <button className="button bg-black px-20 py-3 text-base font-bold opacity-80 text-white rounded-full w-full">
+              <button
+                onClick={() => handleAddToPackage()}
+                className="button bg-black px-20 py-3 text-base font-bold opacity-80 text-white rounded-full w-full"
+              >
                 Add to package
               </button>
             </div>
@@ -142,7 +148,7 @@ const Page = () => {
                   alt="playbutton"
                 />
                 <div className="h-full flex items-center justify-center">
-                  <p>61 hours on-demand learning</p>
+                  <p>{course.totalSlots} slots on-demand learning</p>
                 </div>
               </div>
               <div className="mt-3 flex gap-4 text-xs font-normal items-center">
@@ -153,7 +159,7 @@ const Page = () => {
                   alt="playbutton"
                 />
                 <div className="h-full flex items-center justify-center">
-                  <p>7 exercises during the course</p>
+                  <p>Exercises during the course</p>
                 </div>
               </div>
               <div className="mt-3 flex gap-4 text-xs font-normal items-center">
@@ -164,7 +170,7 @@ const Page = () => {
                   alt="playbutton"
                 />
                 <div className="h-full flex items-center justify-center">
-                  <p>65 sessions</p>
+                  <p>{course.totalSessions} sessions</p>
                 </div>
               </div>
               <div className="mt-3 flex gap-4 text-xs font-normal items-center">
@@ -175,7 +181,7 @@ const Page = () => {
                   alt="playbutton"
                 />
                 <div className="h-full flex items-center justify-center">
-                  <p>195 downloadable resource</p>
+                  <p>Downloadable resource</p>
                 </div>
               </div>
               <div className="mt-3 flex gap-4 text-xs font-normal items-center">
