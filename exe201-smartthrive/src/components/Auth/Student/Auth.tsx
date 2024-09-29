@@ -73,7 +73,7 @@ const Auth = () => {
           <div
             key={student.studentName}
             onClick={() => {
-              handleSelectStudent(student.id, student.studentName);
+              handleSelectStudent(student.id, student.studentName!);
             }}
           >
             <CardContainer>
