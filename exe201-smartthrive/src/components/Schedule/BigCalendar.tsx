@@ -98,7 +98,7 @@ const events = [
  
 ];
 
-const BigCalendar = ({selectedDate}) => {
+const BigCalendar = ({selectedDate}:{selectedDate: Date}) => {
   const [view, setView] = useState<View>(Views.WEEK);
 
   const handleOnChangeView = (selectedView: View) => {
