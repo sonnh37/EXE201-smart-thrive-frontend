@@ -6,6 +6,7 @@ import StudentService from "@/services/student-service";
 import { Student } from "@/services/Model/Student";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 const Auth = () => {
   const { push } = useRouter();
   const [isFormVisible, setIsFormVisible] = useState(false);
@@ -235,9 +236,12 @@ const Auth = () => {
         </div>
       </div>
 
-      <button className="mt-6 bg-gray-800 px-6 py-2 rounded-md text-xl font-medium hover:bg-gray-700">
+      <Link
+        href={"/student/editstudent"}
+        className="mt-6 bg-gray-800 px-6 py-2 rounded-md text-xl font-medium hover:bg-gray-700"
+      >
         Manage Profiles
-      </button>
+      </Link>
       {isFormVisible && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-8 rounded shadow-lg w-1/3">
