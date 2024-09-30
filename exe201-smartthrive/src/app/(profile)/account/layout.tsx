@@ -8,12 +8,13 @@ import Link from "next/link";
 const inter = Inter({ subsets: ["latin"] });
 
 const sidebarItems = [
+  { name: 'Home', icon: 'fa-file', href: '/' },
   { name: 'Profile', icon: 'fa-home', href: '/account/profile' },
+  { name: 'Security', icon: 'fa-home', href: '/account/security' },
   { name: 'Course', icon: 'fa-users', href: '/account/course' },
   { name: 'Order', icon: 'fa-folder', href: '/account/order' },
-  { name: 'Calendar', icon: 'fa-calendar', href: '/calendar' },
-  { name: 'Home', icon: 'fa-file', href: '/' },
-  { name: 'Reports', icon: 'fa-chart-pie', href: '/reports' },
+  { name: 'Calendar', icon: 'fa-calendar', href: '/account/calendar' },
+
 ];
 
 const teamItems = [
@@ -90,19 +91,19 @@ export default function RootLayout({
 
     // // </div>
     <div className="flex flex-col min-h-screen bg-gray-100">
-      {/* Header */}
+ 
       <header className="  mb-16">
         <NavBar />
       </header>
 
       <main className="flex-grow bg-gray-100 p-6 overflow-auto max-h-[calc(100vh-12rem)]">
         <div className="grid grid-cols-6 gap-4">
-          {/* Cột bên trái - chiếm 1/6 */}
+       
           <div className="col-span-1 p-4">
           <aside className="bg-[#1a202c] text-gray-400 w-full h-full  ">
                 <div className="p-6">
                   <h2 className="text-white text-2xl font-bold">
-                    <span className="text-[#63b3ed]">Your</span>App
+                    <span className="text-[#63b3ed]">Smart</span>Thrive
                   </h2>
                 </div>
                 <ul className="space-y-2">
@@ -136,14 +137,14 @@ export default function RootLayout({
               </aside>
           </div>
 
-          {/* Cột bên phải - chiếm 5/6 */}
+  
           <div className="col-span-5 bg-white p-4">
             {children} {/* Nội dung của cột bên phải */}
           </div>
         </div>
       </main>
 
-      {/* Footer */}
+
       <footer className=" text-white p-4 text-center">
         <Footer />
       </footer>
