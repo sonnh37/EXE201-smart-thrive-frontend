@@ -16,7 +16,13 @@ const Auth = () => {
   const [imageSrc, setImageSrc] = useState(
     "/student/1ba2e6d1d4874546c70c91f1024e17fb.jpg"
   );
-
+  const arrrayImage = [
+    "/student/1ba2e6d1d4874546c70c91f1024e17fb.jpg",
+    "/student/e39430434d2b8207188f880ac66c6411.jpg",
+    "/student/b40b51418293936a6e0ad09ffa229cb7.jpg",
+    "/student/828f0f2b3a3a17a5e52213027829149f.jpg",
+    "/student/6ab2a25230316f4180bf54b61e9d79a9.jpg",
+  ];
   const handleImageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = e.target.value;
 
@@ -69,7 +75,7 @@ const Auth = () => {
         {" "}
         {/* Giảm khoảng cách từ space-x-4 xuống space-x-2 */}
         {/* First Card */}
-        {students.map((student) => (
+        {students.map((student, index) => (
           <div
             key={student.studentName}
             onClick={() => {
@@ -85,10 +91,7 @@ const Auth = () => {
                   className="w-44"
                 >
                   <Image
-                    src={
-                      student.imageAvatar ??
-                      "/student/001111122444456677789abbccddeeff.jpg"
-                    }
+                    src={arrrayImage[index + 1]}
                     width={150}
                     height={150}
                     className="w-full h-full object-contain rounded-xl group-hover/card:shadow-xl"
