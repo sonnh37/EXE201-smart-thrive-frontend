@@ -18,12 +18,12 @@ const Auth = () => {
   const [imageSrc, setImageSrc] = useState(
     "/student/1ba2e6d1d4874546c70c91f1024e17fb.jpg"
   );
-  const arrrayImage = [
-    "/student/1ba2e6d1d4874546c70c91f1024e17fb.jpg",
-    "/student/e39430434d2b8207188f880ac66c6411.jpg",
-    "/student/b40b51418293936a6e0ad09ffa229cb7.jpg",
-    "/student/828f0f2b3a3a17a5e52213027829149f.jpg",
-    "/student/6ab2a25230316f4180bf54b61e9d79a9.jpg",
+  const arrayImage  = [
+    "/student/1ba2e6d1d4874546c70c91f1024e17fb.jpg", //img1
+    "/student/e39430434d2b8207188f880ac66c6411.jpg", //img2
+    "/student/b40b51418293936a6e0ad09ffa229cb7.jpg", //img3
+    "/student/828f0f2b3a3a17a5e52213027829149f.jpg", //img4
+    "/student/6ab2a25230316f4180bf54b61e9d79a9.jpg", //img5
   ];
 
   const [createStudent, setcreateStudent] = useState<Student | null>(null);
@@ -104,6 +104,22 @@ const Auth = () => {
       richColors: true,
     });
   };
+  const getImageIndex = (imageAvatar: string): number => {
+    switch (imageAvatar) {
+      case "img1":
+        return 0;
+      case "img2":
+        return 1;
+      case "img3":
+        return 2;
+      case "img4":
+        return 3;
+      case "img5":
+        return 4;
+      default:
+        return -1; // Trả về -1 nếu không tìm thấy
+    }
+  };
   return (
     <div className="bg-black text-white min-h-screen flex flex-col items-center justify-center">
       <div className="text-5xl font-bold mb-10">SMART THRIVE</div>
@@ -130,7 +146,7 @@ const Auth = () => {
                   className="w-44"
                 >
                   <Image
-                    src={arrrayImage[index + 1]}
+                    src={arrayImage[getImageIndex(student.imageAvatar || "img1")]} // nếu undefine thì dùng là img1
                     width={150}
                     height={150}
                     className="w-full h-full object-contain rounded-xl group-hover/card:shadow-xl"
@@ -246,6 +262,7 @@ const Auth = () => {
             </CardItem>
           </div>
         </CardContainer> */}
+      {students.length < 5 && (
         <div className="" onClick={toggleForm}>
           <CardContainer className="w-full h-full">
             <div className="flex flex-col items-center space-y-4 w-full h-full">
@@ -263,6 +280,7 @@ const Auth = () => {
                   alt="thumbnail"
                 />
               </CardItem>
+
               <CardItem
                 translateZ="50"
                 className="text-xl font-bold text-neutral-600 dark:text-white text-center"
@@ -272,6 +290,7 @@ const Auth = () => {
             </div>
           </CardContainer>
         </div>
+      )}
       </div>
 
       <Link
@@ -280,6 +299,7 @@ const Auth = () => {
       >
         Manage Profiles
       </Link>
+   
       {isFormVisible && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-8 rounded shadow-lg w-1/3">
@@ -455,6 +475,7 @@ const Auth = () => {
           </div>
         </div>
       )}
+    
     </div>
   );
 };
