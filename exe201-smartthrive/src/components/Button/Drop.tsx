@@ -1,8 +1,17 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import { useRouter } from 'next/router'
-
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function Drop() {
+  const { push } = useRouter();
+  const handleSelectStudent = () => {
+    localStorage.clear();
+    push("/login");
+
+    toast.success(`Log out succesully`, {
+      richColors: true,
+    });
+  };
 
   return (
     <Menu as="div" className="relative inline-block text-left">
@@ -47,6 +56,7 @@ export default function Drop() {
           <form action="#" method="POST">
             <MenuItem>
               <button
+              onClick={handleSelectStudent}
                 type="submit"
                 className="block w-full px-4 py-2 text-left text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
               >

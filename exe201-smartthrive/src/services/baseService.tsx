@@ -9,3 +9,6 @@ export const axiosPost = async (path: string, data: any, config: any) =>
 
 export const axiosDelete = (path: string, config: any) =>
   axios.delete(baseUrl + path, config);
+
+export const axiosPut = async (path: string, data: any, config: any) =>
+  await axios.put(baseUrl + path, data, config);
