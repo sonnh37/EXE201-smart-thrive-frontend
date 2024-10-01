@@ -1,8 +1,6 @@
-import { Canvas, useFrame } from "@react-three/fiber";
-import React, { Suspense, useMemo, useRef } from "react";
-import Cube from "./Cube";
+import { Canvas } from "@react-three/fiber";
+import React, { Suspense } from "react";
 import HeroText from "./HeroText";
-import { Whale } from "../../../assets/models/Whale";
 import { WhaleModel } from "../../../assets/models/WhaleModel";
 import { Environment, OrbitControls } from "@react-three/drei";
 import TextRing from "@/components/TextRing";
