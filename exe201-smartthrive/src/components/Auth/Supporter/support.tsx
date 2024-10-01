@@ -1,6 +1,8 @@
-import React from 'react'
+import React , {useState , useEffect} from 'react'
 
 const support = () => {
+
+
     return (
         <div>
             <h2 className="font-bold text-xl text-neutral-800 blue:text-neutral-200 text-center">
