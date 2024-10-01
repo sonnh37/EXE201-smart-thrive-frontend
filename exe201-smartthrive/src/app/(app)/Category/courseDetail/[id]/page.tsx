@@ -3,6 +3,7 @@ import Rating from "@/components/ui/Rating";
 import CourseService from "@/services/course-service";
 import { Course } from "@/services/Model/Course";
 import { StudentXPackage } from "@/services/Model/StudentXPackage";
+import PackageService from "@/services/package-service";
 import PackageXCourseService from "@/services/packageXCourse-service";
 import PackageXStudentService from "@/services/packageXstudent-service";
 import Image from "next/image";
@@ -48,7 +49,8 @@ const Page = () => {
   };
 
   const handleAddNewPackage = async () => {
-    console.log(packageName);
+    const result = await PackageService.create(packageName, 0, 0);
+    console.log(result);
   };
   return (
     course && (
@@ -155,28 +157,30 @@ const Page = () => {
                   <div className=" bg-slate-200 opacity-100 shadow-lg z-50 text-black absolute py-3 w-[95%]  top-12 left-2 packageList invisible ">
                     Select your package
                     <div className="flex flex-col justify-start text-left px-4 my-2 gap-2 ">
-                      {studentXPackage.map((item) => (
-                        <div
-                          className="py-2 relative group"
-                          key={item.id}
-                          onClick={() => {
-                            handleAddToPackage(item.packageId!);
-                          }}
-                        >
-                          <div className="text-xs flex justify-between">
-                            <p>{item.package?.name}</p>
-                            <div className="border-dashed border-[1px] border-black">
-                              <Image
-                                src={"/plus.svg"}
-                                width={20}
-                                height={20}
-                                alt="plus"
-                              />
+                      {studentXPackage != null
+                        ? studentXPackage.map((item) => (
+                            <div
+                              className="py-2 relative group"
+                              key={item.id}
+                              onClick={() => {
+                                handleAddToPackage(item.packageId!);
+                              }}
+                            >
+                              <div className="text-xs flex justify-between">
+                                <p>{item.package?.name}</p>
+                                <div className="border-dashed border-[1px] border-black">
+                                  <Image
+                                    src={"/plus.svg"}
+                                    width={20}
+                                    height={20}
+                                    alt="plus"
+                                  />
+                                </div>
+                                <div className="line absolute h-[1px] w-0 bg-black mt-2 transition-all group-hover:w-full top-6"></div>
+                              </div>
                             </div>
-                            <div className="line absolute h-[1px] w-0 bg-black mt-2 transition-all group-hover:w-full top-6"></div>
-                          </div>
-                        </div>
-                      ))}
+                          ))
+                        : ""}
                     </div>
                     <div className="px-4 flex gap-4  mt-4">
                       <div className="">

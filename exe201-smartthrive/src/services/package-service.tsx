@@ -9,9 +9,13 @@ class PackageAPI {
     return await axiosGet(`/packages/${id}`, {});
   };
 
-  // create = async (name: string, quantityCourse ) => {
-  //   return await axiosPost(`/packages`, data, {});
-  // };
+  create = async (name: string, quantityCourse: number, totalPrice: number) => {
+    return await axiosPost(
+      `/packages`,
+      { name, quantityCourse, totalPrice, isActive: true, status: 0 },
+      {}
+    );
+  };
 }
 
 const PackageService = new PackageAPI();
