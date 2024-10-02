@@ -92,7 +92,11 @@ const Auth = () => {
       const result = await StudentService.getByUserId(
         localStorage.getItem("userId")!.toString()
       );
-      setStudents(result.results);
+      if (result && Array.isArray(result.results)) {   //check xem mang co gia tri chua
+        setStudents(result.results);
+    } else {
+        setStudents([]); // Ensure it's an empty array if the structure is not as expected
+    }
     };
     fetchApi();
   }, []);
@@ -130,39 +134,43 @@ const Auth = () => {
         {" "}
         {/* Giảm khoảng cách từ space-x-4 xuống space-x-2 */}
         {/* First Card */}
-        {students.map((student, index) => (
-          <div
-            key={student.studentName}
-            onClick={() => {
-              handleSelectStudent(student.id, student.studentName!);
-            }}
-          >
-            <CardContainer>
-              <div className="flex flex-col items-center space-y-4">
-                <CardItem
-                  translateZ="100"
-                  rotateX={20}
-                  rotateZ={-10}
-                  className="w-44"
-                >
-                  <Image
-                    src={arrayImage[getImageIndex(student.imageAvatar || "img1")]} // nếu undefine thì dùng là img1
-                    width={150}
-                    height={150}
-                    className="w-full h-full object-contain rounded-xl group-hover/card:shadow-xl"
-                    alt="thumbnail"
-                  />
-                </CardItem>
-                <CardItem
-                  translateZ="50"
-                  className="text-xl font-bold text-neutral-600 dark:text-white text-center "
-                >
-                  {student.studentName}
-                </CardItem>
-              </div>
-            </CardContainer>
-          </div>
-        ))}
+        {students.length > 0 ? (
+        students.map((student, index) => (
+            <div
+                key={student.studentName}
+                onClick={() => {
+                    handleSelectStudent(student.id, student.studentName!);
+                }}
+            >
+                <CardContainer>
+                    <div className="flex flex-col items-center space-y-4">
+                        <CardItem
+                            translateZ="100"
+                            rotateX={20}
+                            rotateZ={-10}
+                            className="w-44"
+                        >
+                            <Image
+                                src={arrayImage[getImageIndex(student.imageAvatar || "img1")]} // nếu undefine thì dùng là img1
+                                width={150}
+                                height={150}
+                                className="w-full h-full object-contain rounded-xl group-hover/card:shadow-xl"
+                                alt="thumbnail"
+                            />
+                        </CardItem>
+                        <CardItem
+                            translateZ="50"
+                            className="text-xl font-bold text-neutral-600 dark:text-white text-center"
+                        >
+                            {student.studentName}
+                        </CardItem>
+                    </div>
+                </CardContainer>
+            </div>
+        ))
+    ) : (
+        <div className="flex-grow"></div> // Leave it empty if no students
+    )}
         {/* <CardContainer className="">
           <div className="flex flex-col items-center space-y-4">
             <CardItem
