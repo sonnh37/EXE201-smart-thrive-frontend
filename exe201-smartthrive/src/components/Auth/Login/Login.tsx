@@ -55,7 +55,7 @@ export function Login() {
           <Input
             id="email"
             placeholder="projectmayhem@fc.com"
-            type="email"
+            
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
@@ -102,9 +102,10 @@ export function Login() {
             </span>
             <BottomGradient />
           </button>
-          <Register />
+         
         </div>
       </form>
+      <Register />
     </div>
   );
 }
