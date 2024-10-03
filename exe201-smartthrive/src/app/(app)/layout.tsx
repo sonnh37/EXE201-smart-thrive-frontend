@@ -29,7 +29,7 @@ export default function RootLayout({
       <ReactLenis root>
         <div
           suppressHydrationWarning={true}
-          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-100 h-max overflow-x-hidden`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-100 overflow-x-hidden`}
         >
           <NavBar />
           <div>{children}</div>

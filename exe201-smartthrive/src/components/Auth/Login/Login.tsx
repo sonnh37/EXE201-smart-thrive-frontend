@@ -7,8 +7,14 @@ import { IconBrandGithub, IconBrandGoogle } from "@tabler/icons-react";
 import Register from "@/components/Auth/Register/Register";
 import AuthService from "@/services/auth-service";
 import { toast } from "sonner";
-
+import { useRouter } from "next/navigation";
+import { jwtDecode, JwtPayload } from "jwt-decode";
 export function Login() {
+  const { push } = useRouter();
+  interface CustomJwtPayload extends JwtPayload {
+    id: string; // or number, depending on your token structure
+  }
+
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -16,12 +22,17 @@ export function Login() {
     const login = async () => {
       if (username && password) {
         const result = await AuthService.login(username, password);
-        console.log(result.data);
         if (result.data.status != -2) {
+          const decoded = await jwtDecode<CustomJwtPayload>(
+            result.data.data.token
+          );
+          console.log(decoded);
           localStorage.setItem("accessToken", result.data.data.token);
+          localStorage.setItem("userId", decoded.id);
           toast.success("Login success !", {
             richColors: true,
           });
+          push("/student");
         } else {
           toast.error("Login fail", {
             richColors: true,
@@ -44,7 +55,7 @@ export function Login() {
           <Input
             id="email"
             placeholder="projectmayhem@fc.com"
-            type="email"
+            
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
@@ -91,9 +102,10 @@ export function Login() {
             </span>
             <BottomGradient />
           </button>
-          <Register />
+         
         </div>
       </form>
+      <Register />
     </div>
   );
 }

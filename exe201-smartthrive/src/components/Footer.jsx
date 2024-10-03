@@ -79,14 +79,30 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="footer-down h-screen flex">
-          <div>
-            <div>Locations.</div>
-            <div>Course.</div>
-            <div>Category.</div>
-            <div>Info. </div>
+        <div className="footer-down h-full pb-16 flex justify-between mx-14 mt-16">
+          <div className="flex justify-between w-[50%] text-sm">
+            <div>
+              <h1>Blog.</h1>
+              <p className="uppercase opacity-70 mt-8 tracking-widest text-[0.8rem]">
+                View Blogs.
+              </p>
+            </div>
+            <div>
+              <h1>Category.</h1>
+              <div className="uppercase opacity-70 flex flex-col gap-8 tracking-widest text-[0.8rem] mt-8">
+                <p className="">View Category.</p>
+                <p className="">View Course.</p>
+                <p className="">View Topics.</p>
+              </div>
+            </div>
+            <div>
+              <h1>Info.</h1>
+              <p className="uppercase opacity-70 mt-8 tracking-widest text-[0.8rem]">
+                About us.
+              </p>
+            </div>
           </div>
-          <div className="payment_method"></div>
+          <div className="payment_method  text-sm">Payment method.</div>
         </div>
       </div>
     </section>

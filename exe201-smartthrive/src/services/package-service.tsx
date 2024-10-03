@@ -1,5 +1,4 @@
 import { axiosGet, axiosPost } from "./baseService";
-import { Package } from "./Model/Package";
 
 class PackageAPI {
   getAll = async () => {
@@ -10,8 +9,12 @@ class PackageAPI {
     return await axiosGet(`/packages/${id}`, {});
   };
 
-  create = async (data: Package) => {
-    return await axiosPost(`/packages`, data, {});
+  create = async (name: string, quantityCourse: number, totalPrice: number) => {
+    return await axiosPost(
+      `/packages`,
+      { name, quantityCourse, totalPrice, isActive: true, status: 0 },
+      {}
+    );
   };
 }
 

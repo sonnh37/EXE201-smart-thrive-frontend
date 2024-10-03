@@ -16,7 +16,7 @@ const CourseCard = ({
   describe,
 }) => {
   return (
-    <div className="flex justify-center items-center mb-8 px-4">
+    <div key={id} className="flex justify-center items-center mb-8 px-4">
       <div className="mx-auto h-full w-[20vw]">
         <div className="relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-full">
           <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-60">

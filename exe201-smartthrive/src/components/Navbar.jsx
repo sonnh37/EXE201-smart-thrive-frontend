@@ -164,10 +164,10 @@ export const NavBar = () => {
               </p>
             </div>
             <div className="group nav-item min-w-12 mx-4 py-8 nav-text cursor-pointer">
-              <p className="relative">
+              <Link href={"/about"} className="relative">
                 About Us
                 <span className="absolute line w-0 h-[1px] bg-black top-7 left-0 group-hover:w-full transition-all duration-300"></span>
-              </p>
+              </Link>
             </div>
           </li>
           <li className="container-logo absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
