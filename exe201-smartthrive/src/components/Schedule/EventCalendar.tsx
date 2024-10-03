@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { get4CommingSessionsByStudentId } from "@/services/session-service";
+import { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 
@@ -38,38 +39,74 @@ const events = [
     subject: "Chinh phuc vat li",
   },
 ];
-const EventCalendar = ({onDateChange}) => {
+const EventCalendar = ({ onDateChange, studentId }) => {
   const [value, onChange] = useState<Value>(new Date());
+  const [sessions, setSession] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await get4CommingSessionsByStudentId(studentId); // Fetch blog data by id
+        setSession(data); // Set blog data to state
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching:", error);
+      }
+    };
+    fetchData();
+  }, [studentId]);
 
   return (
     <div className="w-full h-full text-black bg-white p-4 rounded-md text-sm">
-      <Calendar onChange={(value) => {
+      <Calendar
+        onChange={(value) => {
           onChange(value);
           onDateChange(value); // Gọi hàm để cập nhật ngày cho BigCalendar
         }}
-        value={value} />
+        value={value}
+      />
       <p className="pt-6 pb-4 font-bold">Coming lesson</p>
       <div className="flex flex-col gap-4">
-        {events.map((event) => (
-          <div
-            className="p-4 rounded-md border-t-4 odd:border-blue-300 even:border-pink-300 shadow-md"
-            key={event.id}
-          >
-            <div className="flex items-center justify-between mb-2">
-              <div className="flex items-center gap-2">
-                <p className="text-base font-medium text-gray-900">
-                  {event.time}
-                </p>
+        {sessions.map((session) => {
+          const startDate = new Date(session.startDate); // Tạo đối tượng Date từ startDate
+          const endDate = new Date(session.endDate); // Tạo đối tượng Date từ endDate
+
+          // Lấy giờ và phút
+          const startHour = startDate.getHours();
+          const startMinute = startDate.getMinutes();
+          const endHour = endDate.getHours();
+          const endMinute = endDate.getMinutes();
+
+          // Lấy ngày, tháng, năm
+          const day = startDate.getDate();
+          const month = startDate.getMonth() + 1; // Tháng trong JavaScript bắt đầu từ 0
+          const year = startDate.getFullYear();
+
+          // Định dạng thời gian
+          const time = `${startHour}:${startMinute
+            .toString()
+            .padStart(2, "0")}-${endHour}:${endMinute
+            .toString()
+            .padStart(2, "0")} - ${day} tháng ${month}, ${year}`;
+
+          return (
+            <div
+              className="p-4 rounded-md border-t-4 odd:border-blue-300 even:border-pink-300 shadow-md"
+              key={session}
+            >
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-2">
+                  <p className="text-base font-medium text-gray-900">{time}</p>
+                </div>
               </div>
+              <h6 className="text-md font-semibold text-black">
+                {session.courseName} {/* Sử dụng session.subject */}
+              </h6>
+              <p className="text-sm font-normal text-gray-600">
+                Giáo viên: {session.teacherName} {/* Sử dụng session.teacher */}
+              </p>
             </div>
-            <h6 className="text-md font-semibold text-black">
-              {event.subject}
-            </h6>
-            <p className="text-sm font-normal text-gray-600">
-              Giáo viên: {event.teacher}
-            </p>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
