@@ -94,7 +94,7 @@ const Page = () => {
                     htmlFor="username"
                     className="block text-2xl font-medium leading-6 text-gray-900"
                   >
-                    Username
+                    StudentName
                   </label>
                   <div className="mt-2">
                     <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
@@ -102,7 +102,7 @@ const Page = () => {
                       <input
                         id="username"
                         name="username"
-                        type="text"
+                        value={selectedStudent!.studentName}
                         placeholder="janesmith"
                         autoComplete="username"
                         className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-xl sm:leading-6"
@@ -261,7 +261,7 @@ const Page = () => {
                     <input
                       id="email"
                       name="email"
-                      type="email"
+                      value={selectedStudent!.user?.email}
                       autoComplete="email"
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-xl sm:leading-6"
                     />
@@ -282,9 +282,8 @@ const Page = () => {
                       autoComplete="country-name"
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-xl sm:leading-6"
                     >
-                      <option>United States</option>
                       <option>VietNam</option>
-                      <option>Mexico</option>
+                      <option>Other</option>
                     </select>
                   </div>
                 </div>
@@ -300,7 +299,7 @@ const Page = () => {
                     <input
                       id="street-address"
                       name="street-address"
-                      type="text"
+                      value={selectedStudent!.user?.address}
                       autoComplete="street-address"
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-xl sm:leading-6"
                     />
@@ -318,48 +317,16 @@ const Page = () => {
                     <input
                       id="city"
                       name="city"
-                      type="text"
+                      value="Hồ Chí Minh"
                       autoComplete="address-level2"
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-xl sm:leading-6"
                     />
                   </div>
                 </div>
 
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="region"
-                    className="block text-xl font-medium leading-6 text-gray-900"
-                  >
-                    State / Province
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      id="region"
-                      name="region"
-                      type="text"
-                      autoComplete="address-level1"
-                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-xl sm:leading-6"
-                    />
-                  </div>
-                </div>
+              
 
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="postal-code"
-                    className="block text-xl font-medium leading-6 text-gray-900"
-                  >
-                    ZIP / Postal code
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      id="postal-code"
-                      name="postal-code"
-                      type="text"
-                      autoComplete="postal-code"
-                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-xl sm:leading-6"
-                    />
-                  </div>
-                </div>
+              
               </div>
             </div>
 

@@ -66,17 +66,17 @@ const Auth = () => {
       if (createStudent != null) {
         const response = await StudentService.createStudent(createStudent);
         if (response.data.message === "Save data success") {
-          alert("Tạo student thành công");
+          toast.success("Tạo student thành công");
           toggleForm();
           window.location.reload();
 
           
         } else {
-          alert("Tạo student thất bại: " + response.data.message);  // Hiển thị thông báo lỗi từ API
+          toast.error("Tạo student thất bại: " + response.data.message);  // Hiển thị thông báo lỗi từ API
         }
 
       } else {
-        alert("Ban chua nhap day du thong tin");
+        toast.error("Ban chua nhap day du thong tin");
       }
 
     } catch (error) {
@@ -361,7 +361,7 @@ const Auth = () => {
                         className="block text-neutral-600 dark:text-neutral-100 font-medium mb-2"
                         htmlFor="firstName"
                       >
-                        Tên
+                        Tài khoản học sinh
                       </label>
                       <input
                         id="StudentName"
@@ -379,6 +379,56 @@ const Auth = () => {
                       />
                     </div>
                   </div>
+                </div>
+                <div className="mb-4">
+
+                <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
+                  <div className="flex-1">
+                    <label
+                      className="block text-neutral-600 dark:text-neutral-100 font-medium mb-2"
+                      htmlFor="firstName"
+                    >
+                      Tên
+                    </label>
+                    <input
+                      id="firstName"
+                      type="text"
+                      value={createStudent != null ? createStudent.firstName : ""}
+                      onChange={(e) => {
+                        const updatedStudent = {
+                          ...createStudent!,
+                          firstName: e.target.value.toString(),
+                        };
+                        setcreateStudent(updatedStudent);
+                      }}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 dark:bg-neutral-800 dark:border-neutral-700 text-black"
+                      placeholder="Nhập tên của bạn"
+                    />
+                  </div>
+
+                  <div className="flex-1">
+                    <label
+                      className="block text-neutral-600 dark:text-neutral-100 font-medium mb-2"
+                      htmlFor="lastName"
+                    >
+                      Họ
+                    </label>
+                    <input
+                      id="lastName"
+                      type="text"
+                      value={createStudent != null ? createStudent.lastName : ""}
+                      onChange={(e) => {
+                        const updatedStudent = {
+                          ...createStudent!,
+                          lastName: e.target.value.toString(),
+                        };
+                        setcreateStudent(updatedStudent);
+                      }}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 dark:bg-neutral-800 dark:border-neutral-700  text-black"
+                      placeholder="Nhập họ của bạn"
+                    />
+                  </div>
+                </div>
                 </div>
                 {/* Số điện thoại
              <div className="mb-4">
