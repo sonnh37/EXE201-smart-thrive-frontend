@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import {
   Modal,
   ModalTrigger,
@@ -7,9 +7,45 @@ import {
   ModalContent,
   ModalFooter,
 } from "@/components/ui/animated-modal";
-
+import { User } from "@/services/Model/User";
+import UserService from "@/services/auth-service";
 
 export default function Register() {
+
+  const [user, Setuser] = useState<User | null>(null);
+  // Tạo một biến riêng để lưu confirmPassword
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setConfirmPassword(e.target.value);
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault(); // Prevent default form submission
+
+    try {
+      if (user != null) {
+        if (user.password !== confirmPassword) {
+          alert("Mật khẩu và xác nhận mật khẩu không khớp");
+          return;
+        }
+        console.log("Gọi API: ", user);
+        const response = await UserService.register(user)
+        console.log("Trả API: ", response);
+        if (response.data.message === "Save data success") {
+          alert("Tạo user thành công");
+    //      window.location.reload();
+        } else {
+          alert("Tạo user thất bại: " + response.data.message);  // Hiển thị thông báo lỗi từ API
+        }
+      } else {
+        alert("Ban chua nhap day du thong tin");
+      }
+
+    } catch (error) {
+      console.error('Error creating student:', error);
+    }
+  }
+
   return (
     <div className="flex items-center justify-center">
       <Modal>
@@ -23,8 +59,8 @@ export default function Register() {
             <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200 text-center">
               Welcome to SmartThrive
             </h2>
-           
-            <form className="my-8" action="">
+
+            <form className="my-8" onSubmit={handleSubmit}>
               {/* Tên và Họ */}
               <div className="mb-4">
                 <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
@@ -38,7 +74,15 @@ export default function Register() {
                     <input
                       id="firstName"
                       type="text"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 dark:bg-neutral-800 dark:border-neutral-700"
+                      value={user != null ? user.firstName : ""}
+                      onChange={(e) => {
+                        const updateUser = {
+                          ...user!,
+                          firstName: e.target.value.toString(),
+                        };
+                        Setuser(updateUser);
+                      }}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 dark:bg-neutral-800 dark:border-neutral-700 text-black"
                       placeholder="Nhập tên của bạn"
                     />
                   </div>
@@ -53,7 +97,15 @@ export default function Register() {
                     <input
                       id="lastName"
                       type="text"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 dark:bg-neutral-800 dark:border-neutral-700"
+                      value={user != null ? user.lastName : ""}
+                      onChange={(e) => {
+                        const updateUser = {
+                          ...user!,
+                          lastName: e.target.value.toString(),
+                        };
+                        Setuser(updateUser);
+                      }}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 dark:bg-neutral-800 dark:border-neutral-700  text-black"
                       placeholder="Nhập họ của bạn"
                     />
                   </div>
@@ -71,8 +123,60 @@ export default function Register() {
                 <input
                   id="email"
                   type="email"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 dark:bg-neutral-800 dark:border-neutral-700"
+                  value={user != null ? user.email : ""}
+                  onChange={(e) => {
+                    const updateUser = {
+                      ...user!,
+                      email: e.target.value.toString(),
+                    };
+                    Setuser(updateUser);
+                  }}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 dark:bg-neutral-800 dark:border-neutral-700  text-black"
                   placeholder="Nhập email của bạn"
+                />
+              </div>
+              {/* Phone */}
+              <div className="mb-4">
+                <label
+                  className="block text-neutral-600 dark:text-neutral-100 font-medium mb-2"
+                  htmlFor="phone"
+                >
+                  Phone
+                </label>
+                <input
+                  id="phone"
+                  type="phone"
+                  value={user != null ? user.phone : ""}
+                  onChange={(e) => {
+                    const updateUser = {
+                      ...user!,
+                      phone: e.target.value.toString(),
+                    };
+                    Setuser(updateUser);
+                  }}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 dark:bg-neutral-800 dark:border-neutral-700  text-black"
+                  placeholder="Nhập số điện thoại của bạn"
+                />
+              </div>
+              {/* Username */}
+              <div className="mb-4">
+                <label
+                  className="block text-neutral-600 dark:text-neutral-100 font-medium mb-2"
+                >
+                  Tài khoản
+                </label>
+                <input
+                  id="username"
+                  value={user != null ? user.username : ""}
+                  onChange={(e) => {
+                    const updateUser = {
+                      ...user!,
+                      username: e.target.value.toString(),
+                    };
+                    Setuser(updateUser);
+                  }}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 dark:bg-neutral-800 dark:border-neutral-700  text-black"
+                  placeholder="Nhập tài khoản của bạn"
                 />
               </div>
 
@@ -87,7 +191,15 @@ export default function Register() {
                 <input
                   id="password"
                   type="password"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 dark:bg-neutral-800 dark:border-neutral-700"
+                  value={user != null ? user.password : ""}
+                  onChange={(e) => {
+                    const updateUser = {
+                      ...user!,
+                      password: e.target.value.toString(),
+                    };
+                    Setuser(updateUser);
+                  }}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 dark:bg-neutral-800 dark:border-neutral-700  text-black"
                   placeholder="Nhập mật khẩu"
                 />
               </div>
@@ -103,7 +215,9 @@ export default function Register() {
                 <input
                   id="confirmPassword"
                   type="password"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 dark:bg-neutral-800 dark:border-neutral-700"
+                  value={confirmPassword}
+                  onChange={handleConfirmPasswordChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 dark:bg-neutral-800 dark:border-neutral-700  text-black"
                   placeholder="Nhập lại mật khẩu"
                 />
               </div>
@@ -117,8 +231,8 @@ export default function Register() {
                   Đăng ký
                 </button>
               </div>
-              
-               
+
+
             </form>
           </ModalContent>
 

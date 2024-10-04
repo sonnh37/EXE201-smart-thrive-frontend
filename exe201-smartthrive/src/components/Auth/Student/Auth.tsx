@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import Image from "next/image";
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 import StudentService from "@/services/student-service";
@@ -7,6 +7,7 @@ import { Student } from "@/services/Model/Student";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { Gender } from "@/services/Model/Enum";
 const Auth = () => {
   const { push } = useRouter();
   const [isFormVisible, setIsFormVisible] = useState(false);
@@ -17,16 +18,25 @@ const Auth = () => {
   const [imageSrc, setImageSrc] = useState(
     "/student/1ba2e6d1d4874546c70c91f1024e17fb.jpg"
   );
-  const arrrayImage = [
-    "/student/1ba2e6d1d4874546c70c91f1024e17fb.jpg",
-    "/student/e39430434d2b8207188f880ac66c6411.jpg",
-    "/student/b40b51418293936a6e0ad09ffa229cb7.jpg",
-    "/student/828f0f2b3a3a17a5e52213027829149f.jpg",
-    "/student/6ab2a25230316f4180bf54b61e9d79a9.jpg",
+  const arrayImage  = [
+    "/student/1ba2e6d1d4874546c70c91f1024e17fb.jpg", //img1
+    "/student/e39430434d2b8207188f880ac66c6411.jpg", //img2
+    "/student/b40b51418293936a6e0ad09ffa229cb7.jpg", //img3
+    "/student/828f0f2b3a3a17a5e52213027829149f.jpg", //img4
+    "/student/6ab2a25230316f4180bf54b61e9d79a9.jpg", //img5
   ];
-  const handleImageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedValue = e.target.value;
 
+  const [createStudent, setcreateStudent] = useState<Student | null>(null);
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedValue = e.target.value.toString();
+
+    // Update createStudent state
+    const updatedStudent = {
+      ...createStudent!,
+      imageAvatar: selectedValue,
+    };
+    setcreateStudent(updatedStudent);
     // Cập nhật src của ảnh dựa trên option được chọn
     switch (selectedValue) {
       case "img1":
@@ -48,13 +58,45 @@ const Auth = () => {
         setImageSrc(""); // Xóa ảnh nếu không chọn gì
     }
   };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault(); // Prevent default form submission
+
+    try {
+      if (createStudent != null) {
+        const response = await StudentService.createStudent(createStudent);
+        if (response.data.message === "Save data success") {
+          alert("Tạo student thành công");
+          toggleForm();
+          window.location.reload();
+
+          
+        } else {
+          alert("Tạo student thất bại: " + response.data.message);  // Hiển thị thông báo lỗi từ API
+        }
+
+      } else {
+        alert("Ban chua nhap day du thong tin");
+      }
+
+    } catch (error) {
+      console.error('Error creating student:', error);
+
+    }
+  };
+
+
   const [students, setStudents] = useState<Student[]>([]);
   useEffect(() => {
     const fetchApi = async () => {
       const result = await StudentService.getByUserId(
         localStorage.getItem("userId")!.toString()
       );
-      setStudents(result.results);
+      if (result && Array.isArray(result.results)) {   //check xem mang co gia tri chua
+        setStudents(result.results);
+    } else {
+        setStudents([]); // Ensure it's an empty array if the structure is not as expected
+    }
     };
     fetchApi();
   }, []);
@@ -66,6 +108,22 @@ const Auth = () => {
       richColors: true,
     });
   };
+  const getImageIndex = (imageAvatar: string): number => {
+    switch (imageAvatar) {
+      case "img1":
+        return 0;
+      case "img2":
+        return 1;
+      case "img3":
+        return 2;
+      case "img4":
+        return 3;
+      case "img5":
+        return 4;
+      default:
+        return -1; // Trả về -1 nếu không tìm thấy
+    }
+  };
   return (
     <div className="bg-black text-white min-h-screen flex flex-col items-center justify-center">
       <div className="text-5xl font-bold mb-10">SMART THRIVE</div>
@@ -76,39 +134,43 @@ const Auth = () => {
         {" "}
         {/* Giảm khoảng cách từ space-x-4 xuống space-x-2 */}
         {/* First Card */}
-        {students.map((student, index) => (
-          <div
-            key={student.studentName}
-            onClick={() => {
-              handleSelectStudent(student.id, student.studentName!);
-            }}
-          >
-            <CardContainer>
-              <div className="flex flex-col items-center space-y-4">
-                <CardItem
-                  translateZ="100"
-                  rotateX={20}
-                  rotateZ={-10}
-                  className="w-44"
-                >
-                  <Image
-                    src={arrrayImage[index + 1]}
-                    width={150}
-                    height={150}
-                    className="w-full h-full object-contain rounded-xl group-hover/card:shadow-xl"
-                    alt="thumbnail"
-                  />
-                </CardItem>
-                <CardItem
-                  translateZ="50"
-                  className="text-xl font-bold text-neutral-600 dark:text-white text-center "
-                >
-                  {student.studentName}
-                </CardItem>
-              </div>
-            </CardContainer>
-          </div>
-        ))}
+        {students.length > 0 ? (
+        students.map((student, index) => (
+            <div
+                key={student.studentName}
+                onClick={() => {
+                    handleSelectStudent(student.id, student.studentName!);
+                }}
+            >
+                <CardContainer>
+                    <div className="flex flex-col items-center space-y-4">
+                        <CardItem
+                            translateZ="100"
+                            rotateX={20}
+                            rotateZ={-10}
+                            className="w-44"
+                        >
+                            <Image
+                                src={arrayImage[getImageIndex(student.imageAvatar || "img1")]} // nếu undefine thì dùng là img1
+                                width={150}
+                                height={150}
+                                className="w-full h-full object-contain rounded-xl group-hover/card:shadow-xl"
+                                alt="thumbnail"
+                            />
+                        </CardItem>
+                        <CardItem
+                            translateZ="50"
+                            className="text-xl font-bold text-neutral-600 dark:text-white text-center"
+                        >
+                            {student.studentName}
+                        </CardItem>
+                    </div>
+                </CardContainer>
+            </div>
+        ))
+    ) : (
+        <div className="flex-grow"></div> // Leave it empty if no students
+    )}
         {/* <CardContainer className="">
           <div className="flex flex-col items-center space-y-4">
             <CardItem
@@ -208,6 +270,7 @@ const Auth = () => {
             </CardItem>
           </div>
         </CardContainer> */}
+      {students.length < 5 && (
         <div className="" onClick={toggleForm}>
           <CardContainer className="w-full h-full">
             <div className="flex flex-col items-center space-y-4 w-full h-full">
@@ -225,6 +288,7 @@ const Auth = () => {
                   alt="thumbnail"
                 />
               </CardItem>
+
               <CardItem
                 translateZ="50"
                 className="text-xl font-bold text-neutral-600 dark:text-white text-center"
@@ -234,6 +298,7 @@ const Auth = () => {
             </div>
           </CardContainer>
         </div>
+      )}
       </div>
 
       <Link
@@ -242,6 +307,7 @@ const Auth = () => {
       >
         Manage Profiles
       </Link>
+   
       {isFormVisible && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-8 rounded shadow-lg w-1/3">
@@ -250,7 +316,7 @@ const Auth = () => {
                 Đăng ký tài khoản cho học sinh
               </h1>
 
-              <form className="my-8" action="">
+              <form className="my-8" onSubmit={handleSubmit}>
                 {/* Upload hình ảo vào nhá nhá */}
                 <div className="w-full flex">
                   {/* Image element */}
@@ -265,8 +331,9 @@ const Auth = () => {
                     <select
                       id="ảnh"
                       className="w-2/3 px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 dark:bg-neutral-800 dark:border-neutral-700 text-black"
+                      value={createStudent?.imageAvatar || "img1"}
                       onChange={handleImageChange}
-                      defaultValue="img1"
+                         
                     >
                       <option value="img1" className="text-black">
                         Ảnh 1
@@ -297,27 +364,65 @@ const Auth = () => {
                         Tên
                       </label>
                       <input
-                        id="firstName"
+                        id="StudentName"
                         type="text"
-                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 dark:bg-neutral-800 dark:border-neutral-700"
+                        value={createStudent != null ? createStudent.studentName : ""}
+                        onChange={(e) => {
+                          const updatedStudent = {
+                            ...createStudent!,
+                            studentName: e.target.value.toString(),
+                          };
+                          setcreateStudent(updatedStudent);
+                        }}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 dark:bg-neutral-800 dark:border-neutral-700 text-black"
                         placeholder="Nhập tên của học sinh"
                       />
                     </div>
                   </div>
                 </div>
-                {/* Số điện thoại */}
+                {/* Số điện thoại
+             <div className="mb-4">
+               <label
+                 className="block text-neutral-600 dark:text-neutral-100 font-medium mb-2"
+                 htmlFor="phone"
+               >
+                 Số điện thoại
+               </label>
+               <input
+                 id="phone"
+                 type="phone"
+                 value={createStudent != null ?createStudent.phone: ""}
+                 onChange={(e) => {
+                   const updatedStudent = {
+                     ...createStudent!,
+                     studentName: e.target.value.toString(),
+                   };
+                   setcreateStudent(updatedStudent);
+                 }}
+                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 dark:bg-neutral-800 dark:border-neutral-700"
+                 placeholder="Nhập số điện thoại"
+               />
+             </div> */}
+                {/* Ngày sinh */}
                 <div className="mb-4">
                   <label
                     className="block text-neutral-600 dark:text-neutral-100 font-medium mb-2"
-                    htmlFor="phone"
+                    htmlFor="dob"
                   >
-                    Số điện thoại
+                    Ngày sinh
                   </label>
                   <input
-                    id="phone"
-                    type="phone"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 dark:bg-neutral-800 dark:border-neutral-700"
-                    placeholder="Nhập số điện thoại"
+                    id="dob"
+                    type="date"
+                    value={createStudent?.dob ? createStudent.dob.toISOString().split('T')[0] : ''}
+                    onChange={(e) => {
+                      const updatedStudent = {
+                        ...createStudent!,
+                        dob: new Date(e.target.value), // Convert input value to Date object
+                      };
+                      setcreateStudent(updatedStudent);
+                    }}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 dark:bg-neutral-800 dark:border-neutral-700 text-black"
                   />
                 </div>
                 <h4 className="text-red-500">****Lưu ý****</h4>{" "}
@@ -328,24 +433,31 @@ const Auth = () => {
                     className="block text-neutral-600 dark:text-neutral-100 font-medium mb-2"
                     htmlFor="age"
                   >
-                    Độ tuổi
+                    Giới tính
                   </label>
                   <select
-                    id="age"
+                    id="gender"
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 dark:bg-neutral-800 dark:border-neutral-700 text-black"
+                    value={createStudent != null ? createStudent.gender : Gender.Male}
+                    onChange={(e) => {
+                      const updatedStudent = {
+                        ...createStudent!,
+                        studentName: e.target.value.toString(),
+                      };
+                      setcreateStudent(updatedStudent);
+                    }}
                   >
-                    <option value="under-18" className="text-black">
-                      Dưới 18
+                    <option value={Gender.Male} className="text-black"
+                    >
+                      Nam
                     </option>
-                    <option value="18-25" className="text-black">
-                      18 - 25
+                    <option value={Gender.Female} className="text-black">
+                      Nữ
                     </option>
-                    <option value="26-35" className="text-black">
-                      26 - 35
+                    <option value={Gender.Other} className="text-black">
+                      Khác
                     </option>
-                    <option value="over-35" className="text-black">
-                      Trên 35
-                    </option>
+
                   </select>
                 </div>
                 {/* Nút đăng ký */}
@@ -362,8 +474,8 @@ const Auth = () => {
             <div className="flex justify-end">
               <button
                 type="button"
-                className="bg-red-500 text-white px-4 py-2 rounded ml-2"
                 onClick={toggleForm}
+                className="bg-red-500 text-white px-4 py-2 rounded ml-2"
               >
                 Đóng
               </button>
@@ -371,6 +483,7 @@ const Auth = () => {
           </div>
         </div>
       )}
+    
     </div>
   );
 };
