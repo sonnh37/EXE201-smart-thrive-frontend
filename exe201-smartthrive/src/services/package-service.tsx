@@ -9,10 +9,22 @@ class PackageAPI {
     return await axiosGet(`/packages/${id}`, {});
   };
 
-  create = async (name: string, quantityCourse: number, totalPrice: number) => {
+  create = async (
+    studentId: string,
+    name: string,
+    quantityCourse: number,
+    totalPrice: number
+  ) => {
     return await axiosPost(
-      `/packages`,
-      { name, quantityCourse, totalPrice, isActive: true, status: 0 },
+      `/packages/createWithStudent`,
+      {
+        studentId,
+        name,
+        quantityCourse,
+        totalPrice,
+        isActive: true,
+        status: 0,
+      },
       {}
     );
   };

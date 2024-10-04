@@ -4,10 +4,13 @@ import { getBlog } from "@/services/blog-service";
 import { useEffect, useState } from "react";
 
 export default function Blog() {
+  const [blogs, setBlogs] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await getBlog();
+        setBlogs(data.results);
         console.log(data.results);
       } catch (error) {
         console.error("Error fetching blog data:", error);
@@ -16,16 +19,25 @@ export default function Blog() {
 
     fetchData();
   }, []);
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("vi-VN", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+  };
   return (
     <div className="h-full w-full pt-24 bg-[#FCF7E6]">
       {/* Header */}
       <div className="flex flex-col items-center py-12 ">
-        <p className="font-bold text-black uppercase text-5xl">Minimal Blog</p>
-        <p className="text-lg text-gray-600">Lorem Ipsum Dolor Sit Amet</p>
+        <p className="font-bold text-black uppercase text-5xl">Blogs</p>
+        {/* <p className="text-lg text-gray-600">Lorem Ipsum Dolor Sit Amet</p> */}
       </div>
 
       {/* <!-- Topic Nav --> */}
-      <nav className="w-full py-4 border-t border-b bg-white text-black">
+      {/* <nav className="w-full py-4 border-t border-b bg-white text-black">
         <div className="w-full container mx-auto flex flex-col sm:flex-row items-center justify-center text-sm font-bold uppercase mt-0 px-6 py-2">
           <a
             href="#"
@@ -64,67 +76,49 @@ export default function Blog() {
             Sports
           </a>
         </div>
-      </nav>
+      </nav> */}
 
       <div className="container mx-auto flex flex-wrap py-6 px-20">
         {/* <!-- Posts Section --> */}
         <section className="w-full md:w-2/3 flex flex-col items-center px-3">
-          <article className="flex flex-col shadow my-4">
-            {/* <!-- Article Image --> */}
-            {/* <a href="#" className="hover:opacity-75">
+          {blogs.map((blog, index) => (
+            <article key={index} className="flex flex-col shadow my-4">
+              {/* <!-- Article Image --> */}
+              {/* <a href="#" className="hover:opacity-75">
                       <img src="https://i.pinimg.com/originals/2a/5e/ac/2a5eacedd4c699e9128de51f830b99b0.jpg"/>
                   </a> */}
-            <div className="bg-white flex flex-col justify-start p-6">
-              <a
+              <div className="bg-white flex flex-col justify-start p-6">
+                {/* <a
                 href="#"
                 className="hover:text-black text-[#B0926A] text-sm font-bold uppercase pb-4"
               >
                 Technology
-              </a>
-              <a
-                href="/blog/blogDetail"
-                className="text-3xl font-bold text-black hover:text-gray-700 pb-4"
-              >
-                Lorem Ipsum Dolor Sit Amet Dolor Sit Amet
-              </a>
-              <p className="text-sm text-black pb-3">
-                By{" "}
-                <a href="#" className="font-semibold hover:text-gray-800">
-                  David Grzyb
+              </a> */}
+                <a
+                  href={`/blog/${blog.id}`}
+                  className="text-3xl font-bold text-[#B0926A] hover:text-gray-700 pb-4"
+                >
+                  {blog.title}
                 </a>
-                , Published on April 25th, 2020
-              </p>
-              <p className="mb-6 text-black line-clamp-5">
-                Lorem Ipsum Dolor Sit Amet Dolor Sit AmetLorem Ipsum Dolor Sit
-                Amet Dolor Sit AmetLorem Ipsum Dolor Sit Amet Dolor Sit
-                AmetLorem Ipsum Dolor Sit Amet Dolor Sit AmetLorem Ipsum Dolor
-                Sit Amet Dolor Sit AmetLorem Ipsum Dolor Sit Amet Dolor Sit
-                AmetLorem Ipsum Dolor Sit Amet Dolor Sit AmetLorem Ipsum Dolor
-                Sit Amet Dolor Sit AmetLorem Ipsum Dolor Sit Amet Dolor Sit
-                AmetLorem Ipsum Dolor Sit Amet Dolor Sit AmetLorem Ipsum Dolor
-                Sit Amet Dolor Sit AmetLorem Ipsum Dolor Sit Amet Dolor Sit
-                AmetLorem Ipsum Dolor Sit Amet Dolor Sit AmetLorem Ipsum Dolor
-                Sit Amet Dolor Sit AmetLorem Ipsum Dolor Sit Amet Dolor Sit
-                AmetLorem Ipsum Dolor Sit Amet Dolor Sit AmetLorem Ipsum Dolor
-                Sit Amet Dolor Sit AmetLorem Ipsum Dolor Sit Amet Dolor Sit
-                AmetLorem Ipsum Dolor Sit Amet Dolor Sit AmetLorem Ipsum Dolor
-                Sit Amet Dolor Sit AmetLorem Ipsum Dolor Sit Amet Dolor Sit
-                AmetLorem Ipsum Dolor Sit Amet Dolor Sit AmetLorem Ipsum Dolor
-                Sit Amet Dolor Sit AmetLorem Ipsum Dolor Sit Amet Dolor Sit
-                AmetLorem Ipsum Dolor Sit Amet Dolor Sit AmetLorem Ipsum Dolor
-                Sit Amet Dolor Sit AmetLorem Ipsum Dolor Sit Amet Dolor Sit
-                AmetLorem Ipsum Dolor Sit Amet Dolor Sit AmetLorem Ipsum Dolor
-                Sit Amet Dolor Sit AmetLorem Ipsum Dolor Sit Amet Dolor Sit
-                AmetLorem Ipsum Dolor Sit Amet Dolor Sit AmetLorem Ipsum Dolor
-                Sit Amet Dolor Sit AmetLorem Ipsum Dolor Sit Amet Dolor Sit
-                AmetLorem Ipsum Dolor Sit Amet Dolor Sit AmetLorem Ipsum Dolor
-                Sit Amet Dolor Sit Amet
-              </p>
-              <a href="#" className="uppercase text-gray-800 hover:text-black">
-                Continue Reading <i className="fas fa-arrow-right"></i>
-              </a>
-            </div>
-          </article>
+                <div className="text-lg flex text-black mb-2">
+                  <p>Người đăng:&nbsp;</p>
+                  <p className="font-semibold hover:text-gray-800">
+                    {blog.user.lastName} {blog.user.firstName}
+                  </p>
+                  <p className="ml-4 text-md text-gray-500">{formatDate(blog.createdDate)}</p>
+                </div>
+                <p className="mb-6 text-black line-clamp-5">
+                  {blog.description}
+                </p>
+                <a
+                  href={`/blog/${blog.id}`}
+                  className="uppercase text-gray-800 hover:text-black hover:text-[#B0926A]"
+                >
+                  ĐỌC THÊM... <i className="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </article>
+          ))}
 
           {/* <!-- Pagination --> */}
           <div className="flex items-center py-8">
