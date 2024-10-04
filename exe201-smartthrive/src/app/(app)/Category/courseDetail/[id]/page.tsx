@@ -22,6 +22,7 @@ const Page = () => {
   const [course, setCourse] = useState<Course | null>(null);
   const [studentXPackage, setStudentXPackage] = useState<StudentXPackage[]>([]);
   const [packageName, setPackageName] = useState("Default name");
+  const [refresh, setRefresh] = useState(true);
   useEffect(() => {
     const fetchApi = async () => {
       const apiCourse = await CourseService.getById(id.toString());
@@ -32,7 +33,7 @@ const Page = () => {
       setCourse(apiCourse);
     };
     fetchApi();
-  }, [id]);
+  }, [id, refresh]);
   const handleAddToPackage = async (packageId: string) => {
     const result = await PackageXCourseService.create(packageId, id.toString());
     if (result.data.status == 1) {
@@ -40,6 +41,7 @@ const Page = () => {
       toast.success("Add to package success", {
         richColors: true,
       });
+      setRefresh(!refresh);
     } else {
       toast.error("Error when save into package", {
         richColors: true,
@@ -49,9 +51,32 @@ const Page = () => {
   };
 
   const handleAddNewPackage = async () => {
-    const result = await PackageService.create(packageName, 0, 0);
-    console.log(result);
+    try {
+      const result = await PackageService.create(
+        localStorage.getItem("studentId")!.toString(),
+        packageName,
+        0,
+        0
+      );
+
+      if (result.data.status === 1) {
+        toast.success("Create package success", {
+          richColors: true,
+        });
+        setRefresh(!refresh);
+      } else {
+        toast.error("Create package failed", {
+          richColors: true,
+        });
+      }
+    } catch (error) {
+      console.error("Error creating package:", error);
+      toast.error("An error occurred while creating the package.", {
+        richColors: true,
+      });
+    }
   };
+
   return (
     course && (
       <section className="w-full h-full min-h-[200vh] pt-[5.4rem] oswald-text">
