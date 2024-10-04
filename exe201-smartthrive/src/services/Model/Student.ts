@@ -7,6 +7,8 @@ import { User } from "./User";
 export class Student extends Base {
   userId?: string;
   studentName?: string;
+  firstName?: string;
+  lastName?: string;
   imageAvatar?: string;
   gender?: Gender;
   dob?: Date;

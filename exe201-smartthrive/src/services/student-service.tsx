@@ -13,6 +13,8 @@ class StudentAPI {
     const imageAvatar = student.imageAvatar || "img1"; // Gán giá trị mặc định nếu imageAvatar không có giá trị
     return axiosPost("/students", { userId:student.userId = localStorage.getItem("userId")?.toString(),
      studentName: student.studentName,
+     firstName: student.firstName,
+     lastName: student.lastName,
      gender:  student.gender,
      dob:   student.dob,
      status:   student.status =0,
