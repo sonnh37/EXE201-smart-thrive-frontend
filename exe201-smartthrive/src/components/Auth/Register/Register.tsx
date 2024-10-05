@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/animated-modal";
 import { User } from "@/services/Model/User";
 import UserService from "@/services/auth-service";
+import { toast } from "sonner";
 
 export default function Register() {
 
@@ -28,17 +29,15 @@ export default function Register() {
           alert("Mật khẩu và xác nhận mật khẩu không khớp");
           return;
         }
-        console.log("Gọi API: ", user);
         const response = await UserService.register(user)
-        console.log("Trả API: ", response);
         if (response.data.message === "Save data success") {
-          alert("Tạo user thành công");
-    //      window.location.reload();
+          toast.success("Tạo user thành công");
+          //      window.location.reload();
         } else {
-          alert("Tạo user thất bại: " + response.data.message);  // Hiển thị thông báo lỗi từ API
+          toast.warning("Tạo user thất bại: " + response.data.message);  // Hiển thị thông báo lỗi từ API
         }
       } else {
-        alert("Ban chua nhap day du thong tin");
+        toast.warning("Ban chua nhap day du thong tin");
       }
 
     } catch (error) {
