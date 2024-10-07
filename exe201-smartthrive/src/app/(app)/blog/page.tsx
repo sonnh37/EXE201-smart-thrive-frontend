@@ -2,7 +2,9 @@
 
 import { getBlog } from "@/services/blog-service";
 import { useEffect, useState } from "react";
-
+import { EditorState, convertFromRaw } from "draft-js";
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 export default function Blog() {
   const [blogs, setBlogs] = useState([]);
 
@@ -33,73 +35,22 @@ export default function Blog() {
       {/* Header */}
       <div className="flex flex-col items-center py-12 ">
         <p className="font-bold text-black uppercase text-5xl">Blogs</p>
-        {/* <p className="text-lg text-gray-600">Lorem Ipsum Dolor Sit Amet</p> */}
       </div>
 
-      {/* <!-- Topic Nav --> */}
-      {/* <nav className="w-full py-4 border-t border-b bg-white text-black">
-        <div className="w-full container mx-auto flex flex-col sm:flex-row items-center justify-center text-sm font-bold uppercase mt-0 px-6 py-2">
-          <a
-            href="#"
-            className="hover:bg-black hover:text-[#FCF7E6] rounded py-2 px-4 mx-2"
-          >
-            Technology
-          </a>
-          <a
-            href="#"
-            className="hover:bg-black hover:text-[#FCF7E6] rounded py-2 px-4 mx-2"
-          >
-            Automotive
-          </a>
-          <a
-            href="#"
-            className="hover:bg-black hover:text-[#FCF7E6] rounded py-2 px-4 mx-2"
-          >
-            Finance
-          </a>
-          <a
-            href="#"
-            className="hover:bg-black hover:text-[#FCF7E6] rounded py-2 px-4 mx-2"
-          >
-            Politics
-          </a>
-          <a
-            href="#"
-            className="hover:bg-black hover:text-[#FCF7E6] rounded py-2 px-4 mx-2"
-          >
-            Culture
-          </a>
-          <a
-            href="#"
-            className="hover:bg-black hover:text-[#FCF7E6] rounded py-2 px-4 mx-2"
-          >
-            Sports
-          </a>
-        </div>
-      </nav> */}
-
-      <div className="container mx-auto flex flex-wrap py-6 px-20">
-        {/* <!-- Posts Section --> */}
-        <section className="w-full md:w-2/3 flex flex-col items-center px-3">
+      <div className="flex px-20">
+        {/* Posts Section */}
+        <div className="w-2/3 h-full flex flex-col items-center px-3">
           {blogs.map((blog, index) => (
-            <article key={index} className="flex flex-col shadow my-4">
-              {/* <!-- Article Image --> */}
-              {/* <a href="#" className="hover:opacity-75">
-                      <img src="https://i.pinimg.com/originals/2a/5e/ac/2a5eacedd4c699e9128de51f830b99b0.jpg"/>
-                  </a> */}
-              <div className="h-[50vh]">
+            <div key={index} className="flex flex-col shadow my-4 w-full">
+              {/* Article Image */}
+              <div className="w-full h-[50vh] relative">
                 <img
                   src={blog.backgroundImage}
                   className="w-full h-full object-cover"
+                  alt={blog.title}
                 />
               </div>
               <div className="bg-white flex flex-col justify-start p-6">
-                {/* <a
-                href="#"
-                className="hover:text-black text-[#B0926A] text-sm font-bold uppercase pb-4"
-              >
-                Technology
-              </a> */}
                 <a
                   href={`/blog/${blog.id}`}
                   className="text-3xl font-bold text-[#B0926A] hover:text-gray-700 pb-4"
@@ -109,26 +60,39 @@ export default function Blog() {
                 <div className="text-lg flex text-black mb-2">
                   <p>Người đăng:&nbsp;</p>
                   <p className="font-semibold hover:text-gray-800">
-                    {blog.user.lastName} {blog.user.firstName}
+                    {blog.user?.lastName} {blog.user?.firstName}
                   </p>
                   <p className="ml-4 text-md text-gray-500">
                     {formatDate(blog.createdDate)}
                   </p>
                 </div>
-                <p className="mb-6 text-black line-clamp-5">
-                  {blog.description}
+                <p className="mb-6 text-black line-clamp-3">
+                  <Editor
+                    editorState={EditorState.createWithContent(
+                      convertFromRaw(JSON.parse(blog.description))
+                    )}
+                    readOnly={true} // Chỉ để xem
+                    toolbarHidden={true} // Ẩn thanh công cụ
+                    editorStyle={{
+                      overflow: "hidden",
+                      maxHeight: "15em",
+                      // lineClamp: 5,
+                      // display: "-webkit-box",  
+                      // WebkitLineClamp: 5,
+                      // WebkitBoxOrient: "vertical",
+                    }} // Chỉ hiển thị 5 dòng
+                  />
                 </p>
                 <a
                   href={`/blog/${blog.id}`}
                   className="uppercase text-gray-800 hover:text-black hover:text-[#B0926A]"
                 >
-                  ĐỌC THÊM... <i className="fas fa-arrow-right"></i>
+                  ĐỌC THÊM...
                 </a>
               </div>
-            </article>
+            </div>
           ))}
-
-          {/* <!-- Pagination --> */}
+          {/* Pagination */}
           <div className="flex items-center py-8">
             <a
               href="#"
@@ -149,19 +113,17 @@ export default function Blog() {
               Next <i className="fas fa-arrow-right ml-2"></i>
             </a>
           </div>
-        </section>
+        </div>
 
-        {/* <!-- Sidebar Section --> */}
-        <aside className="w-full md:w-1/3 flex flex-col items-center px-3 text-black">
+        {/* Sidebar Section */}
+        <div className="w-1/3 h-full flex flex-col items-center px-3 text-black">
           <div className="w-full bg-white shadow flex flex-col my-4 p-6">
             <p className="text-xl font-semibold pb-5">About Us</p>
             <p className="pb-2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              mattis est eu odio sagittis tristique. Vestibulum ut finibus leo.
-              In hac habitasse platea dictumst.
+            Smart Thrive là nền tảng tích hợp nhiều khóa học, giúp khách hàng sắp xếp lịch học thông minh cũng như giúp khách hàng lựa chọn được những khóa học tối ưu nhất dành riêng cho khách hàng. 
             </p>
             <a
-              href="#"
+              href="/about"
               className="w-full bg-black text-white font-bold text-sm uppercase rounded hover:bg-[#FCF7E6] hover:text-black flex items-center justify-center px-2 py-3 mt-4"
             >
               Get to know us
@@ -172,16 +134,17 @@ export default function Blog() {
             <p className="text-xl font-semibold pb-5">Facebook</p>
             <img
               className="hover:opacity-75"
-              src="https://i.pinimg.com/564x/3c/14/43/3c144349a7d3bb24e2f45b87746cad5d.jpg"
+              src="facebook/fanpage.png"
+              alt="Facebook"
             />
             <a
-              href="#"
+              href="https://www.facebook.com/profile.php?id=61565528955571"
               className="w-full bg-black text-white font-bold text-sm uppercase rounded hover:bg-[#FCF7E6] hover:text-black flex items-center justify-center px-2 py-3 mt-6"
             >
               Follow fanpage
             </a>
           </div>
-        </aside>
+        </div>
       </div>
     </div>
   );
