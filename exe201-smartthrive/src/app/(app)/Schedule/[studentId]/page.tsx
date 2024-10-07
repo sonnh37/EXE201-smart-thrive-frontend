@@ -1,17 +1,8 @@
 "use client";
 import BigCalendar from "@/components/Schedule/BigCalendar";
 import EventCalendar from "@/components/Schedule/EventCalendar";
-import { Course } from "@/services/Model/Course";
-import { Package } from "@/services/Model/Package";
-import { getPackageXCourseByPackageId } from "@/services/packagexcourse-service";
-import { getStudentXPackage } from "@/services/studentxpackage-service";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-//  thu
-export interface StudentXPackage {
-  studentId?: string; // Converted Guid? to string
-  packageId?: string; // Converted Guid? to string
-}
 
 export default function Schedule({
   params,
