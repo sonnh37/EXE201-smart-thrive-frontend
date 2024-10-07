@@ -87,6 +87,12 @@ export default function Blog() {
               {/* <a href="#" className="hover:opacity-75">
                       <img src="https://i.pinimg.com/originals/2a/5e/ac/2a5eacedd4c699e9128de51f830b99b0.jpg"/>
                   </a> */}
+              <div className="h-[50vh]">
+                <img
+                  src={blog.backgroundImage}
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <div className="bg-white flex flex-col justify-start p-6">
                 {/* <a
                 href="#"
@@ -105,7 +111,9 @@ export default function Blog() {
                   <p className="font-semibold hover:text-gray-800">
                     {blog.user.lastName} {blog.user.firstName}
                   </p>
-                  <p className="ml-4 text-md text-gray-500">{formatDate(blog.createdDate)}</p>
+                  <p className="ml-4 text-md text-gray-500">
+                    {formatDate(blog.createdDate)}
+                  </p>
                 </div>
                 <p className="mb-6 text-black line-clamp-5">
                   {blog.description}

@@ -21,10 +21,10 @@ export default function BlogDetail({ params }: { params: { blogId: string } }) {
 
   // Lấy ngày từ object và định dạng lại
   const formattedDate = new Date(blog.createdDate).toLocaleDateString('vi-VN', {
-    weekday: 'long',   // Thứ (Saturday)
-    year: 'numeric',   // Năm (2023)
-    month: 'long',     // Tháng (August)
-    day: 'numeric'     // Ngày (5)
+    weekday: 'long',   // Thứ
+    year: 'numeric',   // Năm 
+    month: 'long',     // Tháng 
+    day: 'numeric'     // Ngày 
   });
 
   return (
@@ -40,7 +40,7 @@ export default function BlogDetail({ params }: { params: { blogId: string } }) {
           <div className="flex items-center pb-8 border-b border-gray-300">
             <div>
               <img
-                src="https://i.pinimg.com/236x/04/a4/18/04a418438558e1a136e334d20ed1bb06.jpg"
+                src={blog.user?.imageUrl}
                 className="w-16 rounded-full"/>
               
             </div>
