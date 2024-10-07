@@ -1,7 +1,26 @@
-import React , {useState , useEffect} from 'react'
+import { Assistant } from '@/services/Model/Assistant'
+import React, { useState } from 'react'
+import AssistantService from '@/services/assistant-service';
+import { toast } from 'sonner';
 
 const support = () => {
 
+    const [assistans, setAssistants] = useState<Assistant | null>(null);
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault(); // Prevent default form submission
+        try {
+            if (assistans != null) {
+                const response = await AssistantService.createAssistant(assistans)
+                if (response.data.message === "Save data success") {
+                    toast.success("Tạo assistant thành công");
+                }
+
+            }
+        } catch (error) {
+            console.error('Error creating assistant:', error);
+        }
+    }
 
     return (
         <div>
@@ -12,7 +31,7 @@ const support = () => {
                 Sau khi điền đầy đủ thông tin, hãy bấm ngay đăng ký sẽ có người sẽ liên hệ với bạn để tư vấn dễ dàng hơn
             </h4>
 
-            <form className="my-8" action="">
+            <form className="my-8" onSubmit={handleSubmit}>
                 {/* Tên và Họ */}
                 <div className="mb-4">
                     <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
@@ -24,8 +43,15 @@ const support = () => {
                                 Tên
                             </label>
                             <input
-                                id="firstName"
-                                type="text"
+                                id="fullname"
+                                value={assistans != null ? assistans.fullName : ""}
+                                onChange={(e) => {
+                                    const updateAssistant = {
+                                        ...assistans!,
+                                        fullName: e.target.value.toString(),
+                                    };
+                                    setAssistants(updateAssistant);
+                                }}
                                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 dark:bg-neutral-800 dark:border-neutral-700"
                                 placeholder="Nhập tên của bạn"
                             />
@@ -43,7 +69,14 @@ const support = () => {
                     </label>
                     <input
                         id="email"
-                        type="email"
+                        value={assistans != null ? assistans.email : ""}
+                        onChange={(e) => {
+                            const updateAssistant = {
+                                ...assistans!,
+                                email: e.target.value.toString(),
+                            };
+                            setAssistants(updateAssistant);
+                        }}
                         className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 dark:bg-neutral-800 dark:border-neutral-700"
                         placeholder="Nhập email của bạn"
                     />
@@ -59,7 +92,14 @@ const support = () => {
                     </label>
                     <input
                         id="phone"
-                        type="phone"
+                        value={assistans != null ? assistans.phone : ""}
+                        onChange={(e) => {
+                            const updateAssistant = {
+                                ...assistans!,
+                                phone: e.target.value.toString(),
+                            };
+                            setAssistants(updateAssistant);
+                        }}
                         className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 dark:bg-neutral-800 dark:border-neutral-700"
                         placeholder="Nhập số điện thoại"
                     />
@@ -102,5 +142,4 @@ const support = () => {
         </div>
     )
 }
-
 export default support

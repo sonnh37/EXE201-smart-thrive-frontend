@@ -5,10 +5,22 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import StudentService from "@/services/student-service";
 import { Student } from "@/services/Model/Student";
+import { toast } from "sonner";
 const Page = () => {
   const { push } = useRouter();
   const [students, setStudents] = useState<Student[]>([]);
   const [selectedStudent, setSelectedStudent] = useState<Student>();
+
+  const handleDelete = async (id: string) => {
+    if (id != null) {
+      const result = await StudentService.deleteStudent(id);
+      if (result.data.message == "Delete data success") {
+        toast.message("Xóa thành công");
+      }
+    }else{
+      toast.message("Xóa thất bại");
+    }
+  }
   useEffect(() => {
     const fetchApi = async () => {
       const result = await StudentService.getByUserId(
@@ -20,6 +32,29 @@ const Page = () => {
     };
     fetchApi();
   }, []);
+  useEffect(() => {
+    if (selectedStudent && selectedStudent.imageAvatar) {
+      switch (selectedStudent.imageAvatar) {
+        case "img1":
+          setImageSrc("/student/1ba2e6d1d4874546c70c91f1024e17fb.jpg");
+          break;
+        case "img2":
+          setImageSrc("/student/e39430434d2b8207188f880ac66c6411.jpg");
+          break;
+        case "img3":
+          setImageSrc("/student/b40b51418293936a6e0ad09ffa229cb7.jpg");
+          break;
+        case "img4":
+          setImageSrc("/student/828f0f2b3a3a17a5e52213027829149f.jpg");
+          break;
+        case "img5":
+          setImageSrc("/student/6ab2a25230316f4180bf54b61e9d79a9.jpg");
+          break;
+        default:
+          setImageSrc("");
+      }
+    }
+  }, [selectedStudent]);
   const [IsFormYaNVisible, setIsFormYaNVisible] = useState(false);
   const formyandn = () => {
     setIsFormYaNVisible(!IsFormYaNVisible);
@@ -119,17 +154,19 @@ const Page = () => {
                     About
                   </label>
                   <div className="mt-2">
+                    <p className="mt-3 text-xl leading-6 text-gray-600">
+                      Write a few sentences about yourself.
+                    </p>
                     <textarea
                       id="about"
                       name="about"
+                      value="Toi là học sinh chăm chỉ , siêu cấp vippro học giỏi đẹp trai tốt tính tài năng"
                       rows={3}
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-xl sm:leading-6"
                       defaultValue={""}
                     />
                   </div>
-                  <p className="mt-3 text-xl leading-6 text-gray-600">
-                    Write a few sentences about yourself.
-                  </p>
+
                 </div>
 
                 <div className="col-span-full">
@@ -151,8 +188,8 @@ const Page = () => {
                     <select
                       id="ảnh"
                       className="w-2/3 px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 dark:bg-neutral-800 dark:border-neutral-700 text-black text-sm"
+                      value={selectedStudent!.imageAvatar}
                       onChange={handleImageChange}
-                      defaultValue="img1"
                     >
                       <option value="img1" className="text-black">
                         Chọn ảnh 1
@@ -219,11 +256,11 @@ const Page = () => {
                       name="first-name"
                       type="text"
                       autoComplete="given-name"
-                      value={selectedStudent!.studentName}
+                      value={selectedStudent!.firstName}
                       onChange={(e) => {
                         const updatedStudent = {
                           ...selectedStudent!,
-                          studentName: e.target.value.toString(),
+                          firstName: e.target.value.toString(),
                         };
                         setSelectedStudent(updatedStudent);
                       }}
@@ -243,7 +280,14 @@ const Page = () => {
                     <input
                       id="last-name"
                       name="last-name"
-                      type="text"
+                      value={selectedStudent!.lastName}
+                      onChange={(e) => {
+                        const updatedStudent = {
+                          ...selectedStudent!,
+                          lastName: e.target.value.toString(),
+                        };
+                        setSelectedStudent(updatedStudent);
+                      }}
                       autoComplete="family-name"
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-xl sm:leading-6"
                     />
@@ -324,9 +368,9 @@ const Page = () => {
                   </div>
                 </div>
 
-              
 
-              
+
+
               </div>
             </div>
 
@@ -466,6 +510,7 @@ const Page = () => {
             <div className="flex justify-center mt-8">
               <button
                 type="button"
+                onClick={() => handleDelete(selectedStudent!.id)}
                 className="w-1/2 bg-red-500 text-white px-4 py-2 rounded ml-2"
               >
                 Xóa profile
