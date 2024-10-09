@@ -8,7 +8,7 @@ import PackageXCourseService from "@/services/packagexcourse-service";
 import PackageXStudentService from "@/services/packageXstudent-service";
 import Image from "next/image";
 import Link from "next/link";
-import { useParams, useSearchParams } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
 
@@ -18,6 +18,7 @@ const Page = () => {
   const catergory = searchParams.get("category");
   const courseType = searchParams.get("courseType");
   const topic = searchParams.get("topic");
+  const { push } = useRouter();
 
   const [course, setCourse] = useState<Course | null>(null);
   const [studentXPackage, setStudentXPackage] = useState<StudentXPackage[]>([]);
@@ -52,6 +53,9 @@ const Page = () => {
 
   const handleAddNewPackage = async () => {
     try {
+      if (!localStorage.getItem("studentId")) {
+        push("/login");
+      }
       const result = await PackageService.create(
         localStorage.getItem("studentId")!.toString(),
         packageName,
