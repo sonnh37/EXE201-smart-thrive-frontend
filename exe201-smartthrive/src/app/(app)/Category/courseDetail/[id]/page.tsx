@@ -4,7 +4,7 @@ import CourseService from "@/services/course-service";
 import { Course } from "@/services/Model/Course";
 import { StudentXPackage } from "@/services/Model/StudentXPackage";
 import PackageService from "@/services/package-service";
-import PackageXCourseService from "@/services/packageXCourse-service";
+import PackageXCourseService from "@/services/packagexcourse-service";
 import PackageXStudentService from "@/services/packageXstudent-service";
 import Image from "next/image";
 import Link from "next/link";
