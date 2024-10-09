@@ -25,15 +25,19 @@ const Page = () => {
   const [packageName, setPackageName] = useState("Default name");
   const [refresh, setRefresh] = useState(true);
   useEffect(() => {
-    const fetchApi = async () => {
-      const apiCourse = await CourseService.getById(id.toString());
-      const apiStudentXPackage = await PackageXStudentService.getByStudentId(
-        localStorage.getItem("studentId")!.toString()
-      );
-      setStudentXPackage(apiStudentXPackage.results);
-      setCourse(apiCourse);
-    };
-    fetchApi();
+    if (localStorage.getItem("studentId")) {
+      const fetchApi = async () => {
+        const apiCourse = await CourseService.getById(id.toString());
+        const apiStudentXPackage = await PackageXStudentService.getByStudentId(
+          localStorage.getItem("studentId")!.toString()
+        );
+        setStudentXPackage(apiStudentXPackage.results);
+        setCourse(apiCourse);
+      };
+      fetchApi();
+    } else {
+      push("/login");
+    }
   }, [id, refresh]);
   const handleAddToPackage = async (packageId: string) => {
     const result = await PackageXCourseService.create(packageId, id.toString());
@@ -53,25 +57,26 @@ const Page = () => {
 
   const handleAddNewPackage = async () => {
     try {
-      if (!localStorage.getItem("studentId")) {
-        push("/login");
-      }
-      const result = await PackageService.create(
-        localStorage.getItem("studentId")!.toString(),
-        packageName,
-        0,
-        0
-      );
+      if (localStorage.getItem("studentId")) {
+        const result = await PackageService.create(
+          localStorage.getItem("studentId")!.toString(),
+          packageName,
+          0,
+          0
+        );
 
-      if (result.data.status === 1) {
-        toast.success("Create package success", {
-          richColors: true,
-        });
-        setRefresh(!refresh);
+        if (result.data.status === 1) {
+          toast.success("Create package success", {
+            richColors: true,
+          });
+          setRefresh(!refresh);
+        } else {
+          toast.error("Create package failed", {
+            richColors: true,
+          });
+        }
       } else {
-        toast.error("Create package failed", {
-          richColors: true,
-        });
+        push("/login");
       }
     } catch (error) {
       console.error("Error creating package:", error);

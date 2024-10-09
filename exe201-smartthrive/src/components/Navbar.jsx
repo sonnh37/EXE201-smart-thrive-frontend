@@ -84,18 +84,17 @@ export const NavBar = () => {
               </div>
             </Link>
             <div className="group nav-item min-w-12 px-4 py-8 pb-9 nav-text cursor-pointer relative ">
-              <Link href="/category" className="">
+              <div className="">
                 <div className="relative">
                   Category
                   <span className="absolute line w-0 h-[1px] bg-black top-7 left-0 group-hover:w-full transition-all duration-300"></span>
                 </div>
-              </Link>
+              </div>
 
               <ul className="navLv0 absolute min-h-[95vh] bg-white shadow-xl top-[5.5rem] left-0 min-w-[18vw] translate-y-36 opacity-0 transition-all duration-300 invisible  group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
                 {CategoryItem.map((list) => (
                   <li key={list.name} className="navItemLv0">
-                    <Link
-                      href={`/category${list.path}`}
+                    <div
                       className={` min-h-12 items-center flex px-4 w-full h-full hover:bg-slate-400`}
                     >
                       <span className={`flex justify-between w-full`}>
@@ -107,16 +106,13 @@ export const NavBar = () => {
                           alt="arrow"
                         />
                       </span>
-                    </Link>
+                    </div>
                     <div
                       className={`navLv1 absolute top-0 left-[16.8rem] bg-white shadow-xl transition-all duration-300 translate-y-36 invisible opacity-0 min-w-[18vw] min-h-[95vh] `}
                     >
                       {list.subLv1.map((subLv1) => (
                         <div key={subLv1.name} className="navItemLv1">
-                          <Link
-                            href={`category${subLv1.path}`}
-                            className="navItemLv1 min-h-12 flex items-center px-4 justify-between hover:bg-slate-400"
-                          >
+                          <div className="navItemLv1 min-h-12 flex items-center px-4 justify-between hover:bg-slate-400">
                             <span>{subLv1.name}</span>
                             <Image
                               src="/arrow_right_2.svg"
@@ -124,14 +120,14 @@ export const NavBar = () => {
                               height={15}
                               alt="arrow"
                             />
-                          </Link>
+                          </div>
                           <div className="navLv2 absolute top-0 left-[16.8rem] bg-white shadow-xl transition-all duration-300 translate-y-36 invisible opacity-0 min-w-[18vw] min-h-[95vh]">
                             <div className="min-h-12 flex items-center opacity-70 text-left px-4 ">
                               Popular topics
                             </div>
                             {subLv1.subLv2.map((subLv2) => (
                               <Link
-                                href={`/category${subLv2.path}`}
+                                href={`/Category${subLv2.path}`}
                                 key={subLv2.name}
                                 className="navItemLv2 min-h-12 flex items-center px-4 hover:bg-slate-400 text-left"
                               >
