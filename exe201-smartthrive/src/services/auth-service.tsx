@@ -30,7 +30,6 @@ class AuthAPI {
 
 
 
-
 const AuthService = new AuthAPI();
 
 export default AuthService;

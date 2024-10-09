@@ -9,8 +9,27 @@ import AuthService from "@/services/auth-service";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { jwtDecode, JwtPayload } from "jwt-decode";
+import {GoogleLogin} from "@react-oauth/google";
+import { loginByGoogle } from "@/services/loginbygmail-service";
 export function Login() {
+
   const { push } = useRouter();
+  const handleSuccess = async (response: any) => {
+    console.log("check_gg", response)
+    const _response = await loginByGoogle(response.credential);
+    if (_response.status != 1) {
+      return toast.error(_response.message);
+    }
+    
+    const isLogin = await loginByGoogle(_response) ;
+    if (isLogin) return;
+    push("/auth");
+  };
+
+  const handleError = () => {
+    console.log("Google login failed");
+  };
+
   interface CustomJwtPayload extends JwtPayload {
     id: string; // or number, depending on your token structure
   }
@@ -98,7 +117,10 @@ export function Login() {
           >
             <IconBrandGoogle className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
             <span className="text-neutral-700 dark:text-neutral-300 text-sm">
-              Google
+              <GoogleLogin
+               onSuccess={handleSuccess}
+               onError={handleError}
+              />
             </span>
             <BottomGradient />
           </button>
