@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Head from "next/head";
 import { Toaster } from "sonner";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
@@ -15,6 +16,7 @@ export default function RootLayout({
   useEffect(() => {
     setIsClient(true);
   }, []);
+  const clientId = process.env.NEXT_PUBLIC_CLIENT_ID;
   return (
     <html lang="en">
       <Head>
@@ -32,7 +34,9 @@ export default function RootLayout({
       </Head>
       <body suppressHydrationWarning={true} className={inter.className}>
         <Toaster position="top-right" />
+        <GoogleOAuthProvider clientId={clientId?? ""}>
         {isClient && <main>{children}</main>}
+        </GoogleOAuthProvider>
       </body>
     </html>
   );
