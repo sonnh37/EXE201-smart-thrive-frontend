@@ -8,20 +8,18 @@ import Register from "@/components/Auth/Register/Register";
 import AuthService from "@/services/auth-service";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { jwtDecode, JwtPayload } from "jwt-decode";
-import {GoogleLogin} from "@react-oauth/google";
+import { GoogleLogin } from "@react-oauth/google";
 import { loginByGoogle } from "@/services/loginbygmail-service";
 export function Login() {
-
   const { push } = useRouter();
   const handleSuccess = async (response: any) => {
-    console.log("check_gg", response)
+    console.log("check_gg", response);
     const _response = await loginByGoogle(response.credential);
     if (_response.status != 1) {
       return toast.error(_response.message);
     }
-    
-    const isLogin = await loginByGoogle(_response) ;
+
+    const isLogin = await loginByGoogle(_response);
     if (isLogin) return;
     push("/auth");
   };
@@ -29,10 +27,6 @@ export function Login() {
   const handleError = () => {
     console.log("Google login failed");
   };
-
-  interface CustomJwtPayload extends JwtPayload {
-    id: string; // or number, depending on your token structure
-  }
 
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -42,12 +36,20 @@ export function Login() {
       if (username && password) {
         const result = await AuthService.login(username, password);
         if (result.data.status != -2) {
-          const decoded = await jwtDecode<CustomJwtPayload>(
+          const decodeResult = await AuthService.decodeToken(
             result.data.data.token
           );
-          console.log(decoded);
+          console.log(decodeResult);
           localStorage.setItem("accessToken", result.data.data.token);
-          localStorage.setItem("userId", decoded.id);
+          localStorage.setItem("userId", decodeResult.data.data.id);
+          localStorage.setItem("userName", decodeResult.data.data.name);
+          localStorage.setItem("role", decodeResult.data.data.role);
+          // const decoded = await jwtDecode<CustomJwtPayload>(
+          //   result.data.data.token
+          // );
+          // console.log(decoded);
+          // localStorage.setItem("accessToken", result.data.data.token);
+          // localStorage.setItem("userId", decoded.id);
           toast.success("Login success !", {
             richColors: true,
           });
@@ -74,7 +76,6 @@ export function Login() {
           <Input
             id="email"
             placeholder="projectmayhem@fc.com"
-            
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
@@ -117,14 +118,10 @@ export function Login() {
           >
             <IconBrandGoogle className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
             <span className="text-neutral-700 dark:text-neutral-300 text-sm">
-              <GoogleLogin
-               onSuccess={handleSuccess}
-               onError={handleError}
-              />
+              <GoogleLogin onSuccess={handleSuccess} onError={handleError} />
             </span>
             <BottomGradient />
           </button>
-         
         </div>
       </form>
       <Register />

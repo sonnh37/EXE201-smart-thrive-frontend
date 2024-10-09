@@ -19,7 +19,10 @@ const Page = () => {
       );
       // console.log(data.results);
       setStudentXPackage(data.results);
-      if (data.results != null) setSelectedPackage(data.results[0]);
+      if (data.results != null) {
+        console.log("null no");
+        setSelectedPackage(data.results[0]);
+      }
     };
     fetchData();
   }, []);
@@ -53,7 +56,10 @@ const Page = () => {
         <div className="flex gap-28 px-24 text-black w-full">
           <div className="w-[75%] mb-2">
             <div className=" font-semibold opacity-85 w-full border-b-[1px] border-slate-500 pb-2 flex gap-4">
-              <div>{studentXPackage.length} Course in Package</div>
+              <div>
+                {selectedPackage.package?.packageXCourses?.length} Course in
+                Package
+              </div>
               {studentXPackage.map((sp) => (
                 <div
                   onClick={() => setSelectedPackage(sp)}

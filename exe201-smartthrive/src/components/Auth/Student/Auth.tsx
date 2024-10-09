@@ -1,7 +1,7 @@
 "use client";
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
+import { CardContainer, CardItem } from "@/components/ui/3d-card";
 import StudentService from "@/services/student-service";
 import { Student } from "@/services/Model/Student";
 import { toast } from "sonner";
@@ -18,7 +18,7 @@ const Auth = () => {
   const [imageSrc, setImageSrc] = useState(
     "/student/1ba2e6d1d4874546c70c91f1024e17fb.jpg"
   );
-  const arrayImage  = [
+  const arrayImage = [
     "/student/1ba2e6d1d4874546c70c91f1024e17fb.jpg", //img1
     "/student/e39430434d2b8207188f880ac66c6411.jpg", //img2
     "/student/b40b51418293936a6e0ad09ffa229cb7.jpg", //img3
@@ -69,22 +69,16 @@ const Auth = () => {
           toast.success("Tạo student thành công");
           toggleForm();
           window.location.reload();
-
-          
         } else {
-          toast.error("Tạo student thất bại: " + response.data.message);  // Hiển thị thông báo lỗi từ API
+          toast.error("Tạo student thất bại: " + response.data.message); // Hiển thị thông báo lỗi từ API
         }
-
       } else {
         toast.error("Ban chua nhap day du thong tin");
       }
-
     } catch (error) {
-      console.error('Error creating student:', error);
-
+      console.error("Error creating student:", error);
     }
   };
-
 
   const [students, setStudents] = useState<Student[]>([]);
   useEffect(() => {
@@ -92,11 +86,13 @@ const Auth = () => {
       const result = await StudentService.getByUserId(
         localStorage.getItem("userId")!.toString()
       );
-      if (result && Array.isArray(result.results)) {   //check xem mang co gia tri chua
+      console.log(localStorage.getItem("userId")!.toString());
+      if (result && Array.isArray(result.results)) {
+        //check xem mang co gia tri chua
         setStudents(result.results);
-    } else {
+      } else {
         setStudents([]); // Ensure it's an empty array if the structure is not as expected
-    }
+      }
     };
     fetchApi();
   }, []);
@@ -127,7 +123,7 @@ const Auth = () => {
   return (
     <div className="bg-black text-white min-h-screen flex flex-col items-center justify-center">
       <div className="text-5xl font-bold mb-10">SMART THRIVE</div>
-      <div className="text-2xl font-medium mb-6">Who's watching?</div>
+      <div className="text-2xl font-medium mb-6">Who`&apos;`s watching?</div>
 
       {/* Flex container for the card items */}
       <div className="flex space-x-4">
@@ -135,42 +131,44 @@ const Auth = () => {
         {/* Giảm khoảng cách từ space-x-4 xuống space-x-2 */}
         {/* First Card */}
         {students.length > 0 ? (
-        students.map((student, index) => (
+          students.map((student) => (
             <div
-                key={student.studentName}
-                onClick={() => {
-                    handleSelectStudent(student.id, student.studentName!);
-                }}
+              key={student.studentName}
+              onClick={() => {
+                handleSelectStudent(student.id, student.studentName!);
+              }}
             >
-                <CardContainer>
-                    <div className="flex flex-col items-center space-y-4">
-                        <CardItem
-                            translateZ="100"
-                            rotateX={20}
-                            rotateZ={-10}
-                            className="w-44"
-                        >
-                            <Image
-                                src={arrayImage[getImageIndex(student.imageAvatar || "img1")]} // nếu undefine thì dùng là img1
-                                width={150}
-                                height={150}
-                                className="w-full h-full object-contain rounded-xl group-hover/card:shadow-xl"
-                                alt="thumbnail"
-                            />
-                        </CardItem>
-                        <CardItem
-                            translateZ="50"
-                            className="text-xl font-bold text-neutral-600 dark:text-white text-center"
-                        >
-                            {student.studentName}
-                        </CardItem>
-                    </div>
-                </CardContainer>
+              <CardContainer>
+                <div className="flex flex-col items-center space-y-4">
+                  <CardItem
+                    translateZ="100"
+                    rotateX={20}
+                    rotateZ={-10}
+                    className="w-44"
+                  >
+                    <Image
+                      src={
+                        arrayImage[getImageIndex(student.imageAvatar || "img1")]
+                      } // nếu undefine thì dùng là img1
+                      width={150}
+                      height={150}
+                      className="w-full h-full object-contain rounded-xl group-hover/card:shadow-xl"
+                      alt="thumbnail"
+                    />
+                  </CardItem>
+                  <CardItem
+                    translateZ="50"
+                    className="text-xl font-bold text-neutral-600 dark:text-white text-center"
+                  >
+                    {student.studentName}
+                  </CardItem>
+                </div>
+              </CardContainer>
             </div>
-        ))
-    ) : (
-        <div className="flex-grow"></div> // Leave it empty if no students
-    )}
+          ))
+        ) : (
+          <div className="flex-grow"></div> // Leave it empty if no students
+        )}
         {/* <CardContainer className="">
           <div className="flex flex-col items-center space-y-4">
             <CardItem
@@ -270,35 +268,35 @@ const Auth = () => {
             </CardItem>
           </div>
         </CardContainer> */}
-      {students.length < 5 && (
-        <div className="" onClick={toggleForm}>
-          <CardContainer className="w-full h-full">
-            <div className="flex flex-col items-center space-y-4 w-full h-full">
-              <CardItem
-                translateZ="100"
-                rotateX={20}
-                rotateZ={-10}
-                className="w-44"
-              >
-                <Image
-                  src="/student/addbutton.svg"
-                  width={200}
-                  height={200}
-                  className="w-full h-full object-contain rounded-xl group-hover/card:shadow-xl"
-                  alt="thumbnail"
-                />
-              </CardItem>
+        {students.length < 5 && (
+          <div className="" onClick={toggleForm}>
+            <CardContainer className="w-full h-full">
+              <div className="flex flex-col items-center space-y-4 w-full h-full">
+                <CardItem
+                  translateZ="100"
+                  rotateX={20}
+                  rotateZ={-10}
+                  className="w-44"
+                >
+                  <Image
+                    src="/student/addbutton.svg"
+                    width={200}
+                    height={200}
+                    className="w-full h-full object-contain rounded-xl group-hover/card:shadow-xl"
+                    alt="thumbnail"
+                  />
+                </CardItem>
 
-              <CardItem
-                translateZ="50"
-                className="text-xl font-bold text-neutral-600 dark:text-white text-center"
-              >
-                Add Profile
-              </CardItem>
-            </div>
-          </CardContainer>
-        </div>
-      )}
+                <CardItem
+                  translateZ="50"
+                  className="text-xl font-bold text-neutral-600 dark:text-white text-center"
+                >
+                  Add Profile
+                </CardItem>
+              </div>
+            </CardContainer>
+          </div>
+        )}
       </div>
 
       <Link
@@ -307,7 +305,7 @@ const Auth = () => {
       >
         Manage Profiles
       </Link>
-   
+
       {isFormVisible && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-8 rounded shadow-lg w-1/3">
@@ -333,7 +331,6 @@ const Auth = () => {
                       className="w-2/3 px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 dark:bg-neutral-800 dark:border-neutral-700 text-black"
                       value={createStudent?.imageAvatar || "img1"}
                       onChange={handleImageChange}
-                         
                     >
                       <option value="img1" className="text-black">
                         Ảnh 1
@@ -366,7 +363,9 @@ const Auth = () => {
                       <input
                         id="StudentName"
                         type="text"
-                        value={createStudent != null ? createStudent.studentName : ""}
+                        value={
+                          createStudent != null ? createStudent.studentName : ""
+                        }
                         onChange={(e) => {
                           const updatedStudent = {
                             ...createStudent!,
@@ -381,54 +380,57 @@ const Auth = () => {
                   </div>
                 </div>
                 <div className="mb-4">
+                  <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
+                    <div className="flex-1">
+                      <label
+                        className="block text-neutral-600 dark:text-neutral-100 font-medium mb-2"
+                        htmlFor="firstName"
+                      >
+                        Tên
+                      </label>
+                      <input
+                        id="firstName"
+                        type="text"
+                        value={
+                          createStudent != null ? createStudent.firstName : ""
+                        }
+                        onChange={(e) => {
+                          const updatedStudent = {
+                            ...createStudent!,
+                            firstName: e.target.value.toString(),
+                          };
+                          setcreateStudent(updatedStudent);
+                        }}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 dark:bg-neutral-800 dark:border-neutral-700 text-black"
+                        placeholder="Nhập tên của bạn"
+                      />
+                    </div>
 
-                <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
-                  <div className="flex-1">
-                    <label
-                      className="block text-neutral-600 dark:text-neutral-100 font-medium mb-2"
-                      htmlFor="firstName"
-                    >
-                      Tên
-                    </label>
-                    <input
-                      id="firstName"
-                      type="text"
-                      value={createStudent != null ? createStudent.firstName : ""}
-                      onChange={(e) => {
-                        const updatedStudent = {
-                          ...createStudent!,
-                          firstName: e.target.value.toString(),
-                        };
-                        setcreateStudent(updatedStudent);
-                      }}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 dark:bg-neutral-800 dark:border-neutral-700 text-black"
-                      placeholder="Nhập tên của bạn"
-                    />
+                    <div className="flex-1">
+                      <label
+                        className="block text-neutral-600 dark:text-neutral-100 font-medium mb-2"
+                        htmlFor="lastName"
+                      >
+                        Họ
+                      </label>
+                      <input
+                        id="lastName"
+                        type="text"
+                        value={
+                          createStudent != null ? createStudent.lastName : ""
+                        }
+                        onChange={(e) => {
+                          const updatedStudent = {
+                            ...createStudent!,
+                            lastName: e.target.value.toString(),
+                          };
+                          setcreateStudent(updatedStudent);
+                        }}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 dark:bg-neutral-800 dark:border-neutral-700  text-black"
+                        placeholder="Nhập họ của bạn"
+                      />
+                    </div>
                   </div>
-
-                  <div className="flex-1">
-                    <label
-                      className="block text-neutral-600 dark:text-neutral-100 font-medium mb-2"
-                      htmlFor="lastName"
-                    >
-                      Họ
-                    </label>
-                    <input
-                      id="lastName"
-                      type="text"
-                      value={createStudent != null ? createStudent.lastName : ""}
-                      onChange={(e) => {
-                        const updatedStudent = {
-                          ...createStudent!,
-                          lastName: e.target.value.toString(),
-                        };
-                        setcreateStudent(updatedStudent);
-                      }}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 dark:bg-neutral-800 dark:border-neutral-700  text-black"
-                      placeholder="Nhập họ của bạn"
-                    />
-                  </div>
-                </div>
                 </div>
                 {/* Số điện thoại
              <div className="mb-4">
@@ -464,7 +466,11 @@ const Auth = () => {
                   <input
                     id="dob"
                     type="date"
-                    value={createStudent?.dob ? createStudent.dob.toISOString().split('T')[0] : ''}
+                    value={
+                      createStudent?.dob
+                        ? createStudent.dob.toISOString().split("T")[0]
+                        : ""
+                    }
                     onChange={(e) => {
                       const updatedStudent = {
                         ...createStudent!,
@@ -488,7 +494,9 @@ const Auth = () => {
                   <select
                     id="gender"
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 dark:bg-neutral-800 dark:border-neutral-700 text-black"
-                    value={createStudent != null ? createStudent.gender : Gender.Male}
+                    value={
+                      createStudent != null ? createStudent.gender : Gender.Male
+                    }
                     onChange={(e) => {
                       const updatedStudent = {
                         ...createStudent!,
@@ -497,8 +505,7 @@ const Auth = () => {
                       setcreateStudent(updatedStudent);
                     }}
                   >
-                    <option value={Gender.Male} className="text-black"
-                    >
+                    <option value={Gender.Male} className="text-black">
                       Nam
                     </option>
                     <option value={Gender.Female} className="text-black">
@@ -507,7 +514,6 @@ const Auth = () => {
                     <option value={Gender.Other} className="text-black">
                       Khác
                     </option>
-
                   </select>
                 </div>
                 {/* Nút đăng ký */}
@@ -533,7 +539,6 @@ const Auth = () => {
           </div>
         </div>
       )}
-    
     </div>
   );
 };

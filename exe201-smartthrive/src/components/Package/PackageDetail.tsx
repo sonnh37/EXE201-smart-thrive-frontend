@@ -13,6 +13,7 @@ const PackageDetail = ({
   descibe: string | undefined;
   image: string | undefined;
 }) => {
+  console.log(price, name, descibe, image);
   return (
     <div className="flex mt-4 gap-8">
       <div className="flex gap-4 w-[75%] justify-between">
