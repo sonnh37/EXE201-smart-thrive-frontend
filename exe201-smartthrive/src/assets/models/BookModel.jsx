@@ -7,34 +7,34 @@ Title: A book
 */
 
 import React from "react";
-import { useGLTF } from "@react-three/drei";
+import {useGLTF} from "@react-three/drei";
 
 export function BookModel(props) {
-  const { nodes, materials } = useGLTF("/BlendModel/a_book.glb");
-  return (
-    <group {...props} dispose={null}>
-      <group rotation={[-Math.PI / 2, 0, 0]} scale={0.22}>
-        <group rotation={[Math.PI / 2, 0, 0]}>
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.Object_4.geometry}
-            material={materials["Material.003"]}
-            position={[0.094, 1.028, 1.912]}
-            scale={[0.101, 0.235, 0.101]}
-          />
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.Object_6.geometry}
-            material={materials["Material.003"]}
-            position={[0.094, 1.028, 1.912]}
-            scale={[0.101, 0.235, 0.101]}
-          />
+    const {nodes, materials} = useGLTF("/BlendModel/a_book.glb");
+    return (
+        <group {...props} dispose={null}>
+            <group rotation={[-Math.PI / 2, 0, 0]} scale={0.22}>
+                <group rotation={[Math.PI / 2, 0, 0]}>
+                    <mesh
+                        castShadow
+                        receiveShadow
+                        geometry={nodes.Object_4.geometry}
+                        material={materials["Material.003"]}
+                        position={[0.094, 1.028, 1.912]}
+                        scale={[0.101, 0.235, 0.101]}
+                    />
+                    <mesh
+                        castShadow
+                        receiveShadow
+                        geometry={nodes.Object_6.geometry}
+                        material={materials["Material.003"]}
+                        position={[0.094, 1.028, 1.912]}
+                        scale={[0.101, 0.235, 0.101]}
+                    />
+                </group>
+            </group>
         </group>
-      </group>
-    </group>
-  );
+    );
 }
 
 useGLTF.preload("/BlendModel/a_book.glb");

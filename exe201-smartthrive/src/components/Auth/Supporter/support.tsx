@@ -1,7 +1,7 @@
-import { Assistant } from '@/services/Model/Assistant'
-import React, { useState } from 'react'
+import {Assistant} from '@/services/Model/Assistant'
+import React, {useState} from 'react'
 import AssistantService from '@/services/assistant-service';
-import { toast } from 'sonner';
+import {toast} from 'sonner';
 
 const support = () => {
 

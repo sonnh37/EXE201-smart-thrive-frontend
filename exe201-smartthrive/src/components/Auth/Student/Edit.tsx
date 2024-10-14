@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 
 const Edit = () => {
     const [IsFormYaNVisible, setIsFormYaNVisible] = useState(false);
@@ -42,7 +42,8 @@ const Edit = () => {
                 {/* Upload hình ảo vào nhá nhá */}
                 <div className="w-full flex">
                     {/* Image element */}
-                    <img src={imageSrc} alt="Selected" className="w-40 mx-auto my-4 border-2 border-solid border-black" />
+                    <img src={imageSrc} alt="Selected"
+                         className="w-40 mx-auto my-4 border-2 border-solid border-black"/>
 
                     <div className='w-full flex items-start justify-center'>
                         {/* Select element */}
@@ -79,7 +80,6 @@ const Edit = () => {
                         </div>
                     </div>
                 </div>
-
 
 
                 {/* Số điện thoại */}
@@ -138,8 +138,8 @@ const Edit = () => {
                     <button
                         type="submit"
                         className="w-full px-4 py-2 bg-indigo-600 text-white font-bold rounded-md hover:bg-indigo-700 focus:ring focus:ring-indigo-200"
-                        
-                  >
+
+                    >
                         Cancel
                     </button>
                 </div>
