@@ -87,7 +87,7 @@ export default function BlogPage() {
                                 </p>
                                 <a
                                     href={`/blog/${blog.id}`}
-                                    className="uppercase text-gray-800 hover:text-black hover:text-[#B0926A]"
+                                    className="uppercase text-gray-800 hover:text-[#B0926A]"
                                 >
                                     ĐỌC THÊM...
                                 </a>
@@ -138,7 +138,7 @@ export default function BlogPage() {
                         <p className="text-xl font-semibold pb-5">Facebook</p>
                         <img
                             className="hover:opacity-75"
-                            src="facebook/fanpage.png"
+                            src="/facebook/fanpage.png"
                             alt="Facebook"
                         />
                         <a
