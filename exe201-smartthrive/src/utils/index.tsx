@@ -1,10 +1,18 @@
+// @ts-ignore
 import replay from "/public/replay.svg";
+// @ts-ignore
 import play from "/public/play.svg";
+// @ts-ignore
 import pause from "/public/pause.svg";
+// @ts-ignore
 import video1 from "/public/video1.mp4";
+// @ts-ignore
 import video2 from "/public/video2.mp4";
+// @ts-ignore
 import video3 from "/public/video3.mp4";
+// @ts-ignore
 import video4 from "/public/video4.mp4";
+// @ts-ignore
 import arrowRight from "/public/arrowRight.svg";
 
 export const HightLightVideo1 = video1;
