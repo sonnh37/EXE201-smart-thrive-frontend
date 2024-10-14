@@ -5,9 +5,10 @@ import {useEffect, useState} from "react";
 import {convertFromRaw, EditorState} from "draft-js";
 import {Editor} from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import {Blog} from "@/services/model/blog";
 
-export default function Blog() {
-    const [blogs, setBlogs] = useState([]);
+export default function BlogPage() {
+    const [blogs, setBlogs] = useState<Blog[]>([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -23,7 +24,7 @@ export default function Blog() {
         fetchData();
     }, []);
 
-    const formatDate = (dateString) => {
+    const formatDate = (dateString: string) => {
         const date = new Date(dateString);
         return date.toLocaleDateString("vi-VN", {
             day: "numeric",
@@ -64,13 +65,13 @@ export default function Blog() {
                                         {blog.user?.lastName} {blog.user?.firstName}
                                     </p>
                                     <p className="ml-4 text-md text-gray-500">
-                                        {formatDate(blog.createdDate)}
+                                        {formatDate(blog.createdDate.toString())}
                                     </p>
                                 </div>
                                 <p className="mb-6 text-black line-clamp-3">
                                     <Editor
                                         editorState={EditorState.createWithContent(
-                                            convertFromRaw(JSON.parse(blog.description))
+                                            convertFromRaw(JSON.parse(blog.description!))
                                         )}
                                         readOnly={true} // Chỉ để xem
                                         toolbarHidden={true} // Ẩn thanh công cụ
