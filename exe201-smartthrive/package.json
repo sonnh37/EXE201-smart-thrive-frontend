@@ -31,6 +31,7 @@
     "axios": "^1.7.7",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "draft-js": "^0.11.7",
     "firebase": "^10.13.1",
     "framer-motion": "^11.9.0",
     "gsap": "^3.12.5",
@@ -56,10 +57,12 @@
     "three": "^0.168.0"
   },
   "devDependencies": {
+    "@types/draft-js": "^0.11.18",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-big-calendar": "^1.8.12",
     "@types/react-dom": "^18",
+    "@types/react-draft-wysiwyg": "^1.13.8",
     "eslint": "^8",
     "eslint-config-next": "14.2.8",
     "file-loader": "^6.2.0",

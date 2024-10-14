@@ -1,106 +1,11 @@
-// "use client";
 import { Calendar, momentLocalizer, View, Views } from "react-big-calendar";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { getSessionsByStudentId } from "@/services/session-service";
-// import { useEffect, useState } from "react";
-// import { getSessionsByStudentId } from "@/services/session-service";
 
 const localizer = momentLocalizer(moment);
-const events = [
-  {
-    title: "Math",
-    allDay: false,
-    start: new Date(2024, 8, 22, 7, 0),
-    end: new Date(2024, 8, 22, 8, 30),
-  },
-  {
-    title: "Math",
-    allDay: false,
-    start: new Date(2024, 8, 22, 10, 0),
-    end: new Date(2024, 8, 22, 11, 30),
-  },
-  {
-    title: "Math",
-    allDay: false,
-    start: new Date(2024, 8, 22, 15, 0),
-    end: new Date(2024, 8, 22, 16, 0),
-  },
-  {
-    title: "Math",
-    allDay: false,
-    start: new Date(2024, 8, 23, 7, 0),
-    end: new Date(2024, 8, 23, 8, 30),
-  },
-  {
-    title: "Math",
-    allDay: false,
-    start: new Date(2024, 8, 23, 10, 0),
-    end: new Date(2024, 8, 23, 11, 30),
-  },
-  {
-    title: "Math",
-    allDay: false,
-    start: new Date(2024, 8, 23, 15, 0),
-    end: new Date(2024, 8, 23, 16, 0),
-  },
-  {
-    title: "Math",
-    allDay: false,
-    start: new Date(2024, 8, 24, 8, 30),
-    end: new Date(2024, 8, 24, 9, 30),
-  },
-  {
-    title: "Math",
-    allDay: false,
-    start: new Date(2024, 8, 24, 13, 0),
-    end: new Date(2024, 8, 24, 14, 30),
-  },
-  {
-    title: "Math",
-    allDay: false,
-    start: new Date(2024, 8, 24, 16, 0),
-    end: new Date(2024, 8, 24, 17, 0),
-  },
-  {
-    title: "Math",
-    allDay: false,
-    start: new Date(2024, 8, 25, 7, 0),
-    end: new Date(2024, 8, 25, 9, 0),
-  },
-  {
-    title: "Math",
-    allDay: false,
-    start: new Date(2024, 8, 25, 13, 0),
-    end: new Date(2024, 8, 25, 14, 30),
-  },
-  {
-    title: "Math",
-    allDay: false,
-    start: new Date(2024, 8, 25, 16, 0),
-    end: new Date(2024, 8, 25, 17, 0),
-  },
-  {
-    title: "Math",
-    allDay: false,
-    start: new Date(2024, 8, 26, 10, 0),
-    end: new Date(2024, 8, 26, 11, 0),
-  },
-  {
-    title: "Math",
-    allDay: false,
-    start: new Date(2024, 8, 26, 13, 0),
-    end: new Date(2024, 8, 26, 14, 0),
-  },
-  {
-    title: "Math",
-    allDay: false,
-    start: new Date(2024, 8, 27, 14, 0),
-    end: new Date(2024, 8, 27, 15, 0),
-  },
-];
 
-const BigCalendar = ({ selectedDate, studentId }) => {
+const BigCalendar = ({ selectedDate, studentId }: { selectedDate: Date; studentId: string }) => {
   const [session, setSession] = useState([]);
   console.log(studentId);
   useEffect(() => {
