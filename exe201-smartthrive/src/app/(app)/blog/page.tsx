@@ -3,9 +3,13 @@
 import {getBlog} from "@/services/blog-service";
 import {useEffect, useState} from "react";
 import {convertFromRaw, EditorState} from "draft-js";
-import {Editor} from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import {Blog} from "@/services/model/blog";
+import dynamic from "next/dynamic";
+
+const Editor = dynamic(() => import("react-draft-wysiwyg").then((mod) => mod.Editor), {
+    ssr: false,
+});
 
 export default function BlogPage() {
     const [blogs, setBlogs] = useState<Blog[]>([]);
