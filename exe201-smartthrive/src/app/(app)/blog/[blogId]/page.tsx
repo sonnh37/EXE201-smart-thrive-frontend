@@ -5,9 +5,10 @@ import {Editor} from 'react-draft-wysiwyg';
 
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import {useEffect, useState} from "react";
+import { Blog } from "@/services/model/blog";
 
 export default function BlogDetail({params}: { params: { blogId: string } }) {
-    const [blog, setBlog] = useState([]);
+    const [blog, setBlog] = useState<Blog>();
     const {blogId} = params; // Get the blogId from the dynamic route
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
@@ -31,7 +32,7 @@ export default function BlogDetail({params}: { params: { blogId: string } }) {
     }, [blogId]);
 
     // Lấy ngày từ object và định dạng lại
-    const formattedDate = new Date(blog.createdDate).toLocaleDateString("vi-VN", {
+    const formattedDate = new Date(blog!.createdDate).toLocaleDateString("vi-VN", {
         weekday: "long", // Thứ
         year: "numeric", // Năm
         month: "long", // Tháng
@@ -46,21 +47,21 @@ export default function BlogDetail({params}: { params: { blogId: string } }) {
             {/* Header */}
             <div className="flex flex-col items-center py-16 border-b border-gray-300 ">
                 <p className="text-lg text-gray-600">{formattedDate}</p>
-                <p className="font-bold text-black text-3xl">{blog.title}</p>
+                <p className="font-bold text-black text-3xl">{blog!.title}</p>
             </div>
             {/* Sidebar section */}
             <div className="container mx-auto flex flex-wrap py-8 px-16 text-black">
                 <div className="md:w-1/4">
                     <div className="flex items-center pb-8 border-b border-gray-300">
                         <div>
-                            <img src={blog.user?.imageUrl} className="w-16 rounded-full"/>
+                            <img src={blog!.user?.imageUrl} className="w-16 rounded-full"/>
                         </div>
                         <div className="pl-2">
                             <p>
-                                {blog.user?.lastName} {blog.user?.firstName}
+                                {blog!.user?.lastName} {blog!.user?.firstName}
                             </p>
                             <p className="text-[#B0926A] font-semibold text-sm">
-                                {blog.user?.email}
+                                {blog!.user?.email}
                             </p>
                         </div>
                     </div>
@@ -81,7 +82,7 @@ export default function BlogDetail({params}: { params: { blogId: string } }) {
                 <div className="md:w-3/4">
                     {/* content */}
                     <div className="ml-8">
-                        <h1 className="text-3xl font-bold mb-4">{blog.title}</h1>
+                        <h1 className="text-3xl font-bold mb-4">{blog!.title}</h1>
                         <Editor
                             editorState={editorState}
                             onChange={handleEditorChange}
