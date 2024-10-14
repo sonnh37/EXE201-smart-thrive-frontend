@@ -4,11 +4,11 @@ import {useGSAP} from "@gsap/react";
 import {useEffect, useRef, useState} from "react";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import gsap from "gsap";
-import Drop from "./Button/Drop";
+import Drop from "./button/drop";
 import {CategoryItem} from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
-import Support from "./Auth/Supporter/support";
+import Support from "./auth/supporter/support";
 
 gsap.registerPlugin(ScrollTrigger);
 

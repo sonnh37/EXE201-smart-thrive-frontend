@@ -1,8 +1,8 @@
 "use client";
-import Hero from "../../components/Home/Hero/Hero";
-import Category from "../../components/Home/CategoryList/Category";
-import LearnMethod from "../../components/Home/LearnMethod/LearnMethod";
-import SpecialCourse from "../../components/Home/SpecialCourse/SpecialCourse";
+import Hero from "../../components/home/herro/hero";
+import Category from "../../components/home/category-list/category";
+import LearnMethod from "../../components/home/learn-method/learn-method";
+import SpecialCourse from "../../components/home/special-course/special-course";
 
 export default function Home() {
     return (

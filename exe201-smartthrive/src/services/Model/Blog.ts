@@ -1,5 +1,5 @@
-import {Base} from "./BaseModel";
-import {User} from "./User";
+import {Base} from "./base-model";
+import {User} from "./user";
 
 export class Blog extends Base {
     userId?: string;

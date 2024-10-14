@@ -1,11 +1,11 @@
-import {Base} from "./BaseModel";
-import {DayInWeek} from "./DayInWeek";
-import {CourseStatus, CourseType} from "./Enum";
-import {Feedback} from "./Feedback";
-import {Module} from "./Module";
-import {PackageXCourse} from "./PackageXCourse";
-import {Provider} from "./Provider";
-import {Subject} from "./Subject";
+import {Base} from "./base-model";
+import {DayInWeek} from "./day-in-week";
+import {CourseStatus, CourseType} from "./enum";
+import {Feedback} from "./feedback";
+import {Module} from "./module";
+import {PackageXCourse} from "./package-x-course";
+import {Provider} from "./provider";
+import {Subject} from "./subject";
 
 export class Course extends Base {
     subjectId?: string;

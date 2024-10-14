@@ -1,5 +1,5 @@
-import {axiosGet, axiosPost} from "./baseService";
-import {Assistant} from './Model/Assistant';
+import {axiosGet, axiosPost} from "./base-service";
+import {Assistant} from './model/assistant';
 
 class AssistantAPI {
     getAll = async () => {

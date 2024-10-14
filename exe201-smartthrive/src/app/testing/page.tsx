@@ -1,7 +1,7 @@
 "use client";
 import React, {useState} from "react";
 import {Modal, ModalBody, ModalContent, ModalFooter, ModalTrigger,} from "@/components/ui/animated-modal";
-import {User} from "@/services/Model/User";
+import {User} from "@/services/model/user";
 import UserService from "@/services/auth-service";
 
 export default function Register() {

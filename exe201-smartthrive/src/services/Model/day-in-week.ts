@@ -1,5 +1,5 @@
-import {Base} from "./BaseModel";
-import {Course} from "./Course";
+import {Base} from "./base-model";
+import {Course} from "./course";
 
 export class DayInWeek extends Base {
     courseId?: string;

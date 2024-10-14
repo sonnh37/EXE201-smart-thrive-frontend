@@ -4,12 +4,12 @@ import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
 import {cn} from "@/lib/utils";
 import {IconBrandGithub, IconBrandGoogle} from "@tabler/icons-react";
-import Register from "@/components/Auth/Register/Register";
+import Register from "@/components/auth/register/register";
 import AuthService from "@/services/auth-service";
 import {toast} from "sonner";
 import {useRouter} from "next/navigation";
 import {GoogleLogin} from "@react-oauth/google";
-import {loginByGoogle} from "@/services/loginbygmail-service";
+import {loginByGoogle} from "@/services/login-by-gmail-service";
 
 export function Login() {
     const {push} = useRouter();

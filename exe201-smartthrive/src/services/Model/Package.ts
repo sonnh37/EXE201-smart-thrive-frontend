@@ -1,8 +1,8 @@
-import {Base} from "./BaseModel";
-import {PackageStatus} from "./Enum";
-import {Order} from "./Order";
-import {PackageXCourse} from "./PackageXCourse";
-import {StudentXPackage} from "./StudentXPackage";
+import {Base} from "./base-model";
+import {PackageStatus} from "./enum";
+import {Order} from "./order";
+import {PackageXCourse} from "./package-x-course";
+import {StudentXPackage} from "./student-x-package";
 
 export class Package extends Base {
     name?: string;

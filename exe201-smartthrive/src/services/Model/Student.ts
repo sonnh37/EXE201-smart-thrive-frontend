@@ -1,8 +1,8 @@
-import {Base} from "./BaseModel";
-import {Gender, UserStatus} from "./Enum";
-import {Feedback} from "./Feedback";
-import {StudentXPackage} from "./StudentXPackage";
-import {User} from "./User";
+import {Base} from "./base-model";
+import {Gender, UserStatus} from "./enum";
+import {Feedback} from "./feedback";
+import {StudentXPackage} from "./student-x-package";
+import {User} from "./user";
 
 export class Student extends Base {
     userId?: string;

@@ -1,6 +1,6 @@
-import {Base} from "./BaseModel";
-import {Package} from "./Package";
-import {Student} from "./Student";
+import {Base} from "./base-model";
+import {Package} from "./package";
+import {Student} from "./student";
 
 export class StudentXPackage extends Base {
     studentId?: string; // Converted Guid? to string

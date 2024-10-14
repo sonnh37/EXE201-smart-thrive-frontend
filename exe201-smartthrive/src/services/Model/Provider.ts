@@ -1,6 +1,6 @@
-import {Base} from "./BaseModel";
-import {Course} from "./Course";
-import {User} from "./User";
+import {Base} from "./base-model";
+import {Course} from "./course";
+import {User} from "./user";
 
 export class Provider extends Base {
     userId?: string;

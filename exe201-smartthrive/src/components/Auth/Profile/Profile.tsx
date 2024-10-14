@@ -1,4 +1,4 @@
-import {User} from "@/services/Model/User";
+import {User} from "@/services/model/user";
 import React, {useEffect, useState} from "react";
 import UserService from "@/services/auth-service";
 

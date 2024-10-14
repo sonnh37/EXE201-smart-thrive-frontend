@@ -2,7 +2,7 @@ import {Menu, MenuButton, MenuItem, MenuItems} from "@headlessui/react";
 import {toast} from "sonner";
 import {useRouter} from "next/navigation";
 import {useEffect, useState} from "react";
-import {User} from "@/services/Model/User";
+import {User} from "@/services/model/user";
 
 export default function Drop() {
     const {push} = useRouter();

@@ -1,7 +1,7 @@
-import {Base} from "./BaseModel";
-import {OrderStatus, PaymentMethod} from "./Enum";
-import {Package} from "./Package";
-import {Voucher} from "./Voucher";
+import {Base} from "./base-model";
+import {OrderStatus, PaymentMethod} from "./enum";
+import {Package} from "./package";
+import {Voucher} from "./voucher";
 
 export class Order extends Base {
     packageId?: string; // Converted Guid? to string

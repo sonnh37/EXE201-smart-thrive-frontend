@@ -1,5 +1,5 @@
-import {Base} from "./BaseModel";
-import {Session} from "./Session";
+import {Base} from "./base-model";
+import { Session } from "./session";
 
 export class SessionSelfLearn extends Base {
     sessionId?: string; // Converted Guid? to string

@@ -1,9 +1,9 @@
 "use client";
-import SearchBar from "@/components/Category/SearchBar";
-import CourseCard from "@/components/Category/CourseCard";
+import SearchBar from "@/components/category/search-bar";
+import CourseCard from "@/components/category/course-card";
 import {useSearchParams} from "next/navigation";
 import {useEffect, useState} from "react";
-import {Course} from "@/services/Model/Course";
+import {Course} from "@/services/model/course";
 import CourseService from "@/services/course-service";
 
 const Page = () => {

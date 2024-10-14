@@ -1,4 +1,4 @@
-import {axiosGet} from "./baseService";
+import {axiosGet} from "./base-service";
 
 export const getStudentXPackage = async (studentId: string) => await axiosGet("/studentxpackages", {
     params: {

@@ -1,6 +1,6 @@
 "use client";
-import BigCalendar from "@/components/Schedule/BigCalendar";
-import EventCalendar from "@/components/Schedule/EventCalendar";
+import BigCalendar from "@/components/schedule/big-calendar";
+import EventCalendar from "@/components/schedule/event-calendar";
 import {useState} from "react";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 

@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import {Login} from "@/components/Auth/Login/Login";
+import {Login} from "@/components/auth/login/login";
 
 export default function Auth() {
     return (

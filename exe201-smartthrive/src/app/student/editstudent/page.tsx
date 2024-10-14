@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
 import Link from "next/link";
 import StudentService from "@/services/student-service";
-import {Student} from "@/services/Model/Student";
+import {Student} from "@/services/model/student";
 import {toast} from "sonner";
 
 const Page = () => {

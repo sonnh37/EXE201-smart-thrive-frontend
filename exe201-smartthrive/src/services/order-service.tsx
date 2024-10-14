@@ -1,4 +1,4 @@
-import {axiosPost} from "./baseService";
+import {axiosPost} from "./base-service";
 
 class OrderAPI {
     createPayment = async ({

@@ -1,9 +1,9 @@
-import {Base} from "./BaseModel";
-import {SessionType} from "./Enum";
-import {Module} from "./Module";
-import {SessionMeeting} from "./SessionMeeting";
-import {SessionOffline} from "./SessionOffline";
-import {SessionSelfLearn} from "./SessionSelfLearn";
+import {Base} from "./base-model";
+import {SessionType} from "./enum";
+import {Module} from "./module";
+import { SessionMeeting } from "./session-meeting";
+import { SessionOffline } from "./session-offline";
+import { SessionSelfLearn } from "./session-selflearn";
 
 export class Session extends Base {
     moduleId?: string; // Converted Guid? to string

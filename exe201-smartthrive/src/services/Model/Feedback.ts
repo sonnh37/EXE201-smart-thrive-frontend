@@ -1,6 +1,6 @@
-import {Base} from "./BaseModel";
-import {Course} from "./Course";
-import {Student} from "./Student";
+import {Base} from "./base-model";
+import {Course} from "./course";
+import {Student} from "./student";
 
 export class Feedback extends Base {
     studentId?: string; // Converted Guid? to string

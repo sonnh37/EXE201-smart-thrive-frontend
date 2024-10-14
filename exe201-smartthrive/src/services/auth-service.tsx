@@ -1,5 +1,5 @@
-import {User} from "./Model/User";
-import {axiosGet, axiosPost} from "./baseService";
+import {axiosGet, axiosPost} from "./base-service";
+import { User } from "./model/user";
 
 class AuthAPI {
     login = (userName: string, password: string) => {

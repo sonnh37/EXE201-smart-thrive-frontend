@@ -1,6 +1,6 @@
-import {Base} from "./BaseModel";
-import {Category} from "./Category";
-import {Course} from "./Course";
+import {Base} from "./base-model";
+import {Category} from "./category";
+import {Course} from "./course";
 
 export class Subject extends Base {
     name?: string;

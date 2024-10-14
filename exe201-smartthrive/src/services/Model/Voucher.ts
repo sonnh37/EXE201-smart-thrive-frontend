@@ -1,6 +1,6 @@
-import {Base} from "./BaseModel";
-import {VoucherStatus, VoucherType} from "./Enum";
-import {Order} from "./Order";
+import {Base} from "./base-model";
+import {VoucherStatus, VoucherType} from "./enum";
+import {Order} from "./order";
 
 export class Voucher extends Base {
     voucherType?: VoucherType; // Assuming VoucherType is defined in your enums

@@ -1,4 +1,4 @@
-import {axiosGet} from "./baseService";
+import {axiosGet} from "./base-service";
 
 export const getSessionsByStudentId = async (studentId: string) => {
     return await axiosGet(`/sessions/schedule/${studentId}`, {});

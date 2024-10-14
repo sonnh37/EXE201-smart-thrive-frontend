@@ -1,5 +1,5 @@
-import {Base} from "./BaseModel";
-import {Subject} from "./Subject";
+import {Base} from "./base-model";
+import {Subject} from "./subject";
 
 export class Category extends Base {
     name?: string;

@@ -1,5 +1,5 @@
 import React from 'react'
-import Auth from '@/components/Auth/Student/Auth'
+import Auth from '@/components/auth/student/auth'
 
 const page = () => {
     return (

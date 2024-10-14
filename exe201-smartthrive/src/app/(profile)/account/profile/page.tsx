@@ -1,8 +1,8 @@
 "use client"
 import React, {useEffect, useState} from "react";
-import {User} from "@/services/Model/User";
+import {User} from "@/services/model/user";
 import UserService from "@/services/auth-service";
-import {Gender} from "@/services/Model/Enum";
+import { Gender } from "@/services/model/enum";
 
 const page = () => {
 

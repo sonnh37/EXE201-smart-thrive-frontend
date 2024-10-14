@@ -1,4 +1,4 @@
-import {Assistant} from '@/services/Model/Assistant'
+import {Assistant} from '@/services/model/assistant'
 import React, {useState} from 'react'
 import AssistantService from '@/services/assistant-service';
 import {toast} from 'sonner';

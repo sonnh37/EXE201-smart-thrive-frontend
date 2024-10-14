@@ -1,9 +1,9 @@
 import {Canvas} from "@react-three/fiber";
 import React, {Suspense} from "react";
-import HeroText from "./HeroText";
+import HeroText from "./hero-text";
 import {WhaleModel} from "../../../assets/models/WhaleModel";
 import {Environment, OrbitControls} from "@react-three/drei";
-import TextRing from "@/components/TextRing";
+import TextRing from "@/components/text-ring";
 
 const Hero = () => {
     return (

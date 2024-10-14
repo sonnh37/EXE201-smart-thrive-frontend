@@ -1,4 +1,4 @@
-import {axiosGet} from "./baseService";
+import {axiosGet} from "./base-service";
 
 class CourseAPI {
     getAll = async () => {

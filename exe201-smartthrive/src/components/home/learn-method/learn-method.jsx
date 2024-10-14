@@ -1,5 +1,5 @@
 import React from "react";
-import VideoCarousel from "./VideoCarousel";
+import VideoCarousel from "./video-carousel";
 import {animteWithGsap} from "../../../utils/animations";
 import {useGSAP} from "@gsap/react";
 import gsap from "gsap";

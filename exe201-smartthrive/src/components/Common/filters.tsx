@@ -1,4 +1,4 @@
-import {OrderStatus, PaymentMethod} from "@/Types/enums/order";
+import {OrderStatus, PaymentMethod} from "@/types/enums/order";
 
 export const isDeleted_options = [
     {label: "Active", value: false},

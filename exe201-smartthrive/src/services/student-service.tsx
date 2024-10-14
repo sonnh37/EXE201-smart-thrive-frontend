@@ -1,5 +1,5 @@
-import {Student} from "./Model/Student";
-import {axiosDelete, axiosGet, axiosPost, axiosPut} from "./baseService";
+import {Student} from "./model/student";
+import {axiosDelete, axiosGet, axiosPost, axiosPut} from "./base-service";
 
 
 class StudentAPI {

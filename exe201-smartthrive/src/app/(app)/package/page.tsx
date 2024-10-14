@@ -1,9 +1,9 @@
 "use client";
-import PackageDetail from "@/components/Package/PackageDetail";
-import PaymentOptions from "@/components/Package/PaymentOptions";
-import {StudentXPackage} from "@/services/Model/StudentXPackage";
+import PackageDetail from "@/components/package/package-detail";
+import PaymentOptions from "@/components/package/payment-options";
+import {StudentXPackage} from "@/services/model/student-x-package";
 import OrderService from "@/services/order-service";
-import PackageXStudentService from "@/services/packageXstudent-service";
+import PackageXStudentService from "@/services/package-x-student-service";
 import {useRouter} from "next/navigation";
 import React, {useEffect, useState} from "react";
 import {toast} from "sonner";

@@ -1,8 +1,8 @@
-import {Base} from "./BaseModel";
-import {Blog} from "./Blog";
-import {Gender, Role, UserStatus} from "./Enum";
-import {Provider} from "./Provider";
-import {Student} from "./Student";
+import {Base} from "./base-model";
+import {Blog} from "./blog";
+import {Gender, Role, UserStatus} from "./enum";
+import {Provider} from "./provider";
+import {Student} from "./student";
 
 export class User extends Base {
     username?: string;

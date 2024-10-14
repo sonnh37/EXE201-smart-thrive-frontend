@@ -1,4 +1,4 @@
-import {axiosGet, axiosPost} from "./baseService";
+import {axiosGet, axiosPost} from "./base-service";
 
 class PackageAPI {
     getAll = async () => {

@@ -1,6 +1,6 @@
 import {toast} from "sonner";
-import {baseUrl} from "./baseService";
-import axiosInstance from "./loginbygoogle";
+import {baseUrl} from "./base-service";
+import axiosInstance from "./login-by-google";
 
 const handleError = (error: any) => {
     console.error("API User Error:", error);

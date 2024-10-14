@@ -3,11 +3,11 @@ import React, {useEffect, useState} from "react";
 import Image from "next/image";
 import {CardContainer, CardItem} from "@/components/ui/3d-card";
 import StudentService from "@/services/student-service";
-import {Student} from "@/services/Model/Student";
+import {Student} from "@/services/model/student";
 import {toast} from "sonner";
 import {useRouter} from "next/navigation";
 import Link from "next/link";
-import {Gender} from "@/services/Model/Enum";
+import {Gender} from "@/services/model/enum";
 
 const Auth = () => {
     const {push} = useRouter();
