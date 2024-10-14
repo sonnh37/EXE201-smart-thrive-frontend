@@ -2,7 +2,7 @@
 import React, {useEffect, useState} from "react";
 import {User} from "@/services/model/user";
 import UserService from "@/services/auth-service";
-import { Gender } from "@/services/model/enum";
+import {Gender} from "@/services/model/enum";
 
 const page = () => {
 
