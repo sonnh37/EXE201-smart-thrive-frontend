@@ -1,5 +1,5 @@
 "use client"
-import { useState } from 'react';
+import {useState} from 'react';
 
 
 const page = () => {
@@ -62,7 +62,8 @@ const page = () => {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             {/* Payment Verification */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-700">Xác thực khi thanh toán</label>
+                                <label className="block text-sm font-medium text-gray-700">Xác thực khi thanh
+                                    toán</label>
                                 <select
                                     value={paymentVerification}
                                     onChange={(e) => setPaymentVerification(e.target.value)}
@@ -75,7 +76,8 @@ const page = () => {
 
                             {/* Login Verification */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-700">Xác thực khi đăng nhập</label>
+                                <label className="block text-sm font-medium text-gray-700">Xác thực khi đăng
+                                    nhập</label>
                                 <select
                                     value={loginVerification}
                                     onChange={(e) => setLoginVerification(e.target.value)}

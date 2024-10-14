@@ -1,26 +1,28 @@
 export enum Gender {
-  Male,
-  Female,
-  Other,
+    Male,
+    Female,
+    Other,
 }
+
 export enum Status {}
+
 // This is an empty enum in the original code
 
 export enum UserStatus {
-  Active,
-  Inactive,
+    Active,
+    Inactive,
 }
 
 export enum CourseStatus {
-  Pending,
-  Approved,
-  Rejected,
+    Pending,
+    Approved,
+    Rejected,
 }
 
 export enum OrderStatus {
-  Pending,
-  Completed,
-  Cancelled,
+    Pending,
+    Completed,
+    Cancelled,
 }
 
 // The BlogStatus enum is commented out in the original code
@@ -31,40 +33,41 @@ export enum OrderStatus {
 // }
 
 export enum PackageStatus {
-  Pending,
-  Approved,
-  Rejected,
+    Pending,
+    Approved,
+    Rejected,
 }
 
 export enum VoucherStatus {
-  Active,
-  Inactive,
+    Active,
+    Inactive,
 }
 
 export enum Role {
-  Admin,
-  Staff,
-  Provider,
-  Customer,
+    Admin,
+    Staff,
+    Provider,
+    Customer,
 }
 
 export enum CourseType {
-  Online,
-  Offline,
+    Online,
+    Offline,
 }
 
 export enum SessionType {
-  Meeting,
-  Offline,
-  SelfLearn,
+    Meeting,
+    Offline,
+    SelfLearn,
 }
 
 export enum VoucherType {
-  DiscountCash,
-  DiscountPercent,
+    DiscountCash,
+    DiscountPercent,
 }
+
 export enum PaymentMethod {
-  CreditCard,
-  Paypal,
-  BankTransfer,
+    CreditCard,
+    Paypal,
+    BankTransfer,
 }
