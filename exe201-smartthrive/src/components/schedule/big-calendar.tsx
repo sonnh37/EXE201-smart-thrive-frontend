@@ -5,35 +5,40 @@ import {getSessionsByStudentId} from "@/services/session-service";
 
 const localizer = momentLocalizer(moment);
 
-const BigCalendar = ({selectedDate, studentId}: { selectedDate: Date; studentId: string }) => {
-    const [session, setSession] = useState([]);
+interface Props {
+    selectedDate: Date;
+    studentId: string | null;
+}
+
+const BigCalendar = ({selectedDate, studentId}: Props) => {
+    const [sessions, setSessions] = useState<any[]>([]);
     console.log(studentId);
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                const data = await getSessionsByStudentId(studentId); // Fetch blog data by id
-                setSession(data); // Set blog data to state
-                console.log(data);
-                // Chuyển đổi dữ liệu thành định dạng của react-big-calendar
-                const formattedEvents = data
-                    .map((session) => {
-                        const startDate = session.startDate
-                            ? new Date(session.startDate)
-                            : null;
-                        const endDate = session.endDate ? new Date(session.endDate) : null; // Giả sử sự kiện kéo dài 1 giờ
+            if (studentId) {
+                try {
+                    const data = await getSessionsByStudentId(studentId); // Fetch blog data by id
+                    setSessions(data);
+                    const formattedEvents = data
+                        .map((session: any) => {
+                            const startDate = session.startDate
+                                ? new Date(session.startDate)
+                                : null;
+                            const endDate = session.endDate ? new Date(session.endDate) : null; // Giả sử sự kiện kéo dài 1 giờ
 
-                        return {
-                            title: session.courseName, // Dùng courseName làm title
-                            start: startDate,
-                            end: endDate,
-                        };
-                    })
-                    .filter((session) => session.startDate !== null); // Loại bỏ sự kiện không có startDate
+                            return {
+                                title: session.courseName, // Dùng courseName làm title
+                                start: startDate,
+                                end: endDate,
+                            };
+                        })
+                        .filter((session: any) => session.startDate !== null); // Loại bỏ sự kiện không có startDate
 
-                setSession(formattedEvents);
-                console.log(formattedEvents);
-            } catch (error) {
-                console.error("Error fetching:", error);
+                    setSessions(formattedEvents);
+                    console.log(formattedEvents);
+                } catch (error) {
+                    console.error("Error fetching:", error);
+                }
             }
         };
         fetchData();
@@ -47,7 +52,7 @@ const BigCalendar = ({selectedDate, studentId}: { selectedDate: Date; studentId:
         <div>
             <Calendar
                 localizer={localizer}
-                events={session}
+                events={sessions}
                 startAccessor="start"
                 endAccessor="end"
                 views={["week", "day"]}

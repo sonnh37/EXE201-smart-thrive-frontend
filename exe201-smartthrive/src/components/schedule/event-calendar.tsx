@@ -39,17 +39,25 @@ const events = [
         subject: "Chinh phuc vat li",
     },
 ];
-const EventCalendar = ({onDateChange, studentId}) => {
+
+interface EventCalendarProps {
+    onDateChange: any,
+    studentId: string | null,
+}
+
+const EventCalendar = ({onDateChange, studentId = null}: EventCalendarProps) => {
     const [value, onChange] = useState<Value>(new Date());
-    const [sessions, setSession] = useState([]);
+    const [sessions, setSession] = useState<any[]>([]);
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                const data = await get4CommingSessionsByStudentId(studentId); // Fetch blog data by id
-                setSession(data); // Set blog data to state
-                console.log(data);
-            } catch (error) {
-                console.error("Error fetching:", error);
+            if (studentId) {
+                try {
+                    const data = await get4CommingSessionsByStudentId(studentId); // Fetch upcoming sessions by studentId
+                    setSession(data); // Set session data to state
+                    console.log(data);
+                } catch (error) {
+                    console.error("Error fetching:", error);
+                }
             }
         };
         fetchData();
@@ -99,7 +107,7 @@ const EventCalendar = ({onDateChange, studentId}) => {
                                 </div>
                             </div>
                             <h6 className="text-md font-semibold text-black">
-                                {session.courseName} {/* Sử dụng session.subject */}
+                                {session!.courseName} {/* Sử dụng session.subject */}
                             </h6>
                             <p className="text-sm font-normal text-gray-600">
                                 Giáo viên: {session.teacherName} {/* Sử dụng session.teacher */}
