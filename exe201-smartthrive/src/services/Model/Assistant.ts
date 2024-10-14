@@ -1,7 +1,7 @@
-import { Base } from "./BaseModel";
+import {Base} from "./BaseModel";
 
 export class Assistant extends Base {
-  fullName?: string;
-  phone?: string;
-  email?: string;
+    fullName?: string;
+    phone?: string;
+    email?: string;
 }
