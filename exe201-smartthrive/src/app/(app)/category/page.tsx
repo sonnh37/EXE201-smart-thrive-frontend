@@ -16,7 +16,7 @@ const Page = () => {
         const fetchData = async () => {
             try {
                 const data = await CourseService.getAll();
-                // console.log(data.results);
+                console.log("data:",data);
                 setCourseItems(data.results);
             } catch (error) {
                 console.error("Error fetching blog data:", error);
