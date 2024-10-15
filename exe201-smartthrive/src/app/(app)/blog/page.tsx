@@ -36,6 +36,20 @@ export default function BlogPage() {
             year: "numeric",
         });
     };
+
+    const getEditorStateFromDescription = (description: string | undefined) => {
+        if (!description) {
+            return EditorState.createEmpty();
+        }
+
+        try {
+            const contentState = convertFromRaw(JSON.parse(description));
+            return EditorState.createWithContent(contentState);
+        } catch (error) {
+            console.error("Invalid JSON description:", error);
+            return EditorState.createEmpty(); // Nếu description không phải JSON hợp lệ
+        }
+    };
     return (
         <div className="h-full w-full pt-24 bg-[#FCF7E6]">
             {/* Header */}
@@ -74,9 +88,7 @@ export default function BlogPage() {
                                 </div>
                                 <p className="mb-6 text-black line-clamp-3">
                                     <Editor
-                                        editorState={EditorState.createWithContent(
-                                            convertFromRaw(JSON.parse(blog.description!))
-                                        )}
+                                        editorState={getEditorStateFromDescription(blog.description)}
                                         readOnly={true} // Chỉ để xem
                                         toolbarHidden={true} // Ẩn thanh công cụ
                                         editorStyle={{

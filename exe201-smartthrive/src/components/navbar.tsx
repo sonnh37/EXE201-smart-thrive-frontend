@@ -133,7 +133,7 @@ export const NavBar = () => {
                                                         </div>
                                                         {subLv1.subLv2.map((subLv2) => (
                                                             <Link
-                                                                href={`/Category${subLv2.path}`}
+                                                                href={`/category${subLv2.path}`}
                                                                 key={subLv2.name}
                                                                 className="navItemLv2 min-h-12 flex items-center px-4 hover:bg-slate-400 text-left"
                                                             >
