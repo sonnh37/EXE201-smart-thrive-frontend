@@ -81,7 +81,7 @@ const CourseCard = ({
                     </div>
                     <div className="p-6 pt-0 mt-6 flex">
                         <Link
-                            href={`Category/courseDetail/${id}?category=${category}&courseType=${
+                            href={`category/course-detail/${id}?category=${category}&courseType=${
                                 courseType != null ? courseType : ""
                             }&topic=${topic != null ? topic : ""}`}
                             className="align-middle bg-slate-500 select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-2 px-4 rounded-full shadow-gray-900/10 hover:shadow-gray-900/20 focus:opacity-[0.85] active:opacity-[0.85] active:shadow-none block w-full bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
@@ -90,7 +90,7 @@ const CourseCard = ({
                             View Detail
                         </Link>
                         <Link
-                            href={`Category/courseDetail/${id}?category=${category}&courseType=${
+                            href={`category/course-detail/${id}?category=${category}&courseType=${
                                 courseType != null ? courseType : ""
                             }&topic=${topic != null ? topic : ""}`}
                             className="align-middle bg-slate-500 select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-2 px-4 ml-2 rounded-full shadow-gray-900/10 hover:shadow-gray-900/20 focus:opacity-[0.85] active:opacity-[0.85] active:shadow-none block w-full bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
