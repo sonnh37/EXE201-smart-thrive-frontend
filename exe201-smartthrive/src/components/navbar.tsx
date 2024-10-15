@@ -177,7 +177,7 @@ export const NavBar = () => {
                     </li>
                     <li className="container-logo absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
                         <h2 className="logo-text text-[1.9rem] font-extrabold oswald-text nav-text cursor-pointer">
-                            SmartThrive.
+                            SmartThrive
                         </h2>
                     </li>
                     <li className=" grid place-items-center">
