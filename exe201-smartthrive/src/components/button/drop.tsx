@@ -59,7 +59,7 @@ export default function Drop() {
         </div>
       ) : (
         <Button asChild>
-          <Link href="/login">Login</Link>
+          <Link href="/login">Đăng nhập</Link>
         </Button>
 
         // Trống nếu không có userId
