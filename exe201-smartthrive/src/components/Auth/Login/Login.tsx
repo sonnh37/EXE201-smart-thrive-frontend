@@ -14,6 +14,7 @@ import { loginByGoogle } from "@/services/loginbygmail-service";
 export function Login() {
 
   const { push } = useRouter();
+  //////Success login
   const handleSuccess = async (response: any) => {
     console.log("check_gg", response)
     const _response = await loginByGoogle(response.credential);
@@ -26,6 +27,8 @@ export function Login() {
     push("/auth");
   };
 
+
+  //Error login
   const handleError = () => {
     console.log("Google login failed");
   };

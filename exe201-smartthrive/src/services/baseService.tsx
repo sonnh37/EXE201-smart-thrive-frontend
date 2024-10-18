@@ -12,3 +12,10 @@ export const axiosDelete = (path: string, config: any) =>
 
 export const axiosPut = async (path: string, data: any, config: any) =>
   await axios.put(baseUrl + path, data, config);
+
+
+const axiosInstance = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_BASE, // URL cơ bản cho các request API của bạn
+  timeout: 10000, // Thời gian chờ tối đa cho request (ms)
+});
+
