@@ -5,6 +5,7 @@ import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 const Footer = () => {
@@ -84,27 +85,32 @@ const Footer = () => {
         <div className="footer-down h-full pb-16 flex justify-between mx-14 mt-16">
           <div className="flex justify-between w-[50%] text-sm">
             <div>
-              <h1>Blog.</h1>
-              <p className="uppercase opacity-70 mt-8 tracking-widest text-[0.8rem]">
-                View Blogs.
-              </p>
+              <h1 className="mb-8">Blog.</h1>
+              <Link
+                href={`/blogs`}
+                className="uppercase opacity-70 mt-8 tracking-widest text-[0.8rem]"
+              >
+                Xem Blogs.
+              </Link>
             </div>
             <div>
-              <h1>Category.</h1>
+              <h1>Thể loại.</h1>
               <div className="uppercase opacity-70 flex flex-col gap-8 tracking-widest text-[0.8rem] mt-8">
-                <p className="">View Category.</p>
-                <p className="">View Course.</p>
-                <p className="">View Topics.</p>
+                <Link href={`/category`} className="">
+                  Thể loại.
+                </Link>
               </div>
             </div>
             <div>
-              <h1>Info.</h1>
-              <p className="uppercase opacity-70 mt-8 tracking-widest text-[0.8rem]">
-                About us.
-              </p>
+              <h1 className="mb-8">Thông tin.</h1>
+              <Link
+                href={`/about`}
+                className="uppercase opacity-70 mt-8 tracking-widest text-[0.8rem]"
+              >
+                Giới thiệu.
+              </Link>
             </div>
           </div>
-          <div className="payment_method  text-sm">Payment method.</div>
         </div>
       </div>
     </section>

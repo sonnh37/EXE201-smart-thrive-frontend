@@ -28,7 +28,6 @@ export const NavBar = () => {
   useEffect(() => {
     const fetchApi = async () => {
       var result = await CategoryService.getAll();
-      //   console.log(result);
       setNavItems(result.results);
     };
     fetchApi();
@@ -94,10 +93,10 @@ export const NavBar = () => {
               </Link>
               <div className="group nav-item min-w-12 px-4 py-8 pb-9 nav-text cursor-pointer relative ">
                 <div className="">
-                  <div className="relative">
+                  <Link href={`/category`} className="relative">
                     Thể loại
                     <span className="absolute line w-0 h-[1px] bg-black top-7 left-0 group-hover:w-full transition-all duration-300"></span>
-                  </div>
+                  </Link>
                 </div>
 
                 <ul className="navLv0 absolute min-h-[95vh] bg-white shadow-xl top-[5.5rem] left-0 min-w-[18vw] translate-y-36 opacity-0 transition-all duration-300 invisible  group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">

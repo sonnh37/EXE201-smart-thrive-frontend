@@ -20,9 +20,15 @@ const Page = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await CourseService.getBySubjectId(subjectId!);
+        if (subject) {
+          const data = await CourseService.getBySubjectId(subjectId!);
 
-        setCourseItems(data.results);
+          setCourseItems(data.results);
+        } else {
+          const data = await CourseService.getAll();
+
+          setCourseItems(data.results);
+        }
       } catch (error) {
         console.error("Error fetching blog data:", error);
       }
@@ -33,7 +39,7 @@ const Page = () => {
   }, [subjectId, currentSubject]);
   return (
     <div className="h-full w-full pt-24 text-black flex ">
-      <SearchBar categoryId={categoryId!} subjectId={subjectId!}>
+      <SearchBar categoryId={categoryId ?? "empty"} subjectId={subjectId!}>
         {courseItems &&
           courseItems
             .filter((course) => course.isActive === true)
