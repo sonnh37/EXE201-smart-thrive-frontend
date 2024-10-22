@@ -38,12 +38,14 @@ const SearchBar = ({
   }, []);
 
   useEffect(() => {
-    const fetchSubject = async () => {
-      const result = await SubjectService.getByCategoryId(categoryId);
-      setSubjectList(result.results);
-    };
-    setCurrentSubjectId(subjectId);
-    fetchSubject();
+    if (categoryId != "empty") {
+      const fetchSubject = async () => {
+        const result = await SubjectService.getByCategoryId(categoryId);
+        setSubjectList(result.results);
+      };
+      setCurrentSubjectId(subjectId);
+      fetchSubject();
+    }
   }, [categoryId, subjectId, currentSubjectId]);
 
   const handleCityChange = (e: any) => {

@@ -1,5 +1,6 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import Link from "next/link";
 import React from "react";
 
 const Banner = () => {
@@ -31,12 +32,13 @@ const Banner = () => {
         <div className="font-normal text-lg leading-7 pt-6 hero-text">
           Chúng tôi sẽ mang lại cho bạn trải nghiệm tuyệt vời tại đây
         </div>
-        <button
+        <Link
+          href={`/category`}
           type="button"
           className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-semibold rounded-lg text-lg px-10 py-4 text-center me-2 mb-2 hero-text"
         >
           Bắt đầu ngay !
-        </button>
+        </Link>
       </div>
     </div>
   );

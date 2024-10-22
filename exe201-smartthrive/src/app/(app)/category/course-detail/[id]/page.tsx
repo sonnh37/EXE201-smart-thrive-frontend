@@ -25,19 +25,21 @@ const Page = () => {
   const [packageName, setPackageName] = useState("Default name");
   const [refresh, setRefresh] = useState(true);
   useEffect(() => {
+    const fetchStudentXPackage = async () => {
+      const apiStudentXPackage = await PackageXStudentService.getByStudentId(
+        localStorage.getItem("studentId")!.toString()
+      );
+      setStudentXPackage(apiStudentXPackage.results);
+    };
+
+    const fetchCourse = async () => {
+      const apiCourse = await CourseService.getById(id.toString());
+      setCourse(apiCourse);
+    };
     if (localStorage.getItem("studentId")) {
-      const fetchApi = async () => {
-        const apiCourse = await CourseService.getById(id.toString());
-        const apiStudentXPackage = await PackageXStudentService.getByStudentId(
-          localStorage.getItem("studentId")!.toString()
-        );
-        setStudentXPackage(apiStudentXPackage.results);
-        setCourse(apiCourse);
-      };
-      fetchApi();
-    } else {
-      push("/login");
+      fetchStudentXPackage();
     }
+    fetchCourse();
   }, [id, refresh]);
   const handleAddToPackage = async (packageId: string) => {
     const result = await PackageXCourseService.create(packageId, id.toString());
@@ -141,14 +143,12 @@ const Page = () => {
         </div>
         <div className="bg-white absolute w-[23vw] top-32 right-32 shadow-lg">
           <div className="relative flex justify-center pt-2">
-            <iframe
-              src="https://www.youtube.com/embed/hwuaW6-iIJg"
-              className="w-[95%] h-full"
-              height={190}
+            <Image
+              src={course.backgroundImage ?? "/global.svg"}
+              width={300}
+              height={200}
+              alt="casette"
             />
-            <p className="absolute bottom-3 left-[30%] font-bold">
-              Preview this course
-            </p>
           </div>
           <div className="px-6 py-4">
             <div className="text-black opacity-85 font-bold text-2xl flex">
