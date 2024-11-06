@@ -32,7 +32,7 @@ export default function RootLayout({
             />
         </Head>
         <body suppressHydrationWarning={true}>
-        <Toaster position="top-right"/>
+        <Toaster position="bottom-right"/>
         <GoogleOAuthProvider clientId={clientId ?? ""}>
             {isClient && <main>{children}</main>}
         </GoogleOAuthProvider>

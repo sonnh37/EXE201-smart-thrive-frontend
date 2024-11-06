@@ -107,19 +107,19 @@ export const NavBar = () => {
                                             <div
                                                 className={` min-h-12 items-center flex px-4 w-full h-full hover:bg-slate-400`}
                                             >
-                        <span className={`flex justify-between w-full`}>
-                          <div
-                              // href={`/category?category=${list.name}&categoryId=${list.id}`}
-                          >
-                            {list.name}
-                          </div>
-                          <Image
-                              src="/arrow_right_2.svg"
-                              width={15}
-                              height={15}
-                              alt="arrow"
-                          />
-                        </span>
+                                                <span className={`flex justify-between w-full`}>
+                                                  <div
+                                                      // href={`/category?category=${list.name}&categoryId=${list.id}`}
+                                                  >
+                                                    {list.name}
+                                                  </div>
+                                                  <Image
+                                                      src="/arrow_right_2.svg"
+                                                      width={15}
+                                                      height={15}
+                                                      alt="arrow"
+                                                  />
+                                                </span>
                                             </div>
                                             <div
                                                 className={`navLv1 absolute top-0 left-[16.8rem] bg-white shadow-xl transition-all duration-300 translate-y-36 invisible opacity-0 min-w-[18vw] min-h-[95vh] `}
@@ -128,7 +128,7 @@ export const NavBar = () => {
                                                     list.subjects.map((subLv1, key) => (
                                                         <div key={key} className="navItemLv1">
                                                             <div
-                                                                className="navItemLv1 min-h-12 flex items-center px-4 justify-between hover:bg-slate-400">
+                                                                className="navItemLv1 min-h-12 flex items-center px-4 justify-between hover:bg-slate-400 ">
                                                                 <Link
                                                                     href={`/category?subject=${subLv1.name}&subjectId=${subLv1.id}&categoryId=${list.id}`}
                                                                 >
