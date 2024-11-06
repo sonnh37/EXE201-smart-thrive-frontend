@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import "@splidejs/react-splide/css";
 import "@splidejs/react-splide/css/skyblue";
 import "@splidejs/react-splide/css/sea-green";
 import "@splidejs/react-splide/css/core";
-import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
+import {AutoScroll} from "@splidejs/splide-extension-auto-scroll";
 import SubjectService from "@/services/subject-service";
-import { Subject } from "@/services/model/subject";
+import {Subject} from "@/services/model/subject";
 import Image from "next/image";
 import Link from "next/link";
+
 const { Splide, SplideSlide } = require("@splidejs/react-splide");
 const SlideItem = () => {
   const [subjectList, setSubjectList] = useState<Subject[] | null>(null);

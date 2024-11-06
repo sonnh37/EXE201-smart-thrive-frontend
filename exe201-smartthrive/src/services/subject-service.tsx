@@ -1,4 +1,4 @@
-import { axiosGet } from "./base-service";
+import {axiosGet} from "./base-service";
 
 class SubjectAPI {
   getByCategoryId = async (id: string) => {

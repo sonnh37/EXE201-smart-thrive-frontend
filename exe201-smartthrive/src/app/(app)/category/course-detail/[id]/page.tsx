@@ -1,16 +1,16 @@
 "use client";
 import Rating from "@/components/ui/Rating";
 import CourseService from "@/services/course-service";
-import { Course } from "@/services/model/course";
-import { StudentXPackage } from "@/services/model/student-x-package";
+import {Course} from "@/services/model/course";
+import {StudentXPackage} from "@/services/model/student-x-package";
 import PackageService from "@/services/package-service";
 import PackageXCourseService from "@/services/package-x-course-service";
 import PackageXStudentService from "@/services/package-x-student-service";
 import Image from "next/image";
 import Link from "next/link";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
-import { toast } from "sonner";
+import {useParams, useRouter, useSearchParams} from "next/navigation";
+import React, {useEffect, useState} from "react";
+import {toast} from "sonner";
 
 const Page = () => {
   const { id } = useParams();

@@ -1,8 +1,8 @@
 import userService from "@/services2/user-service";
-import { BusinessResult } from "@/types/response/business-result";
-import { LoginResponse } from "@/types/response/login-response";
-import { User } from "@/types/user";
-import { toast } from "sonner";
+import {BusinessResult} from "@/types/response/business-result";
+import {LoginResponse} from "@/types/response/login-response";
+import {User} from "@/types/user";
+import {toast} from "sonner";
 // utils/auth.ts
 export const loginAuth = async (
   username: string,

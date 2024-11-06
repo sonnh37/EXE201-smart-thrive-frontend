@@ -5,7 +5,7 @@ import {Editor} from 'react-draft-wysiwyg';
 
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import {useEffect, useState} from "react";
-import { Blog } from "@/services/model/blog";
+import {Blog} from "@/services/model/blog";
 
 export default function BlogDetail({params}: { params: { blogId: string } }) {
     const [blog, setBlog] = useState<Blog>();

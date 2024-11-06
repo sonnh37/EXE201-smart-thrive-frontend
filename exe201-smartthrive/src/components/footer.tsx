@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
-import { arrowRightImg } from "@/utils";
+import {arrowRightImg} from "@/utils";
 import Image from "next/image";
 import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
+import {useGSAP} from "@gsap/react";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import Link from "next/link";
 

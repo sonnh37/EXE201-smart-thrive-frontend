@@ -1,4 +1,4 @@
-import { useGSAP } from "@gsap/react";
+import {useGSAP} from "@gsap/react";
 import gsap from "gsap";
 import Link from "next/link";
 import React from "react";

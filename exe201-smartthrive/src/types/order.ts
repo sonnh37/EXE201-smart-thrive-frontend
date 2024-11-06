@@ -1,5 +1,5 @@
 import {BaseEntity} from './base';
-import { OrderStatus, PaymentMethod } from './enums/order';
+import {OrderStatus, PaymentMethod} from './enums/order';
 import {Package} from './package';
 import {Voucher} from './voucher';
 

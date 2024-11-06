@@ -1,7 +1,8 @@
 import TestimonialWithRating from "@/components/testimonialWithRating";
 import FeedbackService from "@/services/feedback-service";
-import { Feedback } from "@/services/model/feedback";
-import React, { useEffect, useState } from "react";
+import {Feedback} from "@/services/model/feedback";
+import React, {useEffect, useState} from "react";
+
 const { Splide, SplideSlide } = require("@splidejs/react-splide");
 const FeedbackSlide = () => {
   const [feedbackList, setFeedbackList] = useState<Feedback[] | null>(null);

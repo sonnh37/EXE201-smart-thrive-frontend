@@ -1,8 +1,4 @@
 "use client";
-import Hero from "../../components/home/herro/hero";
-import Category from "../../components/home/category-list/category";
-import LearnMethod from "../../components/home/learn-method/learn-method";
-import SpecialCourse from "../../components/home/special-course/special-course";
 import Banner from "@/components/home/banner/banner";
 import Reason from "@/components/home/reason/reason";
 import SubjectList from "@/components/home/subjects/subject";

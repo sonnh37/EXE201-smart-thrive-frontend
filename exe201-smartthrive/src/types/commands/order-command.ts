@@ -1,5 +1,5 @@
-import { OrderStatus, PaymentMethod } from "../enums/order";
-import { CreateCommand, UpdateCommand } from "./base-command";
+import {OrderStatus, PaymentMethod} from "../enums/order";
+import {CreateCommand, UpdateCommand} from "./base-command";
 
 export interface OrderCreateCommand extends CreateCommand {
     packageId?: string;

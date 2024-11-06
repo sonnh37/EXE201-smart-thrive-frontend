@@ -1,5 +1,4 @@
 import axiosInstance from "@/lib/axios-instance";
-import axios from "axios";
 
 export const baseUrl = process.env.NEXT_PUBLIC_BASE_DOMAIN;
 export const axiosGet = async (path: string, config: any) =>

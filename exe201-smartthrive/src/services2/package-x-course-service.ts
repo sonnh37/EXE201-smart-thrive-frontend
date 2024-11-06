@@ -1,7 +1,6 @@
 import {Const} from "@/lib/const";
-import {Package} from "@/types/package";
 import BaseService from "./base-service";
-import { PackageXCourse } from "@/types/package-x-course";
+import {PackageXCourse} from "@/types/package-x-course";
 
 class PackageXCourseService extends BaseService<PackageXCourse> {
     constructor() {

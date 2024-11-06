@@ -1,9 +1,9 @@
-import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { User } from "@/services/model/user";
-import { Button } from "../ui/button";
+import {Menu, MenuButton, MenuItem, MenuItems} from "@headlessui/react";
+import {toast} from "sonner";
+import {useRouter} from "next/navigation";
+import {useEffect, useState} from "react";
+import {User} from "@/services/model/user";
+import {Button} from "../ui/button";
 import Link from "next/link";
 
 export default function Drop() {

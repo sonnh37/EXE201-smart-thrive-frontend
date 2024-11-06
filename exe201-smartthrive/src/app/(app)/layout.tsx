@@ -1,9 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
-import type { Metadata } from "next";
+import type {Metadata} from "next";
 import localFont from "next/font/local";
-import { NavBar } from "../../components/navbar";
+import {NavBar} from "../../components/navbar";
 import Footer from "../../components/footer";
-import { ReactLenis } from "@/utils/lenis";
+import {ReactLenis} from "@/utils/lenis";
 
 const geistSans = localFont({
   src: "../fonts/GeistVF.woff",

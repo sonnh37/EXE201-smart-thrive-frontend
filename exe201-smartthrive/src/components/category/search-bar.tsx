@@ -1,7 +1,7 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
-import { Subject } from "@/services/model/subject";
+import {Subject} from "@/services/model/subject";
 import SubjectService from "@/services/subject-service";
 
 const SearchBar = ({

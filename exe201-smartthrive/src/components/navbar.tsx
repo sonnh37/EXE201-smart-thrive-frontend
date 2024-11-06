@@ -1,7 +1,7 @@
 "use client";
 
-import { useGSAP } from "@gsap/react";
-import { useEffect, useRef, useState } from "react";
+import {useGSAP} from "@gsap/react";
+import {useEffect, useRef, useState} from "react";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import gsap from "gsap";
 import Drop from "./button/drop";
@@ -9,7 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Support from "./auth/supporter/support";
 import CategoryService from "@/services/category-service";
-import { Category } from "@/services/model/category";
+import {Category} from "@/services/model/category";
 
 gsap.registerPlugin(ScrollTrigger);
 

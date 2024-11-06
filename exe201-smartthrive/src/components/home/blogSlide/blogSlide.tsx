@@ -1,6 +1,6 @@
-import { get3NewestBlog } from "@/services/blog-service";
-import { Blog } from "@/services/model/blog";
-import React, { useEffect, useState } from "react";
+import {get3NewestBlog} from "@/services/blog-service";
+import {Blog} from "@/services/model/blog";
+import React, {useEffect, useState} from "react";
 import NewestBlogs from "./newestBlogsProps";
 
 const BlogSlide = () => {

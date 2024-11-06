@@ -1,6 +1,6 @@
 import React from "react";
-import { Calendar } from "lucide-react";
-import { Blog } from "@/services/model/blog";
+import {Calendar} from "lucide-react";
+import {Blog} from "@/services/model/blog";
 import Link from "next/link";
 
 interface NewestBlogsProps {
