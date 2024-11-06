@@ -3,7 +3,7 @@ import {axiosGet} from "./base-service";
 class CourseAPI {
     getAll = async () => {
         return await axiosGet(
-            "/courses?ticks=0&IsActive=true&IsPagination=true&PageNumber=1&PageSize=9",
+            "/courses?ticks=0&IsActive=true&IsPagination=true&PageNumber=1&PageSize=9&IsDeleted=false",
             {}
         );
     };
