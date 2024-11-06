@@ -16,7 +16,7 @@ class CourseAPI {
     };
     getBySubjectId = async (id: string) => {
         return await axiosGet(
-            `/courses?SubjectId=${id}&IsPagination=true&IsActive=true&IsPagination=true&PageNumber=1&PageSize=9`,
+            `/courses?SubjectId=${id}&IsPagination=true&IsActive=true&IsPagination=true&PageNumber=1&PageSize=9&IsDeleted=false`,
             {}
         );
     };
