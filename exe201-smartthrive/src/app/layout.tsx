@@ -6,8 +6,6 @@ import Head from "next/head";
 import {Toaster} from "sonner";
 import {GoogleOAuthProvider} from "@react-oauth/google";
 
-const inter = Inter({subsets: ["latin"]});
-
 export default function RootLayout({
                                        children,
                                    }: {
@@ -33,7 +31,7 @@ export default function RootLayout({
                 integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
             />
         </Head>
-        <body suppressHydrationWarning={true} className={inter.className}>
+        <body suppressHydrationWarning={true}>
         <Toaster position="top-right"/>
         <GoogleOAuthProvider clientId={clientId ?? ""}>
             {isClient && <main>{children}</main>}
