@@ -1,7 +1,7 @@
 class Const {
     //#region Environment Variables
     static readonly CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID_GOOGLE;
-    static readonly API_BASE = `${process.env.NEXT_PUBLIC_API_BASE}/api`; 
+    static readonly API_BASE = `${process.env.NEXT_PUBLIC_API_BASE}/api`;
     //#endregion
 
     //#region Animation Variants
@@ -22,7 +22,7 @@ class Const {
         show: {opacity: 1, x: 0, transition: {type: "spring", duration: 0.5}}, // Thêm duration
     };
     //#endregion
-    
+
     private static readonly USER = "users";
     private static readonly ORDER = "orders";
     private static readonly PACKAGE = "packages";
@@ -42,7 +42,7 @@ class Const {
     static readonly API_SUBJECT = `${this.API_BASE}/${Const.SUBJECT}`;
     static readonly API_PROVIDER = `${this.API_BASE}/${Const.PROVIDER}`;
     //#region Frontend URLs
-    
+
     //#Frontend URLs
     static readonly URL_ORDER = `/${Const.ORDER}`;
     static readonly URL_BLOG = `/${Const.BLOG}`;

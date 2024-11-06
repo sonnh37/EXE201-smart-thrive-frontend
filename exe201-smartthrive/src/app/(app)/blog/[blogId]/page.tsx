@@ -32,13 +32,13 @@ export default function BlogDetail({params}: { params: { blogId: string } }) {
     }, [blogId]);
 
     const formattedDate = blog?.createdDate
-    ? new Date(blog.createdDate).toLocaleDateString("vi-VN", {
-        weekday: "long", // Thứ
-        year: "numeric", // Năm
-        month: "long", // Tháng
-        day: "numeric", // Ngày
-    })
-    : "Ngày không xác định";
+        ? new Date(blog.createdDate).toLocaleDateString("vi-VN", {
+            weekday: "long", // Thứ
+            year: "numeric", // Năm
+            month: "long", // Tháng
+            day: "numeric", // Ngày
+        })
+        : "Ngày không xác định";
     const handleEditorChange = () => {
         // Không làm gì cả vì chỉ để view
     };
@@ -54,7 +54,8 @@ export default function BlogDetail({params}: { params: { blogId: string } }) {
                 <div className="md:w-1/4">
                     <div className="flex items-center pb-8 border-b border-gray-300">
                         <div>
-                            <img src={blog?.user?.imageUrl || "/default-avatar.png"} className="w-16 rounded-full" alt="User Avatar" />
+                            <img src={blog?.user?.imageUrl || "/default-avatar.png"} className="w-16 rounded-full"
+                                 alt="User Avatar"/>
                         </div>
                         <div className="pl-2">
                             <p>{blog?.user?.lastName} {blog?.user?.firstName}</p>
