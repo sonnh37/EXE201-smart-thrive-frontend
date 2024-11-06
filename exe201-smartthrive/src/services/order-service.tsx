@@ -20,9 +20,7 @@ class OrderAPI {
             "/orders",
             {packageId, voucherId, paymentMethod, totalPrice, description, status},
             {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-                },
+                
             }
         );
     };

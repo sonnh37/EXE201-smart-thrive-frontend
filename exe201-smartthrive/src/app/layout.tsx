@@ -17,7 +17,7 @@ export default function RootLayout({
     useEffect(() => {
         setIsClient(true);
     }, []);
-    const clientId = process.env.NEXT_PUBLIC_CLIENT_ID;
+    const clientId = process.env.NEXT_PUBLIC_CLIENT_ID_GOOGLE;
     return (
         <html lang="en">
         <Head>

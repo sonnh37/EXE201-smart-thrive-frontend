@@ -5,9 +5,7 @@ class PackageXStudentAPI {
         return await axiosGet(
             `/studentxpackages?StudentId=${studentId}&IsPagination=true`,
             {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-                },
+               
             }
         );
     };

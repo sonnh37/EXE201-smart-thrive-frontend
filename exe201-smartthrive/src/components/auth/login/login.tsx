@@ -11,9 +11,10 @@ import {useRouter} from "next/navigation";
 import {GoogleLogin} from "@react-oauth/google";
 import {loginByGoogle} from "@/services/login-by-gmail-service";
 import userService from "@/services2/user-service";
+import { loginAuth, setLocalStorage } from "@/lib/auth";
 
 export function Login() {
-    const {push} = useRouter();
+    const router = useRouter();
     const handleSuccess = async (response: any) => {
         console.log("check_gg", response);
         userService.loginByGoogle(response.credential)
@@ -35,10 +36,6 @@ export function Login() {
             .catch((error) => {
                 console.error("Error during login process:", error);
             });
-
-        const isLogin = await loginByGoogle(_response);
-        if (isLogin) return;
-        push("/auth");
     };
 
     const handleError = () => {
@@ -47,38 +44,13 @@ export function Login() {
 
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const login = async () => {
-            if (username && password) {
-                const result = await AuthService.login(username, password);
-                if (result.data.status != -2) {
-                    const decodeResult = await AuthService.decodeToken(
-                        result.data.data.token
-                    );
-                    console.log(decodeResult);
-                    localStorage.setItem("accessToken", result.data.data.token);
-                    localStorage.setItem("userId", decodeResult.data.data.id);
-                    localStorage.setItem("userName", decodeResult.data.data.name);
-                    localStorage.setItem("role", decodeResult.data.data.role);
-                    // const decoded = await jwtDecode<CustomJwtPayload>(
-                    //   result.data.data.token
-                    // );
-                    // console.log(decoded);
-                    // localStorage.setItem("accessToken", result.data.data.token);
-                    // localStorage.setItem("userId", decoded.id);
-                    toast.success("Login success !", {
-                        richColors: true,
-                    });
-                    push("/student");
-                } else {
-                    toast.error("Login fail", {
-                        richColors: true,
-                    });
-                }
-            }
-        };
-        login();
+        const response = await loginAuth(username!, password);
+
+        if (response) {
+            router.push("/");
+        }
     };
 
     return (
