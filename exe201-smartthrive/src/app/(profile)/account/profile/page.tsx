@@ -56,7 +56,7 @@ const page = () => {
                                 </div>
                                 <div
                                     className="text-center mt-20"> {/* Tăng khoảng cách top lên để có thêm khoảng trống */}
-                                    <h3 className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
+                                    <h3 className="text-4xl font-semibold leading-normal mb-2">
                                         {user?.username}
                                     </h3>
                                 </div>
@@ -76,56 +76,56 @@ const page = () => {
                             <div className="flex flex-wrap">
                                 <div className="w-full lg:w-6/12 px-4">
                                     <div className="relative w-full mb-3">
-                                        <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                        <label className="block uppercase  text-xs font-bold mb-2"
                                                htmlFor="grid-password">
                                             Username
                                         </label>
                                         <input type="text"
-                                               className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                               className="border-0 px-3 py-3 placeholder-blueGray-300  bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                value={user?.username}/>
                                     </div>
                                 </div>
                                 <div className="w-full lg:w-6/12 px-4">
                                     <div className="relative w-full mb-3">
-                                        <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                        <label className="block uppercase  text-xs font-bold mb-2"
                                                htmlFor="grid-password">
                                             Email address
                                         </label>
                                         <input type="email"
-                                               className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                               className="border-0 px-3 py-3 placeholder-blueGray-300  bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                value={user?.email}/>
                                     </div>
                                 </div>
                                 <div className="w-full lg:w-6/12 px-4">
                                     <div className="relative w-full mb-3">
-                                        <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                        <label className="block uppercase  text-xs font-bold mb-2"
                                                htmlFor="grid-password">
                                             First Name
                                         </label>
                                         <input type="text"
-                                               className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                               className="border-0 px-3 py-3 placeholder-blueGray-300  bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                value={user?.firstName}/>
                                     </div>
                                 </div>
                                 <div className="w-full lg:w-6/12 px-4">
                                     <div className="relative w-full mb-3">
-                                        <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                        <label className="block uppercase  text-xs font-bold mb-2"
                                                htmlFor="grid-password">
                                             Last Name
                                         </label>
                                         <input type="text"
-                                               className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                               className="border-0 px-3 py-3 placeholder-blueGray-300  bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                value={user?.lastName}/>
                                     </div>
                                 </div>
                                 <div className="w-full lg:w-6/12 px-4">
                                     <div className="relative w-full mb-3">
-                                        <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                        <label className="block uppercase  text-xs font-bold mb-2"
                                                htmlFor="grid-password">
                                             DOB
                                         </label>
                                         <input type="date"
-                                               className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                               className="border-0 px-3 py-3 placeholder-blueGray-300  bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                value={
                                                    user?.dob
                                                        ? (typeof user.dob === 'string' ? new Date(user.dob) : user.dob)
@@ -137,14 +137,14 @@ const page = () => {
                                 </div>
                                 <div className="w-full lg:w-6/12 px-4">
                                     <div className="relative w-full mb-3">
-                                        <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                        <label className="block uppercase  text-xs font-bold mb-2"
                                                htmlFor="grid-password">
                                             Gender
                                         </label>
-                                        {/* <input type="text" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                        {/* <input type="text" className="border-0 px-3 py-3 placeholder-blueGray-300  bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     value={user?.gender} /> */}
                                         <select
-                                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                            className="border-0 px-3 py-3 placeholder-blueGray-300  bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                             id=""
                                             value={user != null ? user.gender : Gender.Other}
                                         >
@@ -172,56 +172,56 @@ const page = () => {
                             <div className="flex flex-wrap">
                                 <div className="w-full lg:w-12/12 px-4">
                                     <div className="relative w-full mb-3">
-                                        <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                        <label className="block uppercase  text-xs font-bold mb-2"
                                                htmlFor="grid-password">
                                             Address
                                         </label>
                                         <input type="text"
-                                               className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                               className="border-0 px-3 py-3 placeholder-blueGray-300  bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                value={user?.address}/>
                                     </div>
                                 </div>
                                 <div className="w-full lg:w-12/12 px-4">
                                     <div className="relative w-full mb-3">
-                                        <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                        <label className="block uppercase  text-xs font-bold mb-2"
                                                htmlFor="grid-password">
                                             Phone
                                         </label>
                                         <input type="text"
-                                               className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                               className="border-0 px-3 py-3 placeholder-blueGray-300  bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                value={user?.phone}/>
                                     </div>
                                 </div>
                                 <div className="w-full lg:w-4/12 px-4">
                                     <div className="relative w-full mb-3">
-                                        <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                        <label className="block uppercase  text-xs font-bold mb-2"
                                                htmlFor="grid-password">
                                             City
                                         </label>
                                         <input type="email"
-                                               className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                               className="border-0 px-3 py-3 placeholder-blueGray-300  bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                value="New York"/>
                                     </div>
                                 </div>
                                 <div className="w-full lg:w-4/12 px-4">
                                     <div className="relative w-full mb-3">
-                                        <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                        <label className="block uppercase  text-xs font-bold mb-2"
                                                htmlFor="grid-password">
                                             Country
                                         </label>
                                         <input type="text"
-                                               className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                               className="border-0 px-3 py-3 placeholder-blueGray-300  bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                value="United States"/>
                                     </div>
                                 </div>
                                 <div className="w-full lg:w-4/12 px-4">
                                     <div className="relative w-full mb-3">
-                                        <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                        <label className="block uppercase  text-xs font-bold mb-2"
                                                htmlFor="grid-password">
                                             Postal Code
                                         </label>
                                         <input type="text"
-                                               className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                               className="border-0 px-3 py-3 placeholder-blueGray-300  bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                value="Postal Code"/>
                                     </div>
                                 </div>
@@ -235,12 +235,12 @@ const page = () => {
                             <div className="flex flex-wrap">
                                 <div className="w-full lg:w-12/12 px-4">
                                     <div className="relative w-full mb-3">
-                                        <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                        <label className="block uppercase  text-xs font-bold mb-2"
                                                htmlFor="grid-password">
                                             About me
                                         </label>
                                         <textarea
-                                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                            className="border-0 px-3 py-3 placeholder-blueGray-300  bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                             rows={4}>
                       A beautiful UI Kit and Admin for JavaScript &amp; Tailwind CSS. It is Freeand Open Source.</textarea>
                                     </div>
