@@ -73,7 +73,7 @@ const Footer = () => {
                                         className="text-black absolute end-2.5 bottom-2.5 bg-white hover:bg-slate-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-[3rem] px-2 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                     >
                                         <Image
-                                            src={arrowRightImg.src}
+                                            src={arrowRightImg}
                                             alt="arrow_right"
                                             width={20}
                                             height={20}

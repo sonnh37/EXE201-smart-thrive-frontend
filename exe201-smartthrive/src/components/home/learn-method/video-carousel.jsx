@@ -269,10 +269,10 @@ const VideoCarousel = () => {
                     <img
                         src={
                             isLastVideo
-                                ? replayImg.src
+                                ? replayImg
                                 : !isPlaying
-                                    ? playImg.src
-                                    : pauseImg.src
+                                    ? playImg
+                                    : pauseImg
                         }
                         alt={isLastVideo ? "replay" : !isPlaying ? "play" : "pause"}
                         // onClick={
