@@ -1,28 +1,11 @@
-// @ts-ignore
-import replay from "/public/replay.svg";
-// @ts-ignore
-import play from "/public/play.svg";
-// @ts-ignore
-import pause from "/public/pause.svg";
-// @ts-ignore
-import video1 from "/public/video1.mp4";
-// @ts-ignore
-import video2 from "/public/video2.mp4";
-// @ts-ignore
-import video3 from "/public/video3.mp4";
-// @ts-ignore
-import video4 from "/public/video4.mp4";
-// @ts-ignore
-import arrowRight from "/public/arrowRight.svg";
-
-export const HightLightVideo1 = video1;
-export const HightLightVideo2 = video2;
-export const HightLightVideo3 = video3;
-export const HightLightVideo4 = video4;
-export const replayImg = replay;
-export const playImg = play;
-export const pauseImg = pause;
-export const arrowRightImg = arrowRight;
+export const HightLightVideo1 = "/video1.mp4";
+export const HightLightVideo2 = "/video2.mp4";
+export const HightLightVideo3 = "/video3.mp4";
+export const HightLightVideo4 = "/video4.mp4";
+export const replayImg = "/replay.svg";
+export const playImg = "/play.svg";
+export const pauseImg = "/pause.svg";
+export const arrowRightImg = "/arrowRight.svg"
 export const CategoryItem = [
     {
         name: "Development",

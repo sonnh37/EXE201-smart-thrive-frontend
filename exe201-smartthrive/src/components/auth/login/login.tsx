@@ -10,15 +10,31 @@ import {toast} from "sonner";
 import {useRouter} from "next/navigation";
 import {GoogleLogin} from "@react-oauth/google";
 import {loginByGoogle} from "@/services/login-by-gmail-service";
+import userService from "@/services2/user-service";
 
 export function Login() {
     const {push} = useRouter();
     const handleSuccess = async (response: any) => {
         console.log("check_gg", response);
-        const _response = await loginByGoogle(response.credential);
-        if (_response.status != 1) {
-            return toast.error(_response.message);
-        }
+        userService.loginByGoogle(response.credential)
+            .then((_response) => {
+                if (_response.status !== 1) {
+                    return toast.error(_response.message);
+                }
+
+                const isLogin = setLocalStorage(_response) as boolean;
+                if (!isLogin) return;
+
+                const token = localStorage.getItem("token");
+                if (token) {
+                    router.push("/"); // Điều hướng sau khi có token
+                } else {
+                    toast.error("Token was not set correctly");
+                }
+            })
+            .catch((error) => {
+                console.error("Error during login process:", error);
+            });
 
         const isLogin = await loginByGoogle(_response);
         if (isLogin) return;
