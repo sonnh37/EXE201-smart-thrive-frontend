@@ -80,6 +80,23 @@ export default function Drop() {
                     </MenuItem>
                     <MenuItem>
                         <a
+                            href="/student"
+                            className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+                        >
+                            
+                            Choosing students
+                        </a>
+                    </MenuItem>
+                    <MenuItem>
+                        <a
+                            href="/package"
+                            className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+                        >
+                            Manage Package
+                        </a>
+                    </MenuItem>
+                    <MenuItem>
+                        <a
                             href="#"
                             className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
                         >
