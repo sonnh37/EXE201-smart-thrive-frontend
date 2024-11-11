@@ -28,7 +28,7 @@ export function Login() {
 
                 const token = localStorage.getItem("token");
                 if (token) {
-                    router.push("/students"); // Điều hướng sau khi có token
+                    router.push("/student"); // Điều hướng sau khi có token
                 } else {
                     toast.error("Token was not set correctly");
                 }
