@@ -49,7 +49,7 @@ export function Login() {
         const response = await loginAuth(username!, password);
 
         if (response) {
-            router.push("/");
+            router.push("/student");
         }
     };
 
