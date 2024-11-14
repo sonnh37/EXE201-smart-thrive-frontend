@@ -11,7 +11,7 @@ export default function Drop() {
 
     const handleSelectStudent = () => {
         localStorage.clear();
-        push("/login");
+        push("login");
 
         toast.success(`Log out succesully`, {
             richColors: true,
@@ -111,7 +111,6 @@ export default function Drop() {
                             License
                         </a>
                     </MenuItem>
-                    <form action="#" method="POST">
                         <MenuItem>
                             <button
                                 onClick={handleSelectStudent}
@@ -121,7 +120,6 @@ export default function Drop() {
                                 Sign out
                             </button>
                         </MenuItem>
-                    </form>
                 </div>
             </MenuItems>
         </Menu>
