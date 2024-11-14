@@ -11,20 +11,21 @@ import { toast } from "sonner";
 const Page = () => {
   const [studentXPackage, setStudentXPackage] = useState<StudentXPackage[]>([]);
   const [selectedPackage, setSelectedPackage] = useState<StudentXPackage>();
-  const fetchData = async () => {
-    const data = await PackageXStudentService.getByStudentId(
-      localStorage.getItem("studentId")!.toString()
-    );
-    setStudentXPackage(data.results);
-    if (data.results != null) {
-      console.log(data.results);
-      setSelectedPackage(data.results[0]);
-    }
-  };
+  const [updateRemove, setUpdateRemove] = useState<Boolean>(true);
   const { push } = useRouter();
   useEffect(() => {
+    const fetchData = async () => {
+      const data = await PackageXStudentService.getByStudentId(
+        localStorage.getItem("studentId")!.toString()
+      );
+      setStudentXPackage(data.results);
+      if (data.results != null) {
+        console.log(data.results);
+        setSelectedPackage(data.results[0]);
+      }
+    };
     fetchData();
-  }, [selectedPackage, studentXPackage]);
+  }, [updateRemove]);
   const handleCheckout = async () => {
     const result = await OrderService.createPayment({
       packageId: selectedPackage!.packageId!,
@@ -76,8 +77,9 @@ const Page = () => {
             <div className="mt-8 w-full flex flex-col gap-8">
               {selectedPackage?.package?.packageXCourses?.map((course) => (
                 <PackageDetail
+                  updateRemoveValue={updateRemove}
                   id={course.id}
-                  updatefunction={fetchData}
+                  updatefunction={setUpdateRemove}
                   key={course.course?.name}
                   name={course.course!.name}
                   descibe={course.course?.description}

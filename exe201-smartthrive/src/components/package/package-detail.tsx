@@ -10,6 +10,7 @@ const PackageDetail = ({
   image,
   id,
   updatefunction,
+  updateRemoveValue,
 }: {
   price: number | undefined;
   name: string | undefined;
@@ -17,16 +18,15 @@ const PackageDetail = ({
   image: string | undefined;
   id: string | undefined;
   updatefunction: Function;
+  updateRemoveValue: Boolean;
 }) => {
-  console.log(price, name, descibe, image);
   const handleRemoveItem = async () => {
-    console.log(id);
     if (id == null) {
       return;
     }
     let result = await PackageXCourseService.delete(id);
-    updatefunction();
-    console.log(result);
+    updatefunction(!updateRemoveValue);
+    console.log("delete");
   };
   return (
     <div className="flex mt-4 gap-8">
