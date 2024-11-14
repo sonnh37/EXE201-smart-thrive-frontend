@@ -141,7 +141,7 @@ const Page = () => {
                         </div>
                     </div>
                 </div>
-                <div className="bg-white absolute w-[23vw] top-32 right-32 shadow-lg">
+                <div className="bg-white z-10 absolute w-[23vw] top-32 right-32 shadow-lg">
                     <div className="relative flex justify-center pt-2">
                         <Image
                             src={course.backgroundImage ?? "/global.svg"}
